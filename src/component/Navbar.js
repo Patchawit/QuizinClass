@@ -9,7 +9,6 @@ import {
 
 export default function navbar() {
     return (
-        <Router>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="#">Quiz in Class</a>
@@ -49,6 +48,5 @@ export default function navbar() {
                     </div>
                 </nav>
             </div>
-        </Router>
     )
 }

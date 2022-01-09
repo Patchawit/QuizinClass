@@ -1,8 +1,9 @@
 import Navbar from './component/Navbar';
+import React,{useState}from 'react';
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
 } from "react-router-dom";
 import './App.css';
 import LOGIN from "./screen/LOGIN";
@@ -12,11 +13,21 @@ import Edit from "./screen/Edit";
 import Score from "./screen/Score";
 function App() {
 
+  
+  const [isLogin, setIsLogin] = useState(false)
+  if (!isLogin) {
+    return<div>
+      <LOGIN setIsLogin={setIsLogin} isLogin={isLogin} />
+     </div>
+
+  }
+
   return (
     <div>
-      <Navbar />
+     
       <BrowserRouter>
-        <Routes>
+      <Navbar/> <Routes>
+          
         <Route path="/login" element={<LOGIN />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="/createquiz" element={<Create />} />

@@ -6,7 +6,7 @@ import {
     Link
 } from "react-router-dom";
 
-export default function navbar() {
+export default function Navbarlogin() {
     return (
         <Router>
             <div>
