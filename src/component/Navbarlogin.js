@@ -1,17 +1,26 @@
 import React from 'react';
+import styled from "styled-components";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
+const S = {};
+
+S.CategoryText = styled.a`
+    text-align: left;
+  `
 
 export default function Navbarlogin() {
     return (
         <Router>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="#">Quiz in Class</a>
+                    
+                    <S.CategoryText className="navbar-brand" href="#">Quiz in Class</S.CategoryText>
+                    <S.CategoryText className="navbar-brand mt-5" href="#">เข้าสู่ระบบ</S.CategoryText>
+                    
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
