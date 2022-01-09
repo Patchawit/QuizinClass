@@ -1,0 +1,15 @@
+.navbar-brand{
+ margin-left: 2vw;
+}
+.collapse{
+ margin-left: 3vw;
+}
+.nav-item{
+  margin-left: 3vw;
+  margin-top: 0.5vw;
+  font-size: 1.5rem;
+}
+a {
+  color: black;
+  text-decoration: 0;
+}
