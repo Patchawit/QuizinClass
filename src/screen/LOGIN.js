@@ -7,10 +7,12 @@ export default function LOGIN(props) {
         <div>
           <Navbarlogin/>
             <div className="flex flex-col w-full justify-center text-center lg:text-left lg:w-2/3 ">
-            <button className='btn btn-light p-3 mt-5 text-dark' onClick={() => {props.setIsLogin(true) }}>😅 Sign in with Google</button>
-          <h1 className="mb-6 text-5xl font-bold leading-tight uppercase ">
+            <button className='btn btn-light rounded-pill border border-light  p-3 my-5 text-dark' onClick={() => {props.setIsLogin(true) }}><img src="https://media.discordapp.net/attachments/695119707010891796/932949647360684063/kisspng-google-logo-google-search-google-images-g-suite-google-adwords-5b5695e501bbf6.0297111215324011250071.png?width=869&height=633"  width="65" height="50" />
+            <a>  Sign in with Google</a></button>
+          {/* <h1 className="mb-6 text-5xl font-bold leading-tight uppercase ">
+            
             เข้าสู่ระบบ
-          </h1>
+          </h1> */}
         </div>
         </div>
     )

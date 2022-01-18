@@ -19,7 +19,7 @@ export default function Navbarlogin() {
                 <nav className="navbar navbar-expand navbar-light bg-light d-flex flex-row justify-content-center align-items-center">
                     
                     <S.CategoryText className="navbar-brand col-md-auto" href="#">Quiz in Class</S.CategoryText>
-                    <S.CategoryText className="navbar-brand col-md-auto mt-5" href="#">เข้าสู่ระบบ</S.CategoryText>
+                    <S.CategoryText className="navbar-brand col-md-auto mt-5 text-warning " href="#"><h1>เข้าสู่ระบบ</h1></S.CategoryText>
                     
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
