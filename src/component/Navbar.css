@@ -1,6 +1,21 @@
 .navbar-brand{
  margin-left: 2vw;
+ 
 }
+
+.navbar-expand{
+display: block;
+text-align:center;
+width: 100%;
+height: 6vw;
+padding-top: 1vw;
+}
+
+.navbar-expand h1{
+  text-align:center;
+}
+  
+
 .collapse{
  margin-left: 3vw;
 }
