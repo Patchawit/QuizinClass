@@ -1,52 +1,35 @@
 import React from 'react';
-import "./Navbar.css";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+import './Navbar.css';
 
 export default function navbar() {
     return (
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="#">Quiz in Class</a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <Link to='/'>ชุดคำถาม</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to='/createquiz'>สร้างคำถาม</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to='/editquiz'>แก้ไขชุดคำถาม</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to='/scorequiz'>ผลคะแนน</Link>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#">Kuy</a>
-                                    <a className="dropdown-item" href="#">Rai</a>
-                                    <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">I HERE</a>
-                                </div>
-                            </li>
-
-                        </ul>
-                        
-
-                    </div>
-                </nav>
-            </div>
+        <div>
+            <Navbar bg="light" expand="lg" className='mainbar'>
+                <Navbar.Brand href="#home" className='logo'>Quiz in Class</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="#home" className='subbar2'>ชุดคำถาม</Nav.Link>
+                        <NavDropdown title="สร้างคำถาม" id="basic-nav-dropdown" className='subbar2'>
+                            <NavDropdown.Item href="#action/3.1">สร้างวิชา</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">สร้างชุดคำถาม</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link href="#link" className='subbar2'>แก้ไขคำถาม</Nav.Link>
+                        <Nav.Link href="#link" className='subbar2'>ผลคะแนน</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Text className='subbar3'>
+                        เข้าสู่ระบบโดย : <a href="#login">admin</a>
+                    </Navbar.Text>
+                    <Button variant="dark">ออกจากระบบ</Button>
+                </Navbar.Collapse>
+            </Navbar>
+        </div>
     )
 }
