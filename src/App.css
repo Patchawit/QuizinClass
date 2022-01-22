@@ -1,7 +1,6 @@
-.App {
-  text-align: center;
-}
-
 .login {
-  margin-top: 15vw;
+  height: 88.2vh;
+  padding-top: 35vh;
+  background-color: rgb(255, 180, 50);
+  /* text-align: center; */
 }
