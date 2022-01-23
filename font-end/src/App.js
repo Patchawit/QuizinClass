@@ -1,5 +1,5 @@
 import Navbar from './component/Navbar';
-import React,{useState}from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -14,29 +14,24 @@ import Score from "./screen/Score";
 import Createquiz from "./screen/Createquiz";
 function App(props) {
 
-  
-  // const [isLogin, setIsLogin] = useState(false)
-  // if (!isLogin) {
-  //   return<div>
-  //     <LOGIN setIsLogin={setIsLogin} isLogin={isLogin} />
-  //    </div>
 
-  // }
-  const isLoggedIn = props.isLoggedIn;
-  if (!isLoggedIn) {
-    return<div>
-      <LOGIN/>
-     </div>
+  const [isLogin, setIsLogin] = useState(false)
+  const [loginBy, setLoginBy] = useState('')
+
+  if (!isLogin) {
+    return <div>
+      <LOGIN setIsLogin={setIsLogin} isLogin={isLogin} setLoginBy={setLoginBy} />
+    </div>
 
   }
 
+
   return (
     <div>
-     
+
       <BrowserRouter>
-      <Navbar/> <Routes>
-          
-        <Route path="/login" element={<LOGIN />} />
+        <Navbar setIsLogin={setIsLogin} loginBy={loginBy} /> <Routes>
+          <Route path="/login" element={<LOGIN />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="/createquiz" element={<Create />} />
           <Route path="/createquizz" element={<Createquiz />} />

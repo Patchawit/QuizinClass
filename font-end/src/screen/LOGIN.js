@@ -2,13 +2,20 @@ import React, { useState } from 'react';
 import Navbarlogin from '../component/Navbarlogin'
 import '../App.css'
 import GoogleLogin from 'react-google-login';
-// or
-const responseGoogle = (response) => {
-  console.log(response);
-}
 
+const clientId = "680137363543-qsg5innvjcd89cc81n7oku0jqljs7iqt.apps.googleusercontent.com";
 
 export default function LOGIN(props) {
+
+  const onSuccess = (res) => {
+    console.log('[Login Success] currentUser:', res.profileObj);
+    props.setIsLogin(true)
+    props.setLoginBy(res.profileObj.name)
+  }
+  const onFailure = (res) => {
+    console.log('[Login failed] res:', res);
+  }
+
   return (
     // <GoogleLogin
     //   clientId="680137363543-qsg5innvjcd89cc81n7oku0jqljs7iqt.apps.googleusercontent.com"
@@ -31,14 +38,14 @@ export default function LOGIN(props) {
     <div>
       <Navbarlogin />
       <div className="login flex flex-col w-full justify-center text-center lg:text-left lg:w-2/3">
-      <GoogleLogin
-      clientId="680137363543-qsg5innvjcd89cc81n7oku0jqljs7iqt.apps.googleusercontent.com"
-      buttonText="Sign in with Google"
-      onSuccess={responseGoogle}
-      isSignedIn={true}
-      onFailure={responseGoogle}
-      cookiePolicy={'single_host_origin'}
-    />
+        <GoogleLogin
+          clientId={clientId}
+          buttonText="Sign in with Google"
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
+        />
       </div>
     </div>
   )

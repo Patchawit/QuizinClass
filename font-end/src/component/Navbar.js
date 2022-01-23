@@ -1,4 +1,5 @@
 import React from 'react';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -6,7 +7,17 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import './Navbar.css';
 
-export default function navbar() {
+
+
+const clientId = "680137363543-qsg5innvjcd89cc81n7oku0jqljs7iqt.apps.googleusercontent.com";
+
+export default function navbar(props) {
+
+    const onLogoutSuccess = (res) => {
+        console.log("[Logout Success]")
+        props.setIsLogin(false)
+    }
+
     return (
         <div>
             <Navbar bg="light" expand="lg" className='mainbar'>
@@ -25,9 +36,14 @@ export default function navbar() {
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text className='subbar3'>
-                        เข้าสู่ระบบโดย : <a href="#login">admin</a>
+                        เข้าสู่ระบบโดย : <a href="#login">{props.loginBy}</a>
                     </Navbar.Text>
-                    <Button variant="dark">ออกจากระบบ</Button>
+                    {/* <Button variant="dark">ออกจากระบบ</Button> */}
+                    <GoogleLogout
+                        clientId={clientId}
+                        buttonText="ออกจากระบบ"
+                        onLogoutSuccess={onLogoutSuccess}
+                    />
                 </Navbar.Collapse>
             </Navbar>
         </div>
