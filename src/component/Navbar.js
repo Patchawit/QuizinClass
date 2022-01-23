@@ -10,7 +10,7 @@ export default function navbar() {
     return (
         <div>
             <Navbar bg="light" expand="lg" className='mainbar'>
-                <Navbar.Brand href="/" className='logo'>Quiz in Class</Navbar.Brand>
+                <Navbar.Brand href="/" className='logo'><h3><strong>Quiz <font color="#FFAD32"> in </font> Class</strong></h3></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
