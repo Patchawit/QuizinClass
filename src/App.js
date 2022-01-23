@@ -11,6 +11,7 @@ import HomeScreen from "./screen/HomeScreen";
 import Create from "./screen/Create";
 import Edit from "./screen/Edit";
 import Score from "./screen/Score";
+import Createquiz from "./screen/Createquiz";
 function App() {
 
   
@@ -31,6 +32,7 @@ function App() {
         <Route path="/login" element={<LOGIN />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="/createquiz" element={<Create />} />
+          <Route path="/createquizz" element={<Createquiz />} />
           <Route path="/editquiz" element={<Edit />} />
           <Route path="/scorequiz" element={<Score />} />
         </Routes>

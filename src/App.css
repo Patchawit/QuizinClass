@@ -1,6 +1,9 @@
 .login {
   height: 88.2vh;
   padding-top: 35vh;
-  background-color: rgb(255, 180, 50);
+  background-color: rgb(255, 173, 50);
   /* text-align: center; */
+}
+body {
+  background-color: rgb(255, 173, 50);
 }
