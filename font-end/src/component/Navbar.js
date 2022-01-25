@@ -36,7 +36,7 @@ export default function navbar(props) {
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text className='subbar3'>
-                        เข้าสู่ระบบโดย : <a href="#login">{props.loginBy}</a>
+                        เข้าสู่ระบบโดย : <a href="#login"> <font color="#FFAD32">{props.loginBy}</font></a>
                     </Navbar.Text>
                     {/* <Button variant="dark">ออกจากระบบ</Button> */}
                     <GoogleLogout
