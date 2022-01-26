@@ -8,11 +8,11 @@ const  SubjectCategorySchema = new Schema({
         required: true,
         unique: true
     },
-    techer: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        require: true
-    },
+    // techer: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     require: true
+    // },
 
 });
 
