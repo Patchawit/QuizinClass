@@ -23,7 +23,8 @@ const  SetOfQuestionSchema = new Schema({
 
     score: [
         {
-            score: { type: Number }
+            score: { type: Number },
+            student: { type: Schema.Types.ObjectId,ref:'User'}
         }
         ],
     
