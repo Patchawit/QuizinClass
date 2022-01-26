@@ -1,0 +1,34 @@
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const  SetOfQuestionSchema = new Schema({
+    soqtitle: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    subject: {
+        type: Schema.Types.ObjectId,
+        ref: 'SubjectCategory',
+        require: true
+    },
+    question: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'Question',
+        require: true
+    }
+    ],
+
+    score: [
+        {
+            score: { type: Number }
+        }
+        ],
+    
+    
+
+});
+
+module.exports = mongoose.model('SetOfQuestion', SetOfQuestionSchema);
