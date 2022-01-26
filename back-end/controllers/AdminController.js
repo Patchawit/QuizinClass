@@ -7,10 +7,11 @@ exports.getCategory = (req, res, next) => {
 }
 exports.postCategory = (req, res, next) => {
     const { messages } = req.body
+    console.log(req.body)
     const NewSubject = new SubjectCategory({
         subjecttitle: messages
     })
-    SubjectCategory.save()
+    NewSubject.save()
         .then(result => {
             return console.log(result)
         })
