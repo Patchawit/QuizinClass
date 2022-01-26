@@ -5,3 +5,17 @@
 body {
   background-color: rgb(255, 173, 50);
 }
+.center {
+  margin: auto;
+  width: 70%;
+  padding: 10%;
+  background-color: white;
+  border-radius: 1.6vmin;
+    
+}
+.profile{
+  width: 100%;
+  padding: 8%;
+  border: 2px solid rgb(255, 136, 0);
+  border-radius: 1.6vmin;
+}
