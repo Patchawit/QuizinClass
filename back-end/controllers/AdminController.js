@@ -1,9 +1,12 @@
 const SubjectCategory = require('../models/SubjectCategory')
 
 exports.getCategory = (req, res, next) => {
-    res.status('200').json({
-        messages: 'quiz in class'
-    })
+    SubjectCategory.find().then(result => {
+        res.status('200').json({
+            allSubject: result
+        })
+    }).catch(error => console.log(error))
+    
 }
 exports.postCategory = (req, res, next) => {
     const { messages } = req.body
