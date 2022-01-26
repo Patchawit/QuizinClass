@@ -19,3 +19,13 @@ body {
   border: 2px solid rgb(255, 136, 0);
   border-radius: 1.6vmin;
 }
+
+.namesub{
+  width: 40vw;
+  margin-left: 30vw;
+}
+
+.btnsave {
+  margin-top: 2vw;
+  margin-left: 50vw;
+}

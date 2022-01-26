@@ -40,9 +40,9 @@ export default function Create() {
 
     return (
         <div>
-            <h1>สร้างวิชา</h1>
-            <input value={subjectTitle} onChange={onSubjectChange} className="form-control form-control-lg" type="text" placeholder="กรอกชื่อวิชา"></input>
-            <button type="button" onClick={onSubmit} className="btn btn-warning btn-lg text-dark mt-5">บันทึก</button>
+            <h1>ชื่อหมวดหมู่วิชา</h1>
+            <input value={subjectTitle} onChange={onSubjectChange} className="form-control form-control-lg namesub" type="text" placeholder="กรอกชื่อวิชา"></input>
+            <button type="button" onClick={onSubmit} className="btn btn-warning btn-lg text-dark btnsave">บันทึก</button>
             <ul>
                 {allSubject?.map((subject, key) => {
                     console.log(subject)
