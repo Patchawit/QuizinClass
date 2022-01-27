@@ -1,32 +1,72 @@
 .login {
   padding-top: 35vh;
-  /* text-align: center; */
 }
 body {
   background-color: rgb(255, 173, 50);
 }
 .center {
-  margin: auto;
+  margin-top: 3vh;
+  padding-top: 3vh;
+  margin-left: auto;
+  margin-right: auto;
   width: 70%;
   height: 70vh;
-  padding: 10%;
   background-color: white;
   border-radius: 1.6vmin;
     
 }
 .profile{
-  width: 100%;
-  padding: 8%;
+  margin-left: 7.5vw;
+  padding-top: 8vh;
+  padding-left: 3vw;
+  height: 70%;
+  width: 80%;
   border: 2px solid rgb(255, 136, 0);
   border-radius: 1.6vmin;
+  display:flex;
+}
+.info {
+  margin-left: 6vw;
+  margin-top: 2vw;
+  font-size: 1.5rem;
+}
+.btnmyscore{
+  margin-left: 30vw;
+}
+
+.namesubject{
+  display:flex;
+  padding-left: 5vw;
+}
+.namesubject h3 {
+  font-size: 1.3rem;
+  padding-top: 1.5vh;
 }
 
 .namesub{
-  width: 40vw;
-  margin-left: 30vw;
+  width: 80%;
+  margin-left: 2vw;
+  
 }
 
 .btnsave {
   margin-top: 2vw;
-  margin-left: 50vw;
+  margin-left: 35vw;
+}
+
+.name h3 {
+  font-size: 1.3rem;
+  margin-top: 2vh;
+  margin-left: 3vw;
+}
+
+.name li{
+  list-style: none;
+  margin-left: 13vw;
+  margin-top: 1vh;
+}
+
+
+.btnclose{
+  margin-left: 1vw;
 }
