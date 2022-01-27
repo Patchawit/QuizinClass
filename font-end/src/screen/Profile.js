@@ -8,7 +8,7 @@ export default function Profile() {
       </h1>
       <div className='center'>
         <div className='profile'>
-          <img src="https://media.discordapp.net/attachments/695119707010891796/935944609610219540/iconfinder-send-4341325_120524_1.png" alt="" width="30%" height="70%" />
+          <img src="https://media.discordapp.net/attachments/867880540602368052/936140224852021258/itlogo.png" alt="" width="25%" height="70%" />
           <div className="info">
             <p>
               รหัสนักศึกษา :
