@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const questionsSchema = new Schema({
     questionstitle: {
         type: String,
-        required: true,
+        // required: true,
         unique: true
     },
     imgUrl: {
@@ -15,7 +15,7 @@ const questionsSchema = new Schema({
     choices: [{
         type: Schema.Types.ObjectId,
         ref: 'Choice',
-        require: true
+        // require: true
     }]
 
 });

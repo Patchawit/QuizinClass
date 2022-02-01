@@ -26,9 +26,8 @@ export default function navbar(props) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/" className='subbar2'>ชุดคำถาม</Nav.Link>
-                        <NavDropdown title="สร้างคำถาม" id="basic-nav-dropdown" className='subbar2'>
+                        <NavDropdown title="หมวดหมู่วิชา" id="basic-nav-dropdown" className='subbar2'>
                             <NavDropdown.Item href="/createquiz">สร้างวิชา</NavDropdown.Item>
-                            <NavDropdown.Item href="/createquizz">สร้างชุดคำถาม</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="/editquiz" className='subbar2'>แก้ไขคำถาม</Nav.Link>
                         <Nav.Link href="/scorequiz" className='subbar2'>ผลคะแนน</Nav.Link>

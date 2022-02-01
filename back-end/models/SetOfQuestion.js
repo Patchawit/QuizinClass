@@ -11,13 +11,13 @@ const  SetOfQuestionSchema = new Schema({
     subject: {
         type: Schema.Types.ObjectId,
         ref: 'SubjectCategory',
-        require: true
+        // require: true
     },
     question: [
     {
         type: Schema.Types.ObjectId,
         ref: 'Question',
-        require: true
+        // require: true
     }
     ],
 

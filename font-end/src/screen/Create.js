@@ -18,6 +18,17 @@ export default function Create() {
             .then(res => res.json())
 
     }
+    const onDelete = async (categoryId) => {
+        await fetch("http://localhost:5000/admin/category", {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: "DELETE",
+            body: JSON.stringify({ "categoryId": categoryId })
+        })
+            .then(res => res.json())
+
+    }
     useEffect(async () => {
         setLoadind(true)
         await fetch("http://localhost:5000/admin/category", {
@@ -52,7 +63,7 @@ export default function Create() {
                     {allSubject?.map((subject, key) => {
                         console.log(subject)
                         return <li key={key}>{subject.subjecttitle}
-                                    <CloseButton aria-label="Hide" className="btnclose"/>
+                                    <CloseButton onClick={()=>onDelete(subject._id)} aria-label="Hide" className="btnclose"/>
                                 </li>
                     })}
                 </ul>
