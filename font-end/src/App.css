@@ -7,10 +7,10 @@ body {
 .center {
   margin-top: 3vh;
   padding-top: 3vh;
+  padding-bottom: 3vh;
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  height: 70vh;
   background-color: white;
   border-radius: 1.6vmin;
     
@@ -69,4 +69,50 @@ body {
 
 .btnclose{
   margin-left: 1vw;
+}
+
+.group{
+  display: flex;
+}
+.groupsub {
+  margin-left: 15vw;
+  margin-top: 5vh;
+  font-size: 1.5rem;
+}
+.formselect{
+  margin-top: 5vh;
+  margin-left: 2vw;
+  width: 20%;
+  height: 100%;
+}
+
+.groupquest {
+  margin-top: 3vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 15vh;
+  background-color: white;
+  border-radius: 1.6vmin;
+}
+
+.groupquest p {
+  margin-left: 2vw;
+}
+
+.quest{
+  display: flex;
+}
+
+.quest p {
+  margin-top: 3vh;
+  margin-left: 2vw;
+  font-size: 1.5rem;
+}
+.btnstart{
+  margin-left: 50vw;
+  margin-top: 4vh;
+}
+.datecreate{
+  display: flex;
 }

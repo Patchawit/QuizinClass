@@ -1,18 +1,33 @@
-import React from 'react'
+import React from 'react';
+import Form from 'react-bootstrap/Form';
+import BootstrapSwitchButton from 'react-bootstrap/Switch';
 
 export default function HomeScreen() {
-    return (
-        <div>
-            <div className="flex flex-col w-full justify-center text-center lg:text-left lg:w-2/3">
-          <h1 className="mb-6 text-5xl font-bold leading-tight uppercase">
-           หน้าหลักที่เป็นหน้าหลัก
-          </h1>
-          <p className="leading-normal text-xl mb-8">
-            Unlock your potential and take your shoes to the next level with
-            special designs that allow you to do things you have never been able
-            to do before.
+  return (
+    <div>
+      <div className='group'>
+        <p className='groupsub'>
+          หมวดหมู่วิชา
+        </p>
+        <Form.Select className='formselect'>
+          <option>Default select</option>
+        </Form.Select>
+      </div>
+      <div className='groupquest'>
+        <div className='quest'>
+          <p>ชุดที่ 1 : ชื่อชุดคำถาม</p>
+          <button type="button" className="btn btn-warning btn-lg text-dark btnstart">เริ่มทำ</button>
+        </div>
+        <div className='datecreate'>
+          <p>
+            วันที่สร้าง : 2/2/2022
           </p>
+          <p>
+            แสดงคะแนน
+          </p>
+          <BootstrapSwitchButton checked={true} size="xs"/>
         </div>
-        </div>
-    )
+      </div>
+    </div>
+  )
 }
