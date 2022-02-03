@@ -1,12 +1,35 @@
-import React from 'react'
+import React from 'react';
+import Form from 'react-bootstrap/Form';
+import BootstrapSwitchButton from 'react-bootstrap/Switch';
+
 
 export default function Edit() {
-    return (
-        <div width="100%" height="100%">
-            <h1>แก้ไขชุดคำถาม</h1>
-            <div className='center'>
-            </div>
+  return (
+    <div>
+      <div className='group'>
+        <p className='groupsub'>
+          หมวดหมู่วิชา
+        </p>
+        <Form.Select className='formselect'>
+          <option>Default select</option>
+        </Form.Select>
+      </div>
+      <div className='groupquest'>
+        <div className='quest'>
+          <p>ชุดที่ 1 : ชื่อชุดคำถาม</p>
+          <button type="button" href="/editque" className="btn btn-warning btn-lg text-dark btnedit">แก้ไข</button> 
+          <button type="button" className="btn btn-dark btn-lg text-light btndel">ลบ</button>
         </div>
-        
-    )
+        <div className='datecreate'>
+          <p>
+            วันที่สร้าง : 2/2/2022
+          </p>
+          <p>
+            แสดงคะแนน
+          </p>
+          <BootstrapSwitchButton checked={true} size="xs"/>
+        </div>
+      </div>
+    </div>
+  )
 }

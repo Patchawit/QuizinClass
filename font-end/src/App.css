@@ -116,3 +116,48 @@ body {
 .datecreate{
   display: flex;
 }
+
+.groupsub2 {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  font-size: 1.2rem;
+}
+.namequestion{
+  display:flex;
+  margin-top: 2vh;
+  margin-left: 3vw;
+}
+.namequestion h3{
+  padding-top: 1vh;
+  font-size: 1.2rem;
+}
+.nameque{
+  width: 80%;
+  margin-left: 2vw
+}
+
+.nameque2{
+  width: 80%;
+  margin-left: 4.6vw
+}
+.nameque3{
+  width: 80%;
+  margin-left: 2.5vw
+}
+
+.btnaddchoice{
+  margin-top: 2vw;
+  margin-left: 55vw;
+}
+.btnaddque{
+  margin-top: 1vw;
+  margin-left: 60vw;
+}
+.btnedit{
+  margin-left: 46vw;
+  margin-top: 4vh;
+}
+.btndel{
+  margin-left: 0.5vw;
+  margin-top: 4vh;
+}

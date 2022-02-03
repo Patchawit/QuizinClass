@@ -12,6 +12,7 @@ import Create from "./screen/Create";
 import Edit from "./screen/Edit";
 import Score from "./screen/Score";
 import Profile from "./screen/Profile";
+import Editque from "./screen/Editque";
 function App(props) {
 
 
@@ -37,6 +38,7 @@ function App(props) {
           <Route path="/editquiz" element={<Edit />} />
           <Route path="/scorequiz" element={<Score />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/editque" element={<Editque />} />
         </Routes>
       </BrowserRouter>
     </div>
