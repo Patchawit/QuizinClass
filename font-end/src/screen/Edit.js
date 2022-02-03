@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import BootstrapSwitchButton from 'react-bootstrap/Switch';
+import Nav from 'react-bootstrap/Nav';
 
 
 export default function Edit() {
@@ -17,7 +18,7 @@ export default function Edit() {
       <div className='groupquest'>
         <div className='quest'>
           <p>ชุดที่ 1 : ชื่อชุดคำถาม</p>
-          <button type="button" href="/editque" className="btn btn-warning btn-lg text-dark btnedit">แก้ไข</button> 
+          <Nav.Link href="/editque"><button type="button"  className="btn btn-warning btn-lg text-dark btnedit">แก้ไข</button></Nav.Link> 
           <button type="button" className="btn btn-dark btn-lg text-light btndel">ลบ</button>
         </div>
         <div className='datecreate'>
