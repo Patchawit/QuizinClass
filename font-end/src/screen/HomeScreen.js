@@ -3,6 +3,9 @@ import Form from 'react-bootstrap/Form';
 import BootstrapSwitchButton from 'react-bootstrap/Switch';
 
 export default function HomeScreen() {
+  const clickCreateSoqHandler = () => {
+    console.log("from clickCreateSoqHandler")
+  }
   return (
     <div>
       <div className='group'>
@@ -12,6 +15,7 @@ export default function HomeScreen() {
         <Form.Select className='formselect'>
           <option>Default select</option>
         </Form.Select>
+        <a className='btn btn-primary' href="/create-soq" >สร้างชุดคำถาม</a>
       </div>
       <div className='groupquest'>
         <div className='quest'>
@@ -25,7 +29,7 @@ export default function HomeScreen() {
           <p>
             แสดงคะแนน
           </p>
-          <BootstrapSwitchButton checked={true} size="xs"/>
+          <BootstrapSwitchButton checked={true} size="xs" />
         </div>
       </div>
     </div>

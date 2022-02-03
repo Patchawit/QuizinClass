@@ -13,7 +13,9 @@ import Edit from "./screen/Edit";
 import Score from "./screen/Score";
 import Profile from "./screen/Profile";
 import Editque from "./screen/Editque";
+import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
 function App(props) {
+
 
 
   const [isLogin, setIsLogin] = useState(false)
@@ -39,6 +41,7 @@ function App(props) {
           <Route path="/scorequiz" element={<Score />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/editque" element={<Editque />} />
+          <Route path="/create-soq" element={<CreateSetOfQuestion />} />
         </Routes>
       </BrowserRouter>
     </div>

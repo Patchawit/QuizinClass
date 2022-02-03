@@ -27,8 +27,7 @@ const  SetOfQuestionSchema = new Schema({
             student: { type: Schema.Types.ObjectId,ref:'User'}
         }
         ],
-    
-    
+
 
 });
 

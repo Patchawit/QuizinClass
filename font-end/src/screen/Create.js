@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CloseButton from 'react-bootstrap/CloseButton'
 export default function Create() {
     const [subjectTitle, setSubjectTitle] = useState('')
-    const [isLoading, setLoadind] = useState(false)
+    const [isLoading, setLoading] = useState(false)
     const [allSubject, setAllSubject] = useState([])
     const onSubjectChange = (event) => {
         setSubjectTitle(event.target.value)
@@ -30,7 +30,7 @@ export default function Create() {
 
     }
     useEffect(async () => {
-        setLoadind(true)
+        setLoading(true)
         await fetch("http://localhost:5000/admin/category", {
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export default function Create() {
                 console.log(result)
                 return setAllSubject(result.allSubject)
             })
-        setLoadind(false)
+        setLoading(false)
     }, [])
 
     if (isLoading) {
