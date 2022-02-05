@@ -2,22 +2,30 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const choicesSchema = new Schema({
+    choiceTitle: {
+        type: String
+    },
+    choiceImg: {
+        type: String
+    }
+
+})
+
 const questionsSchema = new Schema({
     questionstitle: {
         type: String,
         // required: true,
-        unique: true
+        // unique: true
     },
     imgUrl: {
         type: String,
         required: false
     },
-    choices: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Choice',
-        // require: true
-    }]
+    choices: [choicesSchema]
 
 });
+
+
 
 module.exports = mongoose.model('Question', questionsSchema);

@@ -1,5 +1,7 @@
+const Question = require('../models/Question')
 const SetOfQuestion = require('../models/SetOfQuestion')
 const SubjectCategory = require('../models/SubjectCategory')
+
 //สร้างวิชา
 exports.getCategory = (req, res, next) => {
     SubjectCategory.find().then(result => {
@@ -107,8 +109,64 @@ exports.patchSetOfQuestion = (req, res, next) => {
                 .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
+}
+
+exports.postQuestion = (req, res, next) => {
+    const { questionData, soqId } = req.body
+
+    // console.log(questionData.Choice)
+
+    const newQuestion = new Question({
+        questionstitle: questionData.QuestionTitle,
+        choices: questionData?.Choice.map(choice => {
+            return choice
+        })
+    })
 
 
+    newQuestion.save()
+        .then(question => {
+            return question
+        })
+        .then(result => {
+
+            SetOfQuestion
+                .findById(soqId)
+                .populate('questions')
+                .then(SetOfQuestion => {
+                    SetOfQuestion.questions.push(result._id)
+                    // console.log(SetOfQuestion.questions)
+                    return SetOfQuestion.save().then(result => {
+                        return result.populate('questions')
+                    })
+                })
+                .then(newSetOfQuestion => {
+                    console.log(newSetOfQuestion)
+                    res.status(200).json({
+                        Question: newSetOfQuestion
+                    })
+
+                })
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+
+    // SetOfQuestion
+    //     .findById(soqId)
+    //     .then(SetOfQuestion => {
+    //         // console.log(SetOfQuestion)
+    //         SetOfQuestion.question.push(Question)
+    //         console.log(SetOfQuestion.question)
+    //         return SetOfQuestion.save()
+    //     })
+    //     .then(newSetOfQuestion => {
+    //         console.log(newSetOfQuestion)
+    //         res.status(200).json({
+    //             Question: newSetOfQuestion
+    //         })
+
+    //     })
+    //     .catch(err => console.log(err))
 
 }
 

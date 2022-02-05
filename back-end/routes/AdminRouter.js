@@ -7,5 +7,7 @@ router.delete('/Category', adminController.deleteCategory)
 router.get('/SetOfQuestion', adminController.getSetOfQuestion)
 router.post('/SetOfQuestion', adminController.postSetOfQuestion)
 router.patch('/SetOfQuestion', adminController.patchSetOfQuestion)
+
+router.post('/Question', adminController.postQuestion)
 exports.router = router
 
