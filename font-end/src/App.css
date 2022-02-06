@@ -161,3 +161,30 @@ body {
   margin-left: 0.5vw;
   margin-top: 4vh;
 }
+
+.btncre{
+  margin-left: 1vw;
+  margin-top: 5vh;
+  margin-bottom: 1vh;
+}
+.nameset{
+  display: flex;
+  margin-top: 5vh;
+  margin-left: 15vw;
+}
+.nameset p {
+  font-size: 1.5rem;
+}
+.nameset input{
+  margin-left: 1vw;
+  width: 50%;
+}
+.nameset button{
+  margin-left: 1vw;
+}
+  
+.formsel{
+  margin-left: 2vw;
+  width: 50%;
+  height: 100%;
+}

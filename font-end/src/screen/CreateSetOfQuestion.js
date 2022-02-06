@@ -169,9 +169,10 @@ export default function CreateSetOfQuestion() {
 
 
         {isEdit == false ?
-            <div>
+            <div className='nameset'>
+                <p>ชื่อชุดคำถาม</p>
                 <input type="text" value={soqTitle} onChange={soqTitleChangeHandler} />
-                <button onClick={clickNextHandler}>Next</button>
+                <button className='btn btn-light' onClick={clickNextHandler}>ต่อไป</button>
             </div>
 
             : isEditQuestion == true ?
@@ -207,12 +208,15 @@ export default function CreateSetOfQuestion() {
 
                 </div>
                 :
-                <Form.Select className='formselect' onChange={dropdownChangeHandler}>
+                <div className='nameset'>
+                <p>หมวดหมู่วิชา</p>
+                <Form.Select className='formsel' onChange={dropdownChangeHandler}>
                     <option>Default select</option>
                     {allSubject?.map((subject, key) => {
                         return <option value={subject._id} key={subject.subjecttitle}>{subject.subjecttitle}</option>
                     })}
                 </Form.Select>
+                </div>
         }
 
     </div>;

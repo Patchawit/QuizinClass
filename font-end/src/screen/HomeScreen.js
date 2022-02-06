@@ -15,7 +15,7 @@ export default function HomeScreen() {
         <Form.Select className='formselect'>
           <option>Default select</option>
         </Form.Select>
-        <a className='btn btn-primary' href="/create-soq" >สร้างชุดคำถาม</a>
+        <a className='btn btn-light btncre' href="/create-soq" >สร้างชุดคำถาม</a>
       </div>
       <div className='groupquest'>
         <div className='quest'>
