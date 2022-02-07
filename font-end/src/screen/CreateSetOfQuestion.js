@@ -177,45 +177,51 @@ export default function CreateSetOfQuestion() {
 
             : isEditQuestion == true ?
                 <div>
-                    <div>
+                    <div className='groupsub'>
                         {questionList?.map(question => {
-                            return <div key={question.title}><div className='group'>
-                                <p className='groupsub'>
+                            return <div key={question.title}><div className='questsave'>
+                                <p>
+                                    ข้อที่...
                                     {question.questionstitle}
                                 </p>
                                 {question.choices.map(choice => {
-                                    return <p className='groupsub' key={choice.choiceTitle}>
+                                    return <p key={choice.choiceTitle}>
+                                        ตัวเลือกที่...
                                         {choice.choiceTitle}
                                     </p>
                                 })}
-
-
+                                <button type="button" className="btn btn-light btn-lg text-dark">edit</button>
                             </div>
-
                             </div>
                         })}
                     </div>
                     <div>
-                        <Form onSubmit={submitQuestionHandler} >
+                        <Form onSubmit={submitQuestionHandler} className='creques'>
+                            <p>คำถาม</p>
                             <input placeholder='กรอกคำถาม' name='QuestionTitle'></input>
+                            <p>ตัวเลือกที่1</p>
                             <input placeholder='ตัวเลือก1' name='ChoiceTitle1'></input>
+                            <p>ตัวเลือกที่2</p>
                             <input placeholder='ตัวเลือก2' name='ChoiceTitle2'></input>
+                            <p>ตัวเลือกที่3</p>
                             <input placeholder='ตัวเลือก3' name='ChoiceTitle3'></input>
+                            <p>ตัวเลือกที่4</p>
                             <input placeholder='ตัวเลือก4' name='ChoiceTitle4'></input>
-                            <button type="submit">Save</button>
+                            <p></p>
+                            <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
                         </Form>
                     </div>
 
                 </div>
                 :
                 <div className='nameset'>
-                <p>หมวดหมู่วิชา</p>
-                <Form.Select className='formsel' onChange={dropdownChangeHandler}>
-                    <option>Default select</option>
-                    {allSubject?.map((subject, key) => {
-                        return <option value={subject._id} key={subject.subjecttitle}>{subject.subjecttitle}</option>
-                    })}
-                </Form.Select>
+                    <p>หมวดหมู่วิชา</p>
+                    <Form.Select className='formsel' onChange={dropdownChangeHandler}>
+                        <option>Default select</option>
+                        {allSubject?.map((subject, key) => {
+                            return <option value={subject._id} key={subject.subjecttitle}>{subject.subjecttitle}</option>
+                        })}
+                    </Form.Select>
                 </div>
         }
 

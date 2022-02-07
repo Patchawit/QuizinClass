@@ -188,3 +188,31 @@ body {
   width: 50%;
   height: 100%;
 }
+
+.creques{
+  display: block;
+  margin-top: 5vh;
+  margin-left: 15vw;
+}
+.creques input{
+  margin-bottom: 2vh;
+  width: 80%;
+}
+.creques button{
+  margin-left: 64vw;
+  margin-bottom: 5vh;
+}
+.creques p {
+  margin-bottom: 0.5vh;
+}
+
+.questsave{
+  display: block;
+  margin-top: 2vh;
+}
+.questsave p{
+  font-size: 1.2rem;
+}
+.questsave button {
+  margin-left: 64vw;
+}
