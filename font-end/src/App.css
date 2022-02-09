@@ -216,3 +216,23 @@ body {
 .questsave button {
   margin-left: 64vw;
 }
+.table{
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+.search{
+  width: 20%;
+  height: 100%;
+  margin-left: 1vw;
+  margin-top: 2.5vw;
+}
+
+.scorehead{
+  display:flex;
+  margin-left: 12vw;
+}
+.scorehead h3{
+  margin-left: 24vw;
+  margin-top: 5.5vh;
+  font-size: 1.2rem;
+}
