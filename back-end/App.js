@@ -11,9 +11,16 @@ app.use(express.urlencoded({
 }));
 app.use('/admin', AdminRouter.router)
 
+app.use((error, req, res, next) => {
+  console.log(error);
+  const status = error.statusCode || 500;
+  const message = error.message;
+  const data = error.data;
+  res.status(status).json({ message: message, data: data });
+});
 
 mongoose.connect(mongodburi)
-    .then(result => {
-        app.listen(5000, () => console.log("Server start at Port 5000"))
-    })
-    .catch(Error => console.log(Error))
+  .then(result => {
+    app.listen(5000, () => console.log("Server start at Port 5000"))
+  })
+  .catch(Error => console.log(Error))

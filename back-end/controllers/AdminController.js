@@ -54,7 +54,7 @@ exports.deleteCategory = (req, res, next) => {
 
 // }
 
-exports.getSetOfQuestion = (req, res, next) => {
+exports.getSetOfQuestions = (req, res, next) => {
     SetOfQuestion
         .find()
         .populate('subject')
@@ -67,106 +67,155 @@ exports.getSetOfQuestion = (req, res, next) => {
 
 }
 
-exports.postSetOfQuestion = (req, res, next) => {
+
+exports.getSetOfQuestionbySubject = async (req, res, next) => {
+    const subjectId = req.params.subjectId;
+    console.log(subjectId)
+    try {
+        const setOfquestion = await SetOfQuestion.find({ subject: subjectId })
+        res.status(200).json({
+            msg: "setOfquestion by Subject",
+            SetOfQuestion: setOfquestion
+        })
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+
+}
+
+exports.postSetOfQuestion = async (req, res, next) => {
     const { SetOfQuestionTitle } = req.body;
     const newSetOfQuestion = new SetOfQuestion({
         soqtitle: SetOfQuestionTitle
     })
-    newSetOfQuestion
-        .save()
-        .then(result => {
-            console.log(result)
-            res.status(200).json({
-                msg: "Create New SetOfQuestion Complete!",
-                SetOfQuestion: result
-            })
+    try {
+        await newSetOfQuestion.save();
+        console.log(newSetOfQuestion)
+        res.status(200).json({
+            msg: "Create New SetOfQuestion Complete!",
+            SetOfQuestion: newSetOfQuestion
         })
-        .catch(err => console.log(err))
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
 }
 
-exports.patchSetOfQuestion = (req, res, next) => {
+exports.patchSetOfQuestion = async (req, res, next) => {
     const { subjectId, soq } = req.body;
-    console.log(soq)
-    SubjectCategory
-        .findById(subjectId)
-        .then(SubjectCategory => {
-            SetOfQuestion
-                .findById(soq._id)
-                .then(Soq => {
-                    console.log("in subcategory", SubjectCategory)
-                    Soq.subject = SubjectCategory._id
-                    return Soq
-                        .save()
-                        .then(result => {
-                            console.log("aaaaaaaa", typeof result.subject)
-                            res.status(200).json({
-                                msg: "Patch subjectId Complete!",
-                                SetOfQuestion: result
-                            })
-                        })
-                        .catch(err => console.log(err))
-                })
-                .catch(err => console.log(err))
+    try {
+        const subject = await SubjectCategory.findById(subjectId);
+        const setOfQuestion = await SetOfQuestion.findById(soq._id);
+        setOfQuestion.subject = subject;
+        await setOfQuestion.save();
+        res.status(200).json({
+            msg: "Add subject to SetOfQuestion Complete!",
+            SetOfQuestion: setOfQuestion
         })
-        .catch(err => console.log(err))
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+
+
 }
 
-exports.postQuestion = (req, res, next) => {
-    const { questionData, soqId } = req.body
-
-    // console.log(questionData.Choice)
-
+exports.postQuestion = async (req, res, next) => {
+    const { questionData, soqId } = req.body;
     const newQuestion = new Question({
         questionstitle: questionData.QuestionTitle,
         choices: questionData?.Choice.map(choice => {
-            return choice
+            return choice;
         })
     })
-
-
-    newQuestion.save()
-        .then(question => {
-            return question
+    try {
+        await newQuestion.save();
+        let setOfQuestion = await SetOfQuestion.findById(soqId);
+        await setOfQuestion.questions.push(newQuestion);
+        setOfQuestion = await setOfQuestion.populate('questions')
+        await setOfQuestion.save();
+        res.status(200).json({
+            Question: setOfQuestion
         })
-        .then(result => {
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
 
-            SetOfQuestion
-                .findById(soqId)
-                .populate('questions')
-                .then(SetOfQuestion => {
-                    SetOfQuestion.questions.push(result._id)
-                    // console.log(SetOfQuestion.questions)
-                    return SetOfQuestion.save().then(result => {
-                        return result.populate('questions')
-                    })
-                })
-                .then(newSetOfQuestion => {
-                    console.log(newSetOfQuestion)
-                    res.status(200).json({
-                        Question: newSetOfQuestion
-                    })
 
-                })
-                .catch(err => console.log(err))
-        })
-        .catch(err => console.log(err))
 
-    // SetOfQuestion
-    //     .findById(soqId)
-    //     .then(SetOfQuestion => {
-    //         // console.log(SetOfQuestion)
-    //         SetOfQuestion.question.push(Question)
-    //         console.log(SetOfQuestion.question)
-    //         return SetOfQuestion.save()
+    // old postQuestion code
+    // newQuestion.save()
+    //     .then(question => {
+    //         return question
     //     })
-    //     .then(newSetOfQuestion => {
-    //         console.log(newSetOfQuestion)
-    //         res.status(200).json({
-    //             Question: newSetOfQuestion
-    //         })
+    //     .then(result => {
 
+    //         SetOfQuestion
+    //             .findById(soqId)
+    //             .populate('questions')
+    //             .then(SetOfQuestion => {
+    //                 SetOfQuestion.questions.push(result._id)
+    //                 // console.log(SetOfQuestion.questions)
+    //                 return SetOfQuestion.save().then(result => {
+    //                     return result.populate('questions')
+    //                 })
+    //             })
+    //             .then(newSetOfQuestion => {
+    //                 console.log(newSetOfQuestion)
+    //                 res.status(200).json({
+    //                     Question: newSetOfQuestion
+    //                 })
+
+    //             })
+    //             .catch(err => console.log(err))
     //     })
     //     .catch(err => console.log(err))
 
+
+}
+
+exports.patchQuestion = async (req, res, next) => {
+    const { questionData } = req.body;
+    // console.log(questionData.Choice[0].choiceTitle)
+    // console.log(questionData.Choice[1].choiceTitle)
+    // console.log(questionData.Choice[2].choiceTitle)
+    // console.log(questionData.Choice[3].choiceTitle)
+    try {
+        let editQuestion = await Question.findById(questionData.QuestionId)
+        editQuestion.questionstitle = questionData.QuestionTitle
+        // console.log(editQuestion.choices[0].choiceTitle)
+        // console.log(editQuestion.choices[1].choiceTitle)
+        // console.log(editQuestion.choices[2].choiceTitle)
+        // console.log(editQuestion.choices[3].choiceTitle)
+        editQuestion.choices[0].choiceTitle = questionData.Choice[0].choiceTitle
+        editQuestion.choices[1].choiceTitle = questionData.Choice[1].choiceTitle
+        editQuestion.choices[2].choiceTitle = questionData.Choice[2].choiceTitle
+        editQuestion.choices[3].choiceTitle = questionData.Choice[3].choiceTitle
+        await editQuestion.save()
+        const setofQuestion = await SetOfQuestion.findById(questionData.soqId).populate('questions')
+        console.log(setofQuestion)
+        res.status(200).json({
+            Question: setofQuestion
+        })
+
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+
+
+    // console.log(questionData)
 }
 

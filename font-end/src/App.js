@@ -40,7 +40,7 @@ function App(props) {
           <Route path="/editquiz" element={<Edit />} />
           <Route path="/scorequiz" element={<Score />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/editque" element={<Editque />} />
+          <Route name="editque" path="/editque/:soqId" element={<Editque />} />
           <Route path="/create-soq" element={<CreateSetOfQuestion />} />
         </Routes>
       </BrowserRouter>
