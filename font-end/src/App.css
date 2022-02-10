@@ -196,7 +196,7 @@ body {
 }
 .creques input{
   margin-bottom: 2vh;
-  width: 80%;
+  width: 82%;
 }
 .creques button{
   margin-left: 64vw;
@@ -208,13 +208,13 @@ body {
 
 .questsave{
   display: block;
-  margin-top: 2vh;
 }
 .questsave p{
   font-size: 1.2rem;
+  display: flex;
 }
 .questsave button {
-  margin-left: 64vw;
+  margin-left: 62vw;
 }
 .table{
   padding-left: 2vw;
@@ -235,4 +235,26 @@ body {
   margin-left: 24vw;
   margin-top: 5.5vh;
   font-size: 1.2rem;
+}
+.groupcreate {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin-top: 5vh;
+  font-size: 1.5rem;
+  background-color: white;
+  border-radius: 1.6vmin;
+  width: 70%;
+  height: auto;
+}
+
+.inputques{
+  width: 80%;
+  margin-left: 1vw;
+}
+.inputquest{
+  width: 80%;
+  margin-left: 3vw;
 }

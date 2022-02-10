@@ -177,24 +177,21 @@ export default function CreateSetOfQuestion() {
 
             : isEditQuestion == true ?
                 <div>
-                    <div className='groupsub'>
-                        {questionList?.map(question => {
-                            return <div key={question.title}><div className='questsave'>
-                                <p>
-                                    ข้อที่...
-                                    {question.questionstitle}
+                    {questionList?.map(question => {
+                        return <div key={question.title} className='groupcreate'><div className='questsave'>
+                            <p>
+                                ข้อที่...
+                                <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled/>
+                            </p>
+                            {question.choices.map(choice => {
+                                return <p key={choice.choiceTitle}>
+                                    ตัวเลือกที่...
+                                    <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled/>
                                 </p>
-                                {question.choices.map(choice => {
-                                    return <p key={choice.choiceTitle}>
-                                        ตัวเลือกที่...
-                                        {choice.choiceTitle}
-                                    </p>
-                                })}
-                                <button type="button" className="btn btn-light btn-lg text-dark">edit</button>
-                            </div>
-                            </div>
-                        })}
-                    </div>
+                            })}
+                            <button type="button" className="btn btn-warning btn-lg text-dark">edit</button>
+                        </div></div>
+                    })}
                     <div>
                         <Form onSubmit={submitQuestionHandler} className='creques'>
                             <p>คำถาม</p>
