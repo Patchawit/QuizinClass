@@ -14,6 +14,7 @@ import Score from "./screen/Score";
 import Profile from "./screen/Profile";
 import Editque from "./screen/Editque";
 import Lobby from "./screen/Lobby";
+import Breakoutsession from "./screen/Breakoutsession";
 import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
 function App(props) {
 
@@ -44,6 +45,7 @@ function App(props) {
           <Route name="editque" path="/editque/:soqId" element={<Editque />} />
           <Route path="/create-soq" element={<CreateSetOfQuestion />} />
           <Route path="/lobby" element={<Lobby />} />
+          <Route path="/breakoutsession" element={<Breakoutsession />} />
         </Routes>
       </BrowserRouter>
     </div>
