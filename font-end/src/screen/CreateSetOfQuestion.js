@@ -1,7 +1,20 @@
 import { Dropdown } from 'bootstrap';
 import React, { useState, useEffect } from 'react';
 import BootstrapSwitchButton from 'react-bootstrap/Switch';
+import * as loadingData from "../loadingData.json";
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
 import Form from 'react-bootstrap/Form';
+
+
+const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loadingData.default,
+    rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice"
+    }
+};
 
 export default function CreateSetOfQuestion() {
     const [soqTitle, setSoqTitle] = useState('');
@@ -186,6 +199,30 @@ export default function CreateSetOfQuestion() {
         setEditQuestion(question._id);
     }
 
+    const deleteQuestionHandler = async (question) => {
+        setLoading(true)
+        await fetch("http://localhost:5000/admin/Question", {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: "DELETE",
+            body: JSON.stringify({
+                "questionData": {
+                    soqId: soq._id,
+                    QuestionId: question._id,
+                }
+            })
+        })
+            .then(result => {
+                return result.json()
+            })
+            .then(res => {
+                console.log(res)
+                return setQuestionList(res.Question.questions)
+            })
+        setLoading(false)
+    }
+
     const updateQuestionHandler = async (e) => {
         e.preventDefault()
         console.log(e.target.QuestionTitle.value)
@@ -240,18 +277,20 @@ export default function CreateSetOfQuestion() {
 
 
     if (isLoading) {
-        return <div>Loading ...</div>
+        return <FadeIn><Lottie options={defaultOptions} height={500} width={500} /></FadeIn>
     }
 
-    return <div>
+    return <FadeIn>
 
 
         {isEdit == false ?
-            <div className='nameset'>
-                <p>ชื่อชุดคำถาม</p>
-                <input type="text" value={soqTitle} onChange={soqTitleChangeHandler} />
-                <button className='btn btn-light' onClick={clickNextHandler}>ต่อไป</button>
-            </div>
+            <FadeIn>
+                <div className='nameset'>
+                    <p>ชื่อชุดคำถาม</p>
+                    <input type="text" value={soqTitle} onChange={soqTitleChangeHandler} />
+                    <button className='btn btn-light' onClick={clickNextHandler}>ต่อไป</button>
+                </div>
+            </FadeIn>
 
             : isEditQuestion == true ?
                 <div>
@@ -289,6 +328,8 @@ export default function CreateSetOfQuestion() {
                                 })}
                                 <button type="button" className="btn btn-warning btn-lg text-dark"
                                     onClick={() => { onClickEditQuestion(question) }}>edit</button>
+                                <button type="button" className="btn btn-danger btn-lg text-dark"
+                                    onClick={() => { deleteQuestionHandler(question) }}>delete</button>
                             </div></div>
                         }
                         return content
@@ -323,5 +364,5 @@ export default function CreateSetOfQuestion() {
                 </div>
         }
 
-    </div>;
+    </FadeIn>;
 }

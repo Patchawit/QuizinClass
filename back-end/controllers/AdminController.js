@@ -1,3 +1,4 @@
+const { findOneAndDelete } = require('../models/Question')
 const Question = require('../models/Question')
 const SetOfQuestion = require('../models/SetOfQuestion')
 const SubjectCategory = require('../models/SubjectCategory')
@@ -42,18 +43,6 @@ exports.deleteCategory = (req, res, next) => {
 }
 
 
-//สร้างชุดคำถาม
-
-
-// exports.getSetQuestion = (req, res, next) => {
-//     SetOfQuestion.find().then(result => {
-//         res.status('200').json({
-//             allSetQuestion: result
-//         })
-//     }).catch(error => console.log(error))
-
-// }
-
 exports.getSetOfQuestions = (req, res, next) => {
     SetOfQuestion
         .find()
@@ -85,6 +74,7 @@ exports.getSetOfQuestionbySubject = async (req, res, next) => {
     }
 
 }
+
 
 exports.postSetOfQuestion = async (req, res, next) => {
     const { SetOfQuestionTitle } = req.body;
@@ -123,8 +113,6 @@ exports.patchSetOfQuestion = async (req, res, next) => {
         }
         next(err);
     }
-
-
 }
 
 exports.postQuestion = async (req, res, next) => {
@@ -151,52 +139,13 @@ exports.postQuestion = async (req, res, next) => {
         next(err);
     }
 
-
-
-    // old postQuestion code
-    // newQuestion.save()
-    //     .then(question => {
-    //         return question
-    //     })
-    //     .then(result => {
-
-    //         SetOfQuestion
-    //             .findById(soqId)
-    //             .populate('questions')
-    //             .then(SetOfQuestion => {
-    //                 SetOfQuestion.questions.push(result._id)
-    //                 // console.log(SetOfQuestion.questions)
-    //                 return SetOfQuestion.save().then(result => {
-    //                     return result.populate('questions')
-    //                 })
-    //             })
-    //             .then(newSetOfQuestion => {
-    //                 console.log(newSetOfQuestion)
-    //                 res.status(200).json({
-    //                     Question: newSetOfQuestion
-    //                 })
-
-    //             })
-    //             .catch(err => console.log(err))
-    //     })
-    //     .catch(err => console.log(err))
-
-
 }
 
 exports.patchQuestion = async (req, res, next) => {
     const { questionData } = req.body;
-    // console.log(questionData.Choice[0].choiceTitle)
-    // console.log(questionData.Choice[1].choiceTitle)
-    // console.log(questionData.Choice[2].choiceTitle)
-    // console.log(questionData.Choice[3].choiceTitle)
     try {
         let editQuestion = await Question.findById(questionData.QuestionId)
         editQuestion.questionstitle = questionData.QuestionTitle
-        // console.log(editQuestion.choices[0].choiceTitle)
-        // console.log(editQuestion.choices[1].choiceTitle)
-        // console.log(editQuestion.choices[2].choiceTitle)
-        // console.log(editQuestion.choices[3].choiceTitle)
         editQuestion.choices[0].choiceTitle = questionData.Choice[0].choiceTitle
         editQuestion.choices[1].choiceTitle = questionData.Choice[1].choiceTitle
         editQuestion.choices[2].choiceTitle = questionData.Choice[2].choiceTitle
@@ -214,8 +163,23 @@ exports.patchQuestion = async (req, res, next) => {
         }
         next(err);
     }
+}
 
+exports.deleteQuestion = async (req, res, next) => {
+    const { questionData } = req.body;
+    try {
+        await Question.findOneAndDelete({ _id: questionData.QuestionId })
+        const setofQuestion = await SetOfQuestion.findById(questionData.soqId).populate('questions')
+        console.log(setofQuestion)
+        res.status(200).json({
+            Question: setofQuestion
+        })
 
-    // console.log(questionData)
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
 }
 

@@ -11,5 +11,6 @@ router.patch('/SetOfQuestion', adminController.patchSetOfQuestion)
 
 router.post('/Question', adminController.postQuestion)
 router.patch('/Question', adminController.patchQuestion)
+router.delete('/Question', adminController.deleteQuestion)
 exports.router = router
 
