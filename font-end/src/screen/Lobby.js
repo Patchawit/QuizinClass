@@ -10,8 +10,10 @@ export default function Lobby() {
         <div className='ready'>
           <div className='room'>
             <a href="">Room01</a>
-            <p>61000000</p>
-            <p>61000000</p>
+            <div className='idroom'>
+              <p>61000000</p>
+              <p>61000000</p>
+            </div>
           </div>
           <div className='room'>
             <a href="">Room02</a>
@@ -113,7 +115,7 @@ export default function Lobby() {
             <a href="">Room30</a>
           </div>
         </div>
-      
+
       </div>
     </div>
   )

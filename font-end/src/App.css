@@ -284,23 +284,25 @@ body {
 .room a{
   text-decoration: none;
   color: black;
-  padding-left: 1.5vw;
-  padding-right: 1.5vw;
+  padding-top: 0.1vw;
+  padding-left: 1.65vw;
+  padding-right: 1.65vw;
   border-top-left-radius: 0.5vw;
   border-top-right-radius: 0.5vw;
   background-color:rgb(103, 177, 186);
 }
-
-.room p{
-  color: white;
-  font-size: 1rem;
-  margin-left: 0.8vw;
-  margin-right: 0.8vw;
-  margin-top: 0.5vh;
-  margin-bottom: 0vh;
+.idroom{
   border: 0.1vw solid white;
   padding: 0.05vw;
+  margin-top: 1vh;
   border-radius: 0.3vw;
+  margin-left: 0.8vw;
+  margin-right: 0.8vw;
+}
+.idroom p{
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 0vh;
 }
 
 .breakout{
