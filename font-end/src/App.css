@@ -264,13 +264,73 @@ body {
   padding-left: 2vw;
 }
 .ready{
-  height: 65vh;
+  display: flex;
+  justify-content: center;
 }
-.ready h1{
+
+.room {
+  width: 7vw;
+  height: 11vh;
+  background:rgb(255, 145, 0);
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  margin-bottom: 1.5vh;
+  margin-top: 1vh;
   text-align: center;
-  padding-top: 3vh;
+  font-size: 1.2rem;
 }
-.ready img{
-  margin-left: 27vw;
+
+.room p{
+  font-size: 1rem;
+  margin-top: 0.5vh;
+  margin-bottom: 0vh;
+}
+
+.breakout{
+  display: flex;
+  justify-content: center;
+}
+.left{
+  width: 60%;
+}
+.headleft{
   margin-top: 3vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 2vw;
+  width: 100%;
+  background-color: white;
+  border-radius: 1.6vmin;
+}
+
+.right{
+  margin-top: 3vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  margin-left:1vw;
+  width: 30%;
+  background-color: white;
+  border-radius: 1.6vmin;
+}
+.questleft{
+  margin-top: 3vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  width: 100%;
+  background-color: white;
+  border-radius: 1.6vmin;
+}
+
+.btnnext {
+  margin-left: 50vw;
+  margin-top: 4vh;
+}
+
+.right h3 {
+  text-align: center;
+}
+.chat{
+  width: 80%;
+  margin-top: 44vh;
+  margin-left: 2vw;
 }
