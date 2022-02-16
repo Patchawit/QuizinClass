@@ -271,7 +271,7 @@ body {
 .room {
   width: 7vw;
   height: 11vh;
-  background:rgb(255, 145, 0);
+  background:rgb(0, 0, 0, 0.8);
   margin-left: 1.5vw;
   margin-right: 1.5vw;
   margin-bottom: 1.5vh;
@@ -288,10 +288,11 @@ body {
   padding-right: 1.5vw;
   border-top-left-radius: 0.5vw;
   border-top-right-radius: 0.5vw;
-  background-color:white;
+  background-color:rgba(122, 201, 247);
 }
 
 .room p{
+  color: white;
   font-size: 1rem;
   margin-top: 0.5vh;
   margin-bottom: 0vh;
