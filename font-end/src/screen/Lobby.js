@@ -11,8 +11,8 @@ export default function Lobby() {
           <div className='room'>
             <a href="">Room01</a>
             <div className='idroom'>
-              <p>61000000</p>
-              <p>61000000</p>
+              <p>number1</p>
+              <p>number2</p>
             </div>
           </div>
           <div className='room'>
