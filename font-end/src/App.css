@@ -278,6 +278,17 @@ body {
   margin-top: 1vh;
   text-align: center;
   font-size: 1.2rem;
+  border-top-left-radius: 0.5vw;
+  border-top-right-radius: 0.5vw;
+}
+.room a{
+  text-decoration: none;
+  color: black;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  border-top-left-radius: 0.5vw;
+  border-top-right-radius: 0.5vw;
+  background-color:white;
 }
 
 .room p{
@@ -305,13 +316,22 @@ body {
 
 .right{
   margin-top: 3vh;
-  padding-top: 3vh;
   padding-bottom: 3vh;
   margin-left:1vw;
   width: 30%;
   background-color: white;
   border-radius: 1.6vmin;
 }
+
+.righthead {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  border: 2px solid white;
+  border-top-left-radius: 0.5vw;
+  border-top-right-radius: 0.5vw;
+  background-color:rgb(255, 145, 0);
+}
+
 .questleft{
   margin-top: 3vh;
   padding-top: 3vh;

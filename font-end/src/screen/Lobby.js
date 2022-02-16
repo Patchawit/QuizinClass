@@ -9,108 +9,108 @@ export default function Lobby() {
       <div className='center'>
         <div className='ready'>
           <div className='room'>
-            <a>Room1</a>
+            <a href="">Room01</a>
             <p>61000000</p>
             <p>61000000</p>
           </div>
           <div className='room'>
-            <a>Room2</a>
+            <a href="">Room02</a>
           </div>
           <div className='room'>
-            <a>Room3</a>
+            <a href="">Room03</a>
           </div>
           <div className='room'>
-            <a>Room4</a>
+            <a href="">Room04</a>
           </div>
           <div className='room'>
-            <a>Room5</a>
+            <a href="">Room05</a>
           </div>
           <div className='room'>
-            <a>Room6</a>
-          </div>
-        </div>
-
-        <div className='ready'>
-          <div className='room'>
-            <a>Room7</a>
-          </div>
-          <div className='room'>
-            <a>Room8</a>
-          </div>
-          <div className='room'>
-            <a>Room9</a>
-          </div>
-          <div className='room'>
-            <a>Room10</a>
-          </div>
-          <div className='room'>
-            <a>Room11</a>
-          </div>
-          <div className='room'>
-            <a>Room12</a>
+            <a href="">Room06</a>
           </div>
         </div>
 
         <div className='ready'>
           <div className='room'>
-            <a>Room13</a>
+            <a href="">Room07</a>
           </div>
           <div className='room'>
-            <a>Room14</a>
+            <a href="">Room08</a>
           </div>
           <div className='room'>
-            <a>Room15</a>
+            <a href="">Room09</a>
           </div>
           <div className='room'>
-            <a>Room16</a>
+            <a href="">Room10</a>
           </div>
           <div className='room'>
-            <a>Room17</a>
+            <a href="">Room11</a>
           </div>
           <div className='room'>
-            <a>Room18</a>
-          </div>
-        </div>
-
-        <div className='ready'>
-          <div className='room'>
-            <a>Room19</a>
-          </div>
-          <div className='room'>
-            <a>Room20</a>
-          </div>
-          <div className='room'>
-            <a>Room21</a>
-          </div>
-          <div className='room'>
-            <a>Room22</a>
-          </div>
-          <div className='room'>
-            <a>Room23</a>
-          </div>
-          <div className='room'>
-            <a>Room24</a>
+            <a href="">Room12</a>
           </div>
         </div>
 
         <div className='ready'>
           <div className='room'>
-            <a>Room25</a>
+            <a href="">Room13</a>
           </div>
           <div className='room'>
-            <a>Room26</a>
+            <a href="">Room14</a>
           </div>
           <div className='room'>
-            <a>Room27</a>
+            <a href="">Room15</a>
           </div>
           <div className='room'>
-            <a>Room28</a>
+            <a href="">Room16</a>
           </div>
           <div className='room'>
-            <a>Room29</a>
+            <a href="">Room17</a>
           </div>
           <div className='room'>
-            <a>Room30</a>
+            <a href="">Room18</a>
+          </div>
+        </div>
+
+        <div className='ready'>
+          <div className='room'>
+            <a href="">Room19</a>
+          </div>
+          <div className='room'>
+            <a href="">Room20</a>
+          </div>
+          <div className='room'>
+            <a href="">Room21</a>
+          </div>
+          <div className='room'>
+            <a href="">Room22</a>
+          </div>
+          <div className='room'>
+            <a href="">Room23</a>
+          </div>
+          <div className='room'>
+            <a href="">Room24</a>
+          </div>
+        </div>
+
+        <div className='ready'>
+          <div className='room'>
+            <a href="">Room25</a>
+          </div>
+          <div className='room'>
+            <a href="">Room26</a>
+          </div>
+          <div className='room'>
+            <a href="">Room27</a>
+          </div>
+          <div className='room'>
+            <a href="">Room28</a>
+          </div>
+          <div className='room'>
+            <a href="">Room29</a>
+          </div>
+          <div className='room'>
+            <a href="">Room30</a>
           </div>
         </div>
       
