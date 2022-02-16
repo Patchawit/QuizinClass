@@ -280,6 +280,8 @@ body {
   font-size: 1.2rem;
   border-top-left-radius: 0.5vw;
   border-top-right-radius: 0.5vw;
+  border-bottom-left-radius: 0.5vw;
+  border-bottom-right-radius: 0.5vw;
 }
 .room a{
   text-decoration: none;
@@ -301,7 +303,7 @@ body {
 }
 .idroom p{
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin-bottom: 0vh;
 }
 
