@@ -16,7 +16,6 @@ export default function Edit() {
   const [listOfSoq, setListOfSoq] = useState()
 
   useEffect(async () => {
-
     await fetch("http://localhost:5000/admin/category", {
       headers: {
         'Content-Type': 'application/json',
@@ -29,10 +28,7 @@ export default function Edit() {
         console.log(result)
         return setAllSubject(result.allSubject)
       })
-
-
   }, [])
-
 
   const dropdownChangeHandler = async (e) => {
     // e.preventDefault();
@@ -55,6 +51,27 @@ export default function Edit() {
 
   const clickCreateSoqHandler = () => {
     console.log("from clickCreateSoqHandler")
+  }
+
+  const deleteSoqHandler = async (soqId) => {
+    console.log(soqId)
+    setLoading(true)
+    await fetch(`http://localhost:5000/admin/SetOfQuestion/${soqId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: "DELETE",
+      body: JSON.stringify({
+        "questionData": {
+          soqId: soqId,
+        }
+      })
+    })
+      .then(res => { return res.json() })
+      .then(result => {
+        return console.log(result)
+      })
+    setLoading(false)
   }
 
   if (isLoading) {
@@ -87,7 +104,7 @@ export default function Edit() {
               </button>
             </Link>
 
-            <button type="button" className="btn btn-dark btn-lg text-light btndel">ลบ</button>
+            <button type="button" className="btn btn-dark btn-lg text-light btndel" onClick={() => deleteSoqHandler(soq._id)}>ลบ</button>
           </div>
           <div className='datecreate'>
             <p>

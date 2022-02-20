@@ -6,7 +6,6 @@ import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
 import Form from 'react-bootstrap/Form';
 
-
 const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -20,7 +19,6 @@ export default function CreateSetOfQuestion() {
     const [soqTitle, setSoqTitle] = useState('');
     const [soq, setSoq] = useState('');
     const [isEdit, setEdit] = useState(false)
-
     const [editQuestion, setEditQuestion] = useState()
     const [isEditQuestion, setIsEditQuestion] = useState(false)
     const [isLoading, setLoading] = useState(false)
@@ -28,9 +26,7 @@ export default function CreateSetOfQuestion() {
     const [questionData, setQuestionData] = useState({})
     // const [editData, setEditData] = useState({})
 
-
     const [questionList, setQuestionList] = useState()
-
 
     const dropdownChangeHandler = async (e) => {
         e.preventDefault();
@@ -100,6 +96,7 @@ export default function CreateSetOfQuestion() {
 
 
     const submitQuestionHandler = async (e) => {
+
         e.preventDefault()
         setLoading(true)
         await fetch("http://localhost:5000/admin/Question", {
@@ -128,7 +125,8 @@ export default function CreateSetOfQuestion() {
                             "choiceTitle": e.target.ChoiceTitle4.value,
                             "choiceImg": "ตัวเลือก1"
                         }
-                    ]
+                    ],
+                    ans: e.target.ans.value
                 }
             })
         })
@@ -143,57 +141,8 @@ export default function CreateSetOfQuestion() {
             })
         setLoading(false)
 
-        // setDummyQuestionList(previousState => {
-        //     return [...previousState, {
-        //         QuestionTitle: e.target.QuestionTitle.value,
-        //         Choice: {
-        //             Choice1: {
-        //                 ChoiceTitle: e.target.ChoiceTitle1.value,
-        //                 ChoiceImg: ""
-        //             },
-        //             Choice2: {
-        //                 ChoiceTitle: e.target.ChoiceTitle2.value,
-        //                 ChoiceImg: ""
-        //             },
-        //             Choice3: {
-        //                 ChoiceTitle: e.target.ChoiceTitle3.value,
-        //                 ChoiceImg: ""
-        //             },
-        //             Choice4: {
-        //                 ChoiceTitle: e.target.ChoiceTitle4.value,
-        //                 ChoiceImg: ""
-        //             }
-        //         }
-        //     }]
-        // })
-
-        // console.log(DummyQuestionList)
-
     }
 
-    // const onValueEditQuestionChange = (e) => {
-    //     setEditData({
-    //         QuestionTitle: e.target.QuestionTitle.value,
-    //         Choice: {
-    //             Choice1: {
-    //                 ChoiceTitle: e.target.ChoiceTitle1.value,
-    //                 ChoiceImg: ""
-    //             },
-    //             Choice2: {
-    //                 ChoiceTitle: e.target.ChoiceTitle2.value,
-    //                 ChoiceImg: ""
-    //             },
-    //             Choice3: {
-    //                 ChoiceTitle: e.target.ChoiceTitle3.value,
-    //                 ChoiceImg: ""
-    //             },
-    //             Choice4: {
-    //                 ChoiceTitle: e.target.ChoiceTitle4.value,
-    //                 ChoiceImg: ""
-    //             }
-    //         }
-    //     })
-    // }
 
     const onClickEditQuestion = (question) => {
         setEditQuestion(question._id);
@@ -254,7 +203,8 @@ export default function CreateSetOfQuestion() {
                             "choiceTitle": e.target.ChoiceTitle4.value,
                             "choiceImg": "ตัวเลือก1"
                         }
-                    ]
+                    ],
+                    ans: e.target.ans.value
                 }
             })
         })
@@ -273,16 +223,15 @@ export default function CreateSetOfQuestion() {
     const soqTitleChangeHandler = (e) => {
         setSoqTitle(e.target.value)
     }
-
-
+    const ansChangeHandler = (e) => {
+        console.log(e.target.value)
+    }
 
     if (isLoading) {
         return <FadeIn><Lottie options={defaultOptions} height={500} width={500} /></FadeIn>
     }
 
     return <FadeIn>
-
-
         {isEdit == false ?
             <FadeIn>
                 <div className='nameset'>
@@ -309,6 +258,17 @@ export default function CreateSetOfQuestion() {
                                                 name={'ChoiceTitle' + (index + 1)}></input>
                                         </p>
                                     })}
+                                    <div className="namequestion">
+                                        <p>ข้อถูก</p>
+                                        <Form.Select className='formsel' name="ans">
+                                            <option>Default select</option>
+                                            <option value={1}>1</option>
+                                            <option value={2}>2</option>
+                                            <option value={3}>3</option>
+                                            <option value={4}>4</option>
+                                        </Form.Select>
+                                    </div>
+
                                     <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
                                     <button className="btn btn-light btn-lg text-dark" onClick={() => { setEditQuestion(false) }}>cancel</button>
                                 </Form>
@@ -326,6 +286,10 @@ export default function CreateSetOfQuestion() {
                                         <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled />
                                     </p>
                                 })}
+                                <p>
+                                    คำตอบ
+                                    <Form.Control id="disabledTextInput" className='inputques' placeholder={question.ans} disabled />
+                                </p>
                                 <button type="button" className="btn btn-warning btn-lg text-dark"
                                     onClick={() => { onClickEditQuestion(question) }}>edit</button>
                                 <button type="button" className="btn btn-danger btn-lg text-dark"
@@ -334,24 +298,41 @@ export default function CreateSetOfQuestion() {
                         }
                         return content
                     })}
-                    <div>
-                        <Form onSubmit={submitQuestionHandler} className='creques'>
+                    <Form onSubmit={submitQuestionHandler} className='creques'>
+                        <div className="namequestion">
                             <p>คำถาม</p>
-                            <input placeholder='กรอกคำถาม' name='QuestionTitle'></input>
+                            <input placeholder='กรอกคำถาม' className="form-control form-control-lg nameque" name='QuestionTitle'></input>
+                        </div>
+                        <div className="namequestion">
                             <p>ตัวเลือกที่1</p>
-                            <input placeholder='ตัวเลือก1' name='ChoiceTitle1'></input>
+                            <input placeholder='ตัวเลือก1' className="form-control form-control-lg nameque" name='ChoiceTitle1'></input>
+                        </div>
+                        <div className="namequestion">
                             <p>ตัวเลือกที่2</p>
-                            <input placeholder='ตัวเลือก2' name='ChoiceTitle2'></input>
+                            <input placeholder='ตัวเลือก2' className="form-control form-control-lg nameque" name='ChoiceTitle2'></input>
+                        </div>
+                        <div className="namequestion">
                             <p>ตัวเลือกที่3</p>
-                            <input placeholder='ตัวเลือก3' name='ChoiceTitle3'></input>
+                            <input placeholder='ตัวเลือก3' className="form-control form-control-lg nameque" name='ChoiceTitle3'></input>
+                        </div>
+                        <div className="namequestion">
                             <p>ตัวเลือกที่4</p>
-                            <input placeholder='ตัวเลือก4' name='ChoiceTitle4'></input>
-                            <p></p>
-                            <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
-                        </Form>
-                    </div>
+                            <input placeholder='ตัวเลือก4' className="form-control form-control-lg nameque" name='ChoiceTitle4'></input>
+                        </div>
+                        <div className="namequestion">
+                            <p>ข้อถูก</p>
+                            <Form.Select className='formsel' name="ans">
+                                <option>Default select</option>
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                            </Form.Select>
+                        </div>
+                        <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
+                    </Form>
 
-                </div>
+                </div >
                 :
                 <div className='nameset'>
                     <p>หมวดหมู่วิชา</p>
@@ -364,5 +345,5 @@ export default function CreateSetOfQuestion() {
                 </div>
         }
 
-    </FadeIn>;
+    </FadeIn >;
 }

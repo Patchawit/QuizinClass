@@ -9,7 +9,6 @@ const choicesSchema = new Schema({
     choiceImg: {
         type: String
     }
-
 })
 
 const questionsSchema = new Schema({
@@ -22,7 +21,10 @@ const questionsSchema = new Schema({
         type: String,
         required: false
     },
-    choices: [choicesSchema]
+    choices: [choicesSchema],
+    ans: {
+        type: Number
+    }
 
 });
 

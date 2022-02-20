@@ -59,7 +59,7 @@ exports.getSetOfQuestions = (req, res, next) => {
 
 exports.getSetOfQuestionbySubject = async (req, res, next) => {
     const subjectId = req.params.subjectId;
-    console.log(subjectId)
+    // console.log(subjectId)
     try {
         const setOfquestion = await SetOfQuestion.find({ subject: subjectId })
         res.status(200).json({
@@ -121,7 +121,8 @@ exports.postQuestion = async (req, res, next) => {
         questionstitle: questionData.QuestionTitle,
         choices: questionData?.Choice.map(choice => {
             return choice;
-        })
+        }),
+        ans: questionData.ans
     })
     try {
         await newQuestion.save();
@@ -144,12 +145,13 @@ exports.postQuestion = async (req, res, next) => {
 exports.patchQuestion = async (req, res, next) => {
     const { questionData } = req.body;
     try {
-        let editQuestion = await Question.findById(questionData.QuestionId)
-        editQuestion.questionstitle = questionData.QuestionTitle
-        editQuestion.choices[0].choiceTitle = questionData.Choice[0].choiceTitle
-        editQuestion.choices[1].choiceTitle = questionData.Choice[1].choiceTitle
-        editQuestion.choices[2].choiceTitle = questionData.Choice[2].choiceTitle
-        editQuestion.choices[3].choiceTitle = questionData.Choice[3].choiceTitle
+        let editQuestion = await Question.findById(questionData.QuestionId);
+        editQuestion.questionstitle = questionData.QuestionTitle;
+        editQuestion.choices[0].choiceTitle = questionData.Choice[0].choiceTitle;
+        editQuestion.choices[1].choiceTitle = questionData.Choice[1].choiceTitle;
+        editQuestion.choices[2].choiceTitle = questionData.Choice[2].choiceTitle;
+        editQuestion.choices[3].choiceTitle = questionData.Choice[3].choiceTitle;
+        editQuestion.ans = questionData.ans;
         await editQuestion.save()
         const setofQuestion = await SetOfQuestion.findById(questionData.soqId).populate('questions')
         console.log(setofQuestion)
@@ -170,11 +172,26 @@ exports.deleteQuestion = async (req, res, next) => {
     try {
         await Question.findOneAndDelete({ _id: questionData.QuestionId })
         const setofQuestion = await SetOfQuestion.findById(questionData.soqId).populate('questions')
-        console.log(setofQuestion)
+        // console.log(setofQuestion)
         res.status(200).json({
             Question: setofQuestion
         })
 
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+}
+
+exports.deleteSetOfQuestion = async (req, res, next) => {
+    const soqId = req.params.SetOfQuestionId;
+    try {
+        await SetOfQuestion.findOneAndDelete({ _id: soqId })
+        res.status(200).json({
+            msg: "Delete complete!",
+        })
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
