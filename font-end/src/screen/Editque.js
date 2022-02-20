@@ -35,7 +35,7 @@ export default function Editque() {
                                                 question.choices.map(choice => {
                                                 return<div>{choice.choiceTitle}</div>
                                                 })
-                                        }</div>
+                                        }{question.ans}</div>
                                 })
                         }
                 </div>
