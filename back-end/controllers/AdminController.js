@@ -75,6 +75,26 @@ exports.getSetOfQuestionbySubject = async (req, res, next) => {
 
 }
 
+exports.getSetOfQuestionbyId = async (req, res, next) => {
+    const SetOfQuestionId = req.params.SetOfQuestionId;
+    console.log(SetOfQuestionId)
+    try{
+        const setOfQuestion = await SetOfQuestion.findById(SetOfQuestionId).populate(['questions','subject'])
+
+        console.log(setOfQuestion)
+        res.status(200).json({
+            msg: "Edit question",
+            setOfQuestion: setOfQuestion
+        })
+    }catch(err){
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+    
+}
+
 
 exports.postSetOfQuestion = async (req, res, next) => {
     const { SetOfQuestionTitle } = req.body;

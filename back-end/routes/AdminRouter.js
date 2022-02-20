@@ -6,6 +6,7 @@ router.post('/Category', adminController.postCategory)
 router.delete('/Category', adminController.deleteCategory)
 router.get('/SetOfQuestion', adminController.getSetOfQuestions)
 router.get('/SetOfQuestion/:subjectId', adminController.getSetOfQuestionbySubject)
+router.get('/Editque/:SetOfQuestionId', adminController.getSetOfQuestionbyId)
 router.post('/SetOfQuestion', adminController.postSetOfQuestion)
 router.patch('/SetOfQuestion', adminController.patchSetOfQuestion)
 
