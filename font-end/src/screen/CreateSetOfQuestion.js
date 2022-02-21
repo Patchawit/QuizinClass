@@ -288,7 +288,7 @@ export default function CreateSetOfQuestion() {
                                 })}
                                 <p>
                                     คำตอบ
-                                    <Form.Control id="disabledTextInput" className='inputques' placeholder={question.ans} disabled />
+                                    <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
                                 </p>
                                 <button type="button" className="btn btn-warning btn-lg text-dark"
                                     onClick={() => { onClickEditQuestion(question) }}>edit</button>
