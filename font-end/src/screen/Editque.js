@@ -116,7 +116,10 @@ export default function Editque() {
                                                                 </Form>
 
                                                         </div>
-                                 </div>
+                                                }
+                                        })
+                                        }
+                                </div>
 
                         }
 
