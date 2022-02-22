@@ -8,6 +8,7 @@ import {
 export default function Editque() {
         const [EditQuestion, setEditQuestion] = useState()
         const [questionList, setQuestionList] = useState()
+        const [isEditQuestion, setIsEditQuestion] = useState(false)
         let { soqId } = useParams();
         const onClickEditQuestion = (question) => {
                 setEditQuestion(question._id);
@@ -33,6 +34,51 @@ export default function Editque() {
                                 return setQuestionList(res.Question.questions)
                         })
         }
+        const updateQuestionHandler = async (e) => {
+                e.preventDefault()
+                console.log(e.target.QuestionTitle.value)
+                await fetch("http://localhost:5000/admin/Question", {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        "questionData": {
+                            soqId: soqId,
+                            QuestionId: EditQuestion,
+                            QuestionTitle: e.target.QuestionTitle.value,
+                            Choice: [
+                                {
+                                    "choiceTitle": e.target.ChoiceTitle1.value,
+                                    "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                    "choiceTitle": e.target.ChoiceTitle2.value,
+                                    "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                    "choiceTitle": e.target.ChoiceTitle3.value,
+                                    "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                    "choiceTitle": e.target.ChoiceTitle4.value,
+                                    "choiceImg": "ตัวเลือก1"
+                                }
+                            ],
+                            ans: e.target.ans.value
+                        }
+                    })
+                })
+                    .then(result => {
+                        return result.json()
+                    })
+                    .then(res => {
+                        console.log(res)
+                        return setQuestionList(res.Question.questions)
+                    })
+                setEditQuestion(false)
+        
+            }
         useEffect(async () => {
 
                 console.log(soqId)
@@ -56,7 +102,7 @@ export default function Editque() {
                                         // })
                                 }
                         </div>
-                        {EditQuestion == false ?
+                        {isEditQuestion == false ?
                                 <div>
                                         {
                                                 EditQuestion?.questions?.map(question => {
@@ -87,7 +133,7 @@ export default function Editque() {
                                 : <div>
                                         {questionList?.map(question => {
                                                 let content;
-                                                if (question._id === editQuestion) {
+                                                if (question._id === EditQuestion) {
 
                                                         content = <div>
                                                                 <Form className='creques' onSubmit={updateQuestionHandler}>

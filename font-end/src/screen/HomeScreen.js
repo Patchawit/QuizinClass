@@ -4,6 +4,7 @@ import BootstrapSwitchButton from 'react-bootstrap/Switch';
 import * as loadingData from "../loadingData.json";
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
+import { Link } from 'react-router-dom';
 
 
 const defaultOptions = {
@@ -85,8 +86,10 @@ export default function HomeScreen() {
 
               return <FadeIn><div className='groupquest' key={index + soq.soqtitle}>
                 <div className='quest'>
-                  <p>ชื่อชุดคำถาม : {soq.soqtitle}</p>
+                  <p>ชื่อชุดคำถาม : {soq.soqtitle}</p> 
+                  <Link to={`/exercise/${soq._id}`}>
                   <button type="button" className="btn btn-warning btn-lg text-dark btnstart">เริ่มทำ</button>
+                </Link>
                 </div>
                 <div className='datecreate'>
                   <p>
