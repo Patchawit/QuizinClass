@@ -110,7 +110,7 @@ body {
   font-size: 1.5rem;
 }
 .btnstart{
-  margin-left: 50vw;
+  margin-left: 45vw;
   margin-top: 4vh;
 }
 .datecreate{
@@ -214,7 +214,8 @@ body {
   display: flex;
 }
 .questsave button {
-  margin-left: 62vw;
+  margin-left: 60vw;
+  margin-bottom: 1vh;
 }
 .table{
   padding-left: 2vw;
