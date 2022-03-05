@@ -96,7 +96,6 @@ export default function CreateSetOfQuestion() {
 
 
     const submitQuestionHandler = async (e) => {
-
         e.preventDefault()
         setLoading(true)
         await fetch("http://localhost:5000/admin/Question", {
