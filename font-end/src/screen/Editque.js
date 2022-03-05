@@ -132,7 +132,7 @@ export default function Editque() {
                         .then(res => {
                                 // console.log(res)
                                 // console.log(res.Question.questions)
-                                return setQuestionList(res.Question.questions)
+                                return setQuestionList(res?.Question)
                         })
                 setIsAddQuestion(false)
         }
