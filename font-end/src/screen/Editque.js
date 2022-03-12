@@ -233,7 +233,7 @@ export default function Editque() {
                                                 <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
                                         </Form>
 
-                                        <button className="btn btn-success">save</button>
+                                       
                                 </div>}
                 </div>
 
