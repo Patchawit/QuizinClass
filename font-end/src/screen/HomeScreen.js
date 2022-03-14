@@ -86,19 +86,22 @@ export default function HomeScreen() {
 
               return <FadeIn><div className='groupquest' key={index + soq.soqtitle}>
                 <div className='quest'>
-                  <p>ชื่อชุดคำถาม : {soq.soqtitle}</p> 
+                  <p>ชื่อชุดคำถาม : {soq.soqtitle}</p>
                   <Link to={`/exercise/${soq._id}`}>
-                  <button type="button" className="btn btn-warning btn-lg text-dark btnstart">เริ่มทำ</button>
-                </Link>
+                    <button type="button" className="btn btn-warning btn-lg text-dark btnstart">เริ่มทำ</button>
+                  </Link>
                 </div>
                 <div className='datecreate'>
                   <p>
                     วันที่สร้าง : 2/2/2022
                   </p>
-                  <p>
-                    แสดงคะแนน
-                  </p>
-                  <BootstrapSwitchButton checked={true} size="xs" />
+                  <Form>
+                    <Form.Check
+                      type="switch"
+                      id="custom-switch"
+                      label=" แสดงคะแนน"
+                    />
+                  </Form>
                 </div>
               </div>
               </FadeIn>

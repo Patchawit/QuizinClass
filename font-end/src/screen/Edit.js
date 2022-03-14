@@ -110,10 +110,13 @@ export default function Edit() {
             <p>
               วันที่สร้าง : 2/2/2022
             </p>
-            <p>
-              แสดงคะแนน
-            </p>
-            <BootstrapSwitchButton checked={true} size="xs" />
+            <Form>
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label=" แสดงคะแนน"
+              />
+            </Form>
           </div>
         </div>
 

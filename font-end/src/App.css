@@ -116,6 +116,9 @@ body {
 .datecreate{
   display: flex;
 }
+.datecreate p{
+  margin-right: 1vw;
+}
 
 .groupsub2 {
   margin-left: 3vw;
@@ -324,6 +327,7 @@ body {
   width: 100%;
   background-color: white;
   border-radius: 1.6vmin;
+  font-size: 2rem;
 }
 
 .right{
@@ -367,7 +371,18 @@ body {
   margin-left: 2vw;
 }
 
-.qtitle {
-  font-size: 1.5rem;
-  padding-left: 2vw;
+.questsave2{
+  display: block;
+}
+.questsave2 p{
+  font-size: 1.2rem;
+  display: flex;
+}
+.questsave2 button {
+  margin-left: 53vw;
+  margin-bottom: 1vh;
+}
+
+.numquest{
+  margin-left: 3vw;
 }
