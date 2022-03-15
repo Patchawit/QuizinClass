@@ -1,16 +1,11 @@
-const mongoose = require('mongoose');
-
-const Schema = mongoose.Schema;
-
-const UserSchema = new Schema({
-    name: {
+const mongoose = require("mongoose");
+const userSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    googleId: { type: String, },
+    name: { type: String },
+    email: {
         type: String,
-        required: true
-    },
-    studentId: {
-        type: String,
-        required: true
-    },
-
+        match: /[a-z0–9!#$%&’*+/=?^_`{|}~-]+(?:\.[a-z0–9!#$%&’*+/=?^_`{|}~-]+)*@(?:[a-z0–9](?:[a-z0–9-]*[a-z0–9])?\.)+[a-z0–9](?:[a-z0–9-]*[a-z0–9])?/,
+    }
 });
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model("User", userSchema);
