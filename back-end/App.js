@@ -34,6 +34,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/auth", authRoutes);
+app.use(passportSetup);
 
 mongoose.connect(mongodburi)
   .then(result => {
