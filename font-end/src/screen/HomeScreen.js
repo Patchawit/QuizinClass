@@ -23,7 +23,7 @@ export default function HomeScreen() {
 
   useEffect(async () => {
 
-    await fetch("http://localhost:5000/admin/category", {
+    await fetch("http://localhost:7050/admin/category", {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -43,7 +43,7 @@ export default function HomeScreen() {
   const dropdownChangeHandler = async (e) => {
     e.preventDefault();
     setLoading(true)
-    await fetch(`http://localhost:5000/admin/SetOfQuestion/${e.target.value}`, {
+    await fetch(`http://localhost:7050/admin/SetOfQuestion/${e.target.value}`, {
       headers: {
         'Content-Type': 'application/json',
       },

@@ -16,7 +16,7 @@ passport.use(
         // options for google strategy
         clientID: /* your clientID*/"680137363543-qsg5innvjcd89cc81n7oku0jqljs7iqt.apps.googleusercontent.com",
         clientSecret:/*your clienSecret*/"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",
-        callbackURL: 'http://localhost:5000/auth/google/redirect'
+        callbackURL: 'http://localhost:7050/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
         console.log(accessToken)

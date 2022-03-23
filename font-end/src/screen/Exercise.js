@@ -10,7 +10,7 @@ export default function Exercise() {
         useEffect(async () => {
 
                 console.log(soqId)
-                await fetch(`http://localhost:5000/admin/Editque/${soqId}`)
+                await fetch(`http://localhost:7050/admin/Editque/${soqId}`)
                         .then(res => {
                                 return res.json()
                         })

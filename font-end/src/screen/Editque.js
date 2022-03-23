@@ -13,7 +13,7 @@ export default function Editque() {
 
         useEffect(async () => {
                 console.log(soqId)
-                await fetch(`http://localhost:5000/admin/Editque/${soqId}`)
+                await fetch(`http://localhost:7050/admin/Editque/${soqId}`)
                         .then(res => {
                                 return res.json()
                         })
@@ -27,7 +27,7 @@ export default function Editque() {
                 setEditQuestion(question._id);
         }
         const deleteQuestionHandler = async (question) => {
-                await fetch("http://localhost:5000/admin/Question", {
+                await fetch("http://localhost:7050/admin/Question", {
                         headers: {
                                 'Content-Type': 'application/json',
                         },
@@ -48,7 +48,7 @@ export default function Editque() {
         }
         const updateQuestionHandler = async (e) => {
                 console.log(e.target.QuestionTitle.value)
-                await fetch("http://localhost:5000/admin/Question", {
+                await fetch("http://localhost:7050/admin/Question", {
                         headers: {
                                 'Content-Type': 'application/json',
                         },
@@ -94,7 +94,7 @@ export default function Editque() {
 
         const submitQuestionHandler = async (e) => {
                 e.preventDefault()
-                await fetch("http://localhost:5000/admin/Question", {
+                await fetch("http://localhost:7050/admin/Question", {
                         headers: {
                                 'Content-Type': 'application/json',
                         },
