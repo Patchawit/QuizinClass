@@ -6,16 +6,17 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import './Navbar.css';
-
+import AuthContext from "../context/AuthContext";
 
 
 const clientId = "680137363543-qsg5innvjcd89cc81n7oku0jqljs7iqt.apps.googleusercontent.com";
 
 export default function navbar(props) {
+  
 
     const onLogoutSuccess = (res) => {
         console.log("[Logout Success]")
-        props.setIsLogin(false)
+        props.logoutHandler()
     }
 
     return (

@@ -1,5 +1,6 @@
 import Navbar from './component/Navbar';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import {
   BrowserRouter,
   Routes,
@@ -16,17 +17,15 @@ import Editque from "./screen/Editque";
 import Lobby from "./screen/Lobby";
 import Exercise from "./screen/Exercise";
 import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
+import { useAuthContext } from './context/AuthContext';
 function App(props) {
 
+  const { isLogin, logoutHandler, loginBy } = useAuthContext()
 
-
-  const [isLogin, setIsLogin] = useState(false)
-  const [loginBy, setLoginBy] = useState('')
+  console.log(isLogin)
 
   if (!isLogin) {
-    return <div>
-      <LOGIN setIsLogin={setIsLogin} isLogin={isLogin} setLoginBy={setLoginBy} />
-    </div>
+    return <LOGIN />
 
   }
 
@@ -35,7 +34,7 @@ function App(props) {
     <div>
 
       <BrowserRouter>
-        <Navbar setIsLogin={setIsLogin} loginBy={loginBy} /> <Routes>
+        <Navbar logoutHandler={logoutHandler} loginBy={loginBy} /> <Routes>
           <Route path="/login" element={<LOGIN />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="/createquiz" element={<Create />} />
