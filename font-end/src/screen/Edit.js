@@ -16,7 +16,7 @@ export default function Edit() {
   const [listOfSoq, setListOfSoq] = useState()
 
   useEffect(async () => {
-    await fetch("http://localhost:5000/admin/category", {
+    await fetch("http://localhost:7050/admin/category", {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -33,7 +33,7 @@ export default function Edit() {
   const dropdownChangeHandler = async (e) => {
     // e.preventDefault();
     setLoading(true)
-    await fetch(`http://localhost:5000/admin/SetOfQuestion/${e.target.value}`, {
+    await fetch(`http://localhost:7050/admin/SetOfQuestion/${e.target.value}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -56,7 +56,7 @@ export default function Edit() {
   const deleteSoqHandler = async (soqId) => {
     console.log(soqId)
     setLoading(true)
-    await fetch(`http://localhost:5000/admin/SetOfQuestion/${soqId}`, {
+    await fetch(`http://localhost:7050/admin/SetOfQuestion/${soqId}`, {
       headers: {
         'Content-Type': 'application/json',
       },

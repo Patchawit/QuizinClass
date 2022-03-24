@@ -8,7 +8,7 @@ export default function Create() {
         setSubjectTitle(event.target.value)
     }
     const onSubmit = async () => {
-        await fetch("http://localhost:5000/admin/category", {
+        await fetch("http://localhost:7050/admin/category", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -19,7 +19,7 @@ export default function Create() {
 
     }
     const onDelete = async (categoryId) => {
-        await fetch("http://localhost:5000/admin/category", {
+        await fetch("http://localhost:7050/admin/category", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -31,7 +31,7 @@ export default function Create() {
     }
     useEffect(async () => {
         setLoading(true)
-        await fetch("http://localhost:5000/admin/category", {
+        await fetch("http://localhost:7050/admin/category", {
             headers: {
                 'Content-Type': 'application/json',
             },

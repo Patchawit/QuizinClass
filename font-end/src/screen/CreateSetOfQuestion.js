@@ -31,7 +31,7 @@ export default function CreateSetOfQuestion() {
     const dropdownChangeHandler = async (e) => {
         e.preventDefault();
         setLoading(true)
-        await fetch("http://localhost:5000/admin/SetOfQuestion", {
+        await fetch("http://localhost:7050/admin/SetOfQuestion", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -55,7 +55,7 @@ export default function CreateSetOfQuestion() {
 
     useEffect(async () => {
         setLoading(true)
-        await fetch("http://localhost:5000/admin/category", {
+        await fetch("http://localhost:7050/admin/category", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -75,7 +75,7 @@ export default function CreateSetOfQuestion() {
     const clickNextHandler = async () => {
         setLoading(true)
         setEdit(true)
-        await fetch("http://localhost:5000/admin/SetOfQuestion", {
+        await fetch("http://localhost:7050/admin/SetOfQuestion", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -98,7 +98,7 @@ export default function CreateSetOfQuestion() {
     const submitQuestionHandler = async (e) => {
         e.preventDefault()
         setLoading(true)
-        await fetch("http://localhost:5000/admin/Question", {
+        await fetch("http://localhost:7050/admin/Question", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -149,7 +149,7 @@ export default function CreateSetOfQuestion() {
 
     const deleteQuestionHandler = async (question) => {
         setLoading(true)
-        await fetch("http://localhost:5000/admin/Question", {
+        await fetch("http://localhost:7050/admin/Question", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -175,7 +175,7 @@ export default function CreateSetOfQuestion() {
         e.preventDefault()
         console.log(e.target.QuestionTitle.value)
         setLoading(true)
-        await fetch("http://localhost:5000/admin/Question", {
+        await fetch("http://localhost:7050/admin/Question", {
             headers: {
                 'Content-Type': 'application/json',
             },
