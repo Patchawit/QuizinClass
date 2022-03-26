@@ -8,12 +8,14 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { useAuthContext } from '../context/AuthContext';
 
 
 export default function Edit() {
   const [allSubject, setAllSubject] = useState([])
   const [isLoading, setLoading] = useState(false)
   const [listOfSoq, setListOfSoq] = useState()
+  const {user} = useAuthContext();
 
   useEffect(async () => {
     await fetch("http://localhost:7050/admin/category", {
@@ -33,7 +35,7 @@ export default function Edit() {
   const dropdownChangeHandler = async (e) => {
     // e.preventDefault();
     setLoading(true)
-    await fetch(`http://localhost:7050/admin/SetOfQuestion/${e.target.value}`, {
+    await fetch(`http://localhost:7050/admin/SetOfQuestion/${user.email}`, {
       headers: {
         'Content-Type': 'application/json',
       },
