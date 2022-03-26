@@ -5,6 +5,7 @@ import * as loadingData from "../loadingData.json";
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
 import Form from 'react-bootstrap/Form';
+import { useAuthContext } from '../context/AuthContext';
 
 const defaultOptions = {
     loop: true,
@@ -16,6 +17,7 @@ const defaultOptions = {
 };
 
 export default function CreateSetOfQuestion() {
+    const {user} = useAuthContext();
     const [soqTitle, setSoqTitle] = useState('');
     const [soq, setSoq] = useState('');
     const [isEdit, setEdit] = useState(false)
@@ -80,7 +82,9 @@ export default function CreateSetOfQuestion() {
                 'Content-Type': 'application/json',
             },
             method: "POST",
-            body: JSON.stringify({ "SetOfQuestionTitle": soqTitle })
+            body: JSON.stringify({ "SetOfQuestionTitle": soqTitle ,
+            "user": user
+        })
         })
             .then(result => {
                 // setSoqId(res.SetOfQuestionId)

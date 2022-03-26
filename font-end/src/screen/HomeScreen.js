@@ -5,6 +5,7 @@ import * as loadingData from "../loadingData.json";
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 
 const defaultOptions = {
@@ -20,6 +21,7 @@ export default function HomeScreen() {
   const [allSubject, setAllSubject] = useState([])
   const [isLoading, setLoading] = useState(false)
   const [listOfSoq, setListOfSoq] = useState()
+  const {user} = useAuthContext();
 
   useEffect(async () => {
 
@@ -43,7 +45,7 @@ export default function HomeScreen() {
   const dropdownChangeHandler = async (e) => {
     e.preventDefault();
     setLoading(true)
-    await fetch(`http://localhost:7050/admin/SetOfQuestion/${e.target.value}`, {
+    await fetch(`http://localhost:7050/admin/SetOfQuestion/${user.email}`, {
       headers: {
         'Content-Type': 'application/json',
       },

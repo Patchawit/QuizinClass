@@ -3,31 +3,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const  ScoreSchema = new Schema({
-    soqtitle: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    subject: {
+    soqid:{
         type: Schema.Types.ObjectId,
-        ref: 'SubjectCategory',
-        // require: true
+        ref: 'SetOfQuestion'
     },
-    questions: [
-    {
-        type: Schema.Types.ObjectId,
-        ref: 'Question',
-        // require: true
-    }
-    ],
-
-    score: [
+    score: 
         { 
-            score: { type: Number },
-            ans: { type: Number},
-            student: { type: Schema.Types.ObjectId,ref:'User'},  
+            type: Number 
         }
-        ],
+        
 });
 
 module.exports = mongoose.model('Score', ScoreSchema);

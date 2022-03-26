@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
     const [isLogin, setIsLogin] = useState(false)
+    const [user, setUser] = useState('')
     const [loginBy, setLoginBy] = useState('')
     // const [cookie, setCookie] = useState('');
     const googleAuth = ({ profileObj }) => {
@@ -26,6 +27,7 @@ export const AuthContextProvider = (props) => {
                 const message = data.message
                 const token = data.token.split("Bearer", 1)
                 cookie.set(token)
+                setUser(data.user)
                 setIsLogin(true)
                 setLoginBy(data.user.name)
 
@@ -45,7 +47,8 @@ export const AuthContextProvider = (props) => {
                 loginHandler: googleAuth,
                 logoutHandler: logoutHandler,
                 isLogin: isLogin,
-                loginBy: loginBy
+                loginBy: loginBy,
+                user: user
             }}>
             {props.children}
         </AuthContext.Provider >

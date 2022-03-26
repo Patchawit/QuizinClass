@@ -20,13 +20,17 @@ const  SetOfQuestionSchema = new Schema({
         // require: true
     }
     ],
+    createby: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }
 
-    score: [
-        {
-            score: { type: Number },
-            student: { type: Schema.Types.ObjectId,ref:'User'}
-        }
-        ],
+    // score: [
+    //     {
+    //         score: { type: Number },
+    //         student: { type: Schema.Types.ObjectId,ref:'User'}
+    //     }
+    //     ],
 
 
 });

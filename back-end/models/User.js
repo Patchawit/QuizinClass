@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const userSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     googleId: { type: String, },
@@ -6,6 +7,27 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         // match: /[a-z0–9!#$%&’*+/=?^_`{|}~-]+(?:\.[a-z0–9!#$%&’*+/=?^_`{|}~-]+)*@(?:[a-z0–9](?:[a-z0–9-]*[a-z0–9])?\.)+[a-z0–9](?:[a-z0–9-]*[a-z0–9])?/,
-    }
+    },
+    usertype: { type: String },
+    history: [
+        {soqid:{
+            type: Schema.Types.ObjectId,
+            ref: 'SetOfQuestion'
+            },
+        Question: [
+            {questionid: {
+                type: Schema.Types.ObjectId,
+                ref: 'Question'
+            },
+            userAns: {
+                type: Number
+            }
+            }
+        ],
+        score: {
+            type: Number
+        },
+        }               
+    ]
 });
 module.exports = mongoose.model("User", userSchema);

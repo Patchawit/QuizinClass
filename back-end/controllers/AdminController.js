@@ -2,6 +2,7 @@ const { findOneAndDelete } = require('../models/Question')
 const Question = require('../models/Question')
 const SetOfQuestion = require('../models/SetOfQuestion')
 const SubjectCategory = require('../models/SubjectCategory')
+const User = require('../models/User')
 
 //สร้างวิชา
 exports.getCategory = (req, res, next) => {
@@ -57,13 +58,16 @@ exports.getSetOfQuestions = (req, res, next) => {
 }
 
 
-exports.getSetOfQuestionbySubject = async (req, res, next) => {
-    const subjectId = req.params.subjectId;
-    // console.log(subjectId)
+exports.getSetOfQuestionbyUser = async (req, res, next) => {
+    const userEmail = req.params.Email;
+    // const user = req.body.user;
+    // console.log(user)
+    // console.log(createby)
+    const createby = await User.findOne({'email':userEmail})
     try {
-        const setOfquestion = await SetOfQuestion.find({ subject: subjectId })
+        const setOfquestion = await SetOfQuestion.find({ createby: createby })
         res.status(200).json({
-            msg: "setOfquestion by Subject",
+            msg: "setOfquestion by User",
             SetOfQuestion: setOfquestion
         })
     } catch (err) {
@@ -97,9 +101,12 @@ exports.getSetOfQuestionbyId = async (req, res, next) => {
 
 
 exports.postSetOfQuestion = async (req, res, next) => {
-    const { SetOfQuestionTitle } = req.body;
+    const { SetOfQuestionTitle,user } = req.body;
+    console.log(user)
+    const createby = await User.findOne({'email': user.email})
+    console.log(createby)
     const newSetOfQuestion = new SetOfQuestion({
-        soqtitle: SetOfQuestionTitle
+        soqtitle: SetOfQuestionTitle, createby: createby
     })
     try {
         await newSetOfQuestion.save();
