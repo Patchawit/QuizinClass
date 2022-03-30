@@ -18,7 +18,7 @@ export default function Edit() {
   const {user} = useAuthContext();
 
   useEffect(async () => {
-    await fetch("http://localhost:7050/admin/category", {
+    await fetch(`http://localhost:7050/admin/category/${user.email}`, {
       headers: {
         'Content-Type': 'application/json',
       },

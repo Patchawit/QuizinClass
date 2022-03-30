@@ -24,8 +24,8 @@ export default function HomeScreen() {
   const {user} = useAuthContext();
 
   useEffect(async () => {
-
-    await fetch("http://localhost:7050/admin/category", {
+    console.log(user.email)
+    await fetch(`http://localhost:7050/admin/category/${user.email}`, {
       headers: {
         'Content-Type': 'application/json',
       },
