@@ -57,7 +57,7 @@ export default function CreateSetOfQuestion() {
 
     useEffect(async () => {
         setLoading(true)
-        await fetch("http://localhost:7050/admin/category", {
+        await fetch(`http://localhost:7050/admin/category/${user.email}`, {
             headers: {
                 'Content-Type': 'application/json',
             },

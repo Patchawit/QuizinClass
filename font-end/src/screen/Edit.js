@@ -35,7 +35,7 @@ export default function Edit() {
   const dropdownChangeHandler = async (e) => {
     // e.preventDefault();
     setLoading(true)
-    await fetch(`http://localhost:7050/admin/SetOfQuestion/${user.email}`, {
+    await fetch(`http://localhost:7050/admin/SetOfQuestion/${user.email}/${e.target.value}`, {
       headers: {
         'Content-Type': 'application/json',
       },
