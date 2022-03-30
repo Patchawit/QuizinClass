@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import CloseButton from 'react-bootstrap/CloseButton'
+import { useAuthContext } from '../context/AuthContext';
 export default function Create() {
     const [subjectTitle, setSubjectTitle] = useState('')
     const [isLoading, setLoading] = useState(false)
     const [allSubject, setAllSubject] = useState([])
+    const {user} = useAuthContext();
     const onSubjectChange = (event) => {
         setSubjectTitle(event.target.value)
     }
@@ -13,7 +15,7 @@ export default function Create() {
                 'Content-Type': 'application/json',
             },
             method: "POST",
-            body: JSON.stringify({ "messages": subjectTitle })
+            body: JSON.stringify({ "messages": subjectTitle, 'email':user.email })
         })
             .then(res => res.json())
 
@@ -31,7 +33,7 @@ export default function Create() {
     }
     useEffect(async () => {
         setLoading(true)
-        await fetch("http://localhost:7050/admin/category", {
+        await fetch(`http://localhost:7050/admin/category/${user.email}`, {
             headers: {
                 'Content-Type': 'application/json',
             },

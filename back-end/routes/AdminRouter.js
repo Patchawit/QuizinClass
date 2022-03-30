@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const adminController = require('../controllers/AdminController')
-router.get('/Category', adminController.getCategory)
+router.get('/Category/:Email', adminController.getCategory)
 router.post('/Category', adminController.postCategory)
 router.delete('/Category', adminController.deleteCategory)
 router.get('/SetOfQuestion', adminController.getSetOfQuestions)

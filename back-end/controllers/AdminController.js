@@ -1,3 +1,4 @@
+const e = require('express')
 const { findOneAndDelete } = require('../models/Question')
 const Question = require('../models/Question')
 const SetOfQuestion = require('../models/SetOfQuestion')
@@ -5,19 +6,23 @@ const SubjectCategory = require('../models/SubjectCategory')
 const User = require('../models/User')
 
 //สร้างวิชา
-exports.getCategory = (req, res, next) => {
-    SubjectCategory.find().then(result => {
+exports.getCategory = async (req, res, next) => {
+    const userEmail = req.params.Email;
+    const createby = await User.findOne({'email': userEmail })
+    SubjectCategory.find({'createby': createby }).then(result => {
         res.status(200).json({
             allSubject: result
         })
     }).catch(error => console.log(error))
 
 }
-exports.postCategory = (req, res, next) => {
-    const { messages } = req.body
-    console.log(req.body)
+exports.postCategory = async (req, res, next) => {
+    const { messages, email } = req.body 
+    const createby = await User.findOne({'email': email})
+    console.log('user', createby)
     const NewSubject = new SubjectCategory({
-        subjecttitle: messages
+        subjecttitle: messages, 
+        createby : createby
     })
     NewSubject.save()
         .then(result => {
