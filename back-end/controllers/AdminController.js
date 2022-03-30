@@ -60,15 +60,22 @@ exports.getSetOfQuestions = (req, res, next) => {
 
 exports.getSetOfQuestionbyUser = async (req, res, next) => {
     const userEmail = req.params.Email;
+    const catagory = req.params.catagory;
     // const user = req.body.user;
     // console.log(user)
-    // console.log(createby)
+    console.log(catagory)
     const createby = await User.findOne({'email':userEmail})
     try {
         const setOfquestion = await SetOfQuestion.find({ createby: createby })
+        const filtersoq = setOfquestion.filter(question => {
+            console.log(question.subject)
+            return question.subject.toString() === catagory
+        })
+        console.log(filtersoq)
+        
         res.status(200).json({
             msg: "setOfquestion by User",
-            SetOfQuestion: setOfquestion
+            SetOfQuestion: filtersoq
         })
     } catch (err) {
         if (!err.statusCode) {
