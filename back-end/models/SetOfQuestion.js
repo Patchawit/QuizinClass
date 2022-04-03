@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const  SetOfQuestionSchema = new Schema({
+const SetOfQuestionSchema = new Schema({
     soqtitle: {
         type: String,
         required: true,
@@ -14,17 +14,17 @@ const  SetOfQuestionSchema = new Schema({
         // require: true
     },
     questions: [
-    {
-        type: Schema.Types.ObjectId,
-        ref: 'Question',
-        // require: true
-    }
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Question',
+            // require: true
+        }
     ],
     createby: {
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    date: { type: Date, default: Date.now },
+    date: { type: String, default: Date.now().toLocaleString() },
 
     // score: [
     //     {

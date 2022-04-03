@@ -8,8 +8,8 @@ const User = require('../models/User')
 //สร้างวิชา
 exports.getCategory = async (req, res, next) => {
     const userEmail = req.params.Email;
-    const createby = await User.findOne({'email': userEmail })
-    SubjectCategory.find({'createby': createby }).then(result => {
+    const createby = await User.findOne({ 'email': userEmail })
+    SubjectCategory.find({ 'createby': createby }).then(result => {
         res.status(200).json({
             allSubject: result
         })
@@ -17,12 +17,12 @@ exports.getCategory = async (req, res, next) => {
 
 }
 exports.postCategory = async (req, res, next) => {
-    const { messages, email } = req.body 
-    const createby = await User.findOne({'email': email})
+    const { messages, email } = req.body
+    const createby = await User.findOne({ 'email': email })
     console.log('user', createby)
     const NewSubject = new SubjectCategory({
-        subjecttitle: messages, 
-        createby : createby
+        subjecttitle: messages,
+        createby: createby
     })
     NewSubject.save()
         .then(result => {
@@ -69,7 +69,7 @@ exports.getSetOfQuestionbyUser = async (req, res, next) => {
     // const user = req.body.user;
     // console.log(user)
     console.log(catagory)
-    const createby = await User.findOne({'email':userEmail})
+    const createby = await User.findOne({ 'email': userEmail })
     try {
         const setOfquestion = await SetOfQuestion.find({ createby: createby })
         const filtersoq = setOfquestion.filter(question => {
@@ -77,7 +77,7 @@ exports.getSetOfQuestionbyUser = async (req, res, next) => {
             return question.subject.toString() === catagory
         })
         console.log(filtersoq)
-        
+
         res.status(200).json({
             msg: "setOfquestion by User",
             SetOfQuestion: filtersoq
@@ -94,33 +94,33 @@ exports.getSetOfQuestionbyUser = async (req, res, next) => {
 exports.getSetOfQuestionbyId = async (req, res, next) => {
     const SetOfQuestionId = req.params.SetOfQuestionId;
     console.log(SetOfQuestionId)
-    try{
-        const setOfQuestion = await SetOfQuestion.findById(SetOfQuestionId).populate(['questions','subject'])
+    try {
+        const setOfQuestion = await SetOfQuestion.findById(SetOfQuestionId).populate(['questions', 'subject'])
 
         console.log(setOfQuestion)
         res.status(200).json({
             msg: "Edit question",
             setOfQuestion: setOfQuestion
         })
-    }catch(err){
+    } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
         }
         next(err);
     }
-    
+
 }
 
 exports.postSetOfQuestion = async (req, res, next) => {
-    const { SetOfQuestionTitle,user } = req.body;
+    const { SetOfQuestionTitle, user } = req.body;
     console.log(user)
-    const createby = await User.findOne({'email': user.email})
+    const createby = await User.findOne({ 'email': user.email })
     console.log(createby)
     const timeElapsed = Date.now();
-    const dateNow = new Date(timeElapsed);
-    console.log(Date.toLocaleString('en-US'));
+    let dateNow = new Date(timeElapsed);
+    dateNow = dateNow.toLocaleDateString();
     const newSetOfQuestion = new SetOfQuestion({
-        soqtitle: SetOfQuestionTitle, createby: createby, date:dateNow.toLocaleDateString()
+        soqtitle: SetOfQuestionTitle, createby: createby, date: dateNow
     })
     try {
         await newSetOfQuestion.save();
