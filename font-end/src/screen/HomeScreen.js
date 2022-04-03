@@ -97,8 +97,7 @@ export default function HomeScreen() {
                 <div className='datecreate'>
                   <p>
                     {/* {console.log(typeof soq.date)} */}
-                  {soq.date}
-                    วันที่สร้าง : 2/2/2022
+                    วันที่สร้าง : {soq.date}
                   </p>
                   <Form>
                     <Form.Check
