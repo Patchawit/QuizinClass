@@ -96,6 +96,7 @@ export default function HomeScreen() {
                 </div>
                 <div className='datecreate'>
                   <p>
+                  {soq.date}
                     วันที่สร้าง : 2/2/2022
                   </p>
                   <Form>

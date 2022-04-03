@@ -116,8 +116,11 @@ exports.postSetOfQuestion = async (req, res, next) => {
     console.log(user)
     const createby = await User.findOne({'email': user.email})
     console.log(createby)
+    const timeElapsed = Date.now();
+    const dateNow = new Date(timeElapsed);
+    console.log(Date.toLocaleString('en-US'));
     const newSetOfQuestion = new SetOfQuestion({
-        soqtitle: SetOfQuestionTitle, createby: createby
+        soqtitle: SetOfQuestionTitle, createby: createby, date:dateNow.toLocaleDateString()
     })
     try {
         await newSetOfQuestion.save();
