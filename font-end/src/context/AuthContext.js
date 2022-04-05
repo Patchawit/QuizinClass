@@ -8,6 +8,7 @@ export const AuthContextProvider = (props) => {
     const [isLogin, setIsLogin] = useState(false)
     const [user, setUser] = useState('')
     const [loginBy, setLoginBy] = useState('')
+    const [studentid, setStudentid] = useState('')
     // const [cookie, setCookie] = useState('');
     const googleAuth = ({ profileObj }) => {
         axios.post("http://localhost:7050/auth/login", {
@@ -30,7 +31,7 @@ export const AuthContextProvider = (props) => {
                 setUser(data.user)
                 setIsLogin(true)
                 setLoginBy(data.user.name)
-
+                setStudentid(data.user.email)
             })
             .catch(err => console.log(err))
     }
@@ -48,6 +49,7 @@ export const AuthContextProvider = (props) => {
                 logoutHandler: logoutHandler,
                 isLogin: isLogin,
                 loginBy: loginBy,
+                studentid: studentid,
                 user: user
             }}>
             {props.children}
