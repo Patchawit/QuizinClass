@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import {
         useParams
 } from "react-router-dom";
+import Itembox from '../component/quiz/Itembox';
+import Question from '../component/quiz/Question';
+import Chat from '../component/quiz/Chat';
 
 export default function Exercise() {
         const [EditQuestion, setEditQuestion] = useState()
@@ -19,9 +22,9 @@ export default function Exercise() {
                                 console.log(result)
                         })
         }, [])
-        return (
+        return ( <>
                 <div className='breakout'>
-                        <div className='left'>
+                        {/* <div className='left'>
                                 <div className='headleft'>
                                         {
                                                 EditQuestion?.soqtitle
@@ -66,8 +69,30 @@ export default function Exercise() {
                                         <h3>61000000</h3>
                                 </div>
                                 <input className="form-control form-control-lg chat" type="text" placeholder=""></input>
+                        </div> */}
+                        
+                        <div className='left'>
+                                <div className='headleft'>
+                                        {
+                                        EditQuestion?.soqtitle
+                                        // EditQuestion && EditQuestion?.map((setofQuestion) => {
+                                        //         return<div>{setofQuestion.soqtitle}</div>
+                                        // })
+                                        }
+                                </div>
+                        <Question/>
                         </div>
+                        
+                        <div className='right'>
+                                <Chat/>
+                        </div>
+
+                        
                 </div>
+                
+                <Itembox/>
+                </>
+                
 
         )
 }

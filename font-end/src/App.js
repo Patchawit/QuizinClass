@@ -32,7 +32,6 @@ function App(props) {
 
   return (
     <div>
-
       <BrowserRouter>
         <Navbar logoutHandler={logoutHandler} loginBy={loginBy} /> <Routes>
           <Route path="/login" element={<LOGIN />} />
