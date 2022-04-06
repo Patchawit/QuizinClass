@@ -85,7 +85,9 @@ export default function Exercise() {
                                         }
                                 </div>
                                 {/* <QuestionPanel item={EditQuestion?.questions[item-1]}  /> */}
+                                                          
                                 <QuestionPanel questions={EditQuestion?.questions} item={item-1}  />
+                                
                         </div>
 
                         <div className='right'>
