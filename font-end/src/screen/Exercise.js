@@ -4,12 +4,16 @@ import {
         useParams
 } from "react-router-dom";
 import Itembox from '../component/quiz/Itembox';
-import Question from '../component/quiz/Question';
+import QuestionPanel from '../component/quiz/QuestionPanel';
 import Chat from '../component/quiz/Chat';
+import { useQuery } from '../hook/useQuery';
 
 export default function Exercise() {
         const [EditQuestion, setEditQuestion] = useState()
+        const query = useQuery()
         let { soqId } = useParams();
+        let item = query.get("item")
+        console.log(item)
         useEffect(async () => {
 
                 console.log(soqId)
@@ -22,7 +26,7 @@ export default function Exercise() {
                                 console.log(result)
                         })
         }, [])
-        return ( <>
+        return (<>
                 <div className='breakout'>
                         {/* <div className='left'>
                                 <div className='headleft'>
@@ -70,29 +74,30 @@ export default function Exercise() {
                                 </div>
                                 <input className="form-control form-control-lg chat" type="text" placeholder=""></input>
                         </div> */}
-                        
+
                         <div className='left'>
                                 <div className='headleft'>
                                         {
-                                        EditQuestion?.soqtitle
-                                        // EditQuestion && EditQuestion?.map((setofQuestion) => {
-                                        //         return<div>{setofQuestion.soqtitle}</div>
-                                        // })
+                                                EditQuestion?.soqtitle
+                                                // EditQuestion && EditQuestion?.map((setofQuestion) => {
+                                                //         return<div>{setofQuestion.soqtitle}</div>
+                                                // })
                                         }
                                 </div>
-                        <Question/>
-                        </div>
-                        
-                        <div className='right'>
-                                <Chat/>
+                                {/* <QuestionPanel item={EditQuestion?.questions[item-1]}  /> */}
+                                <QuestionPanel questions={EditQuestion?.questions} item={item-1}  />
                         </div>
 
-                        
+                        <div className='right'>
+                                <Chat />
+                        </div>
+
+
                 </div>
-                
-                <Itembox/>
-                </>
-                
+
+                {/* <Itembox  /> */}
+        </>
+
 
         )
 }

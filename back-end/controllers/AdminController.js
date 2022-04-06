@@ -163,9 +163,10 @@ exports.postQuestion = async (req, res, next) => {
         choices: questionData?.Choice.map(choice => {
             return choice;
         }),
-        ans: questionData.ans
+        // ans: questionData.ans
     })
     try {
+        newQuestion.choices[questionData.ans-1].isCorrect = true
         await newQuestion.save();
         let setOfQuestion = await SetOfQuestion.findById(soqId);
         await setOfQuestion.questions.push(newQuestion);
