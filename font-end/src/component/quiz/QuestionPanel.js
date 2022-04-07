@@ -26,7 +26,7 @@ export default function QusetionPanel(props) {
             <>
                 <div className='question-section'>
                     <div className='question-count'>
-                        <span>Question {currentQuestion + 1}</span>/{questions?.length}
+                        <span>คำถามข้อที่ {currentQuestion + 1}/{questions?.length}</span>
                     </div>
                     <div className='question-text'>{questions && questions[currentQuestion]?.questionstitle}</div>
                 </div>

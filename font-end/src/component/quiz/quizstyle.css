@@ -34,8 +34,8 @@
     /* min-height: 50vh;
     height: min-content; */
     height: 50vh;
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 0.75vw;
+    padding: 1vw;
     /* box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75); */
     display: flex;
     justify-content: space-evenly;
@@ -43,7 +43,7 @@
 
 .score-section {
     display: flex;
-    font-size: 24px;
+    font-size: 2rem;
     align-items: center;
 }
 
@@ -54,15 +54,16 @@
 }
 
 .question-count {
-    margin-bottom: 20px;
+    margin-bottom: 1vh;
 }
 
 .question-count span {
-    font-size: 28px;
+    font-size: 2rem;
 }
 
 .question-text {
-    margin-bottom: 12px;
+    margin-bottom: 0.5vh;
+    font-size: 1.5rem;
 }
 
 .timer-text {
@@ -85,15 +86,15 @@
 
 .question-panel button {
     width: 100%;
-    font-size: 16px;
-    color: #252d4a;
+    font-size: 1.2rem;
+    color: #000000;
     background-color: #ffffff;
-    border-radius: 15px;
+    border-radius: 0.75vw;
     display: flex;
-    padding: 5px;
+    padding: 0.5vw;
     justify-content: flex-start;
     align-items: center;
-    border: 5px solid #234668;
+    border: 0.2vw solid #000000;
     cursor: pointer;
 }
 
@@ -106,7 +107,7 @@
 }
 
 .question-panel button:hover {
-    background-color: #555e7d;
+    background-color: rgb(230, 153, 12);
 }
 
 .question-panel button:focus {

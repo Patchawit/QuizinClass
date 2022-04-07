@@ -77,6 +77,7 @@ export default function Exercise() {
 
                         <div className='left'>
                                 <div className='headleft'>
+                                        <p>ชุดคำถาม:</p>
                                         {
                                                 EditQuestion?.soqtitle
                                                 // EditQuestion && EditQuestion?.map((setofQuestion) => {

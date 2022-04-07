@@ -320,6 +320,7 @@ body {
   width: 60%;
 }
 .headleft{
+  display: flex;
   margin-top: 3vh;
   padding-top: 3vh;
   padding-bottom: 3vh;
@@ -328,6 +329,9 @@ body {
   background-color: white;
   border-radius: 1.6vmin;
   font-size: 2rem;
+}
+.headleft p{
+  margin-right: 0.5vw;
 }
 
 .right{
