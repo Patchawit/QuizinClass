@@ -4,6 +4,7 @@ const Question = require('../models/Question')
 const SetOfQuestion = require('../models/SetOfQuestion')
 const SubjectCategory = require('../models/SubjectCategory')
 const User = require('../models/User')
+const TableScore = require('../models/TableScore')
 
 //สร้างวิชา
 exports.getCategory = async (req, res, next) => {
@@ -166,7 +167,7 @@ exports.postQuestion = async (req, res, next) => {
         // ans: questionData.ans
     })
     try {
-        newQuestion.choices[questionData.ans-1].isCorrect = true
+        newQuestion.choices[questionData.ans - 1].isCorrect = true
         await newQuestion.save();
         let setOfQuestion = await SetOfQuestion.findById(soqId);
         await setOfQuestion.questions.push(newQuestion);
@@ -194,6 +195,10 @@ exports.patchQuestion = async (req, res, next) => {
         editQuestion.choices[2].choiceTitle = questionData.Choice[2].choiceTitle;
         editQuestion.choices[3].choiceTitle = questionData.Choice[3].choiceTitle;
         editQuestion.ans = questionData.ans;
+        editQuestion.choices.map(choice => {
+            choice.isCorrect = false
+        })
+        editQuestion.choices[questionData.ans - 1].isCorrect = true
         await editQuestion.save()
         const setofQuestion = await SetOfQuestion.findById(questionData.soqId).populate('questions')
         console.log(setofQuestion)
@@ -242,3 +247,42 @@ exports.deleteSetOfQuestion = async (req, res, next) => {
     }
 }
 
+exports.patchScore = async (req, res, next) => {
+
+    const { soqIdScore, userScore, user } = req.body
+    const submittedUser = await User.findOne(user)
+    const newTableScore = new TableScore({
+        soqid: soqIdScore,
+        score: userScore
+    })
+    newTableScore.save()
+        .then(result => {
+            return console.log(result)
+        })
+        .then(result => {
+            res.status(200).json({
+                messages: 'create New newTableScore Success '
+            })
+        })
+        .catch(error => console.log(error))
+    // User.findOne(user).then(userData => {
+    //     console.log(userData.name)
+    // })
+
+    await submittedUser.history.push(newTableScore)
+    // submittedUser.history.soqid = soqIdScore
+    // submittedUser.history.score = userScore
+    await submittedUser.save()
+    const userData = User.findOne(user).populate('history')
+    console.log(userData)
+    // res.status(200).json({
+    //     updatedUser: userData
+    // })
+
+}
+
+exports.getScore = async (req, res, next) => {
+    const soqId = req.params.SetOfQuestionId;
+    const allScore = User.find()
+    console.log(allScore)
+}
