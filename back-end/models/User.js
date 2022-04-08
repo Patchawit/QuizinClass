@@ -11,10 +11,30 @@ const userSchema = mongoose.Schema({
     },
     usertype: { type: String },
 
-    history: [{ 
-        type: Schema.Types.ObjectId,
-        ref:'TableScore',
-    }] 
-    
+    // history: [{ 
+    //     type: Schema.Types.ObjectId,
+    //     ref:'TableScore',
+    // }] 
+    history: [{
+        soqid: {
+            type: Schema.Types.ObjectId,
+            ref: 'SetOfQuestion'
+        },
+        // Question: [
+        //     {
+        //         questionid: {
+        //             type: Schema.Types.ObjectId,
+        //             ref: 'Question'
+        //         },
+        //         userAns: {
+        //             type: Number
+        //         }
+        //     }
+        // ],
+        score: {
+            type: Number
+        },
+    }]
+
 });
 module.exports = mongoose.model("User", userSchema);

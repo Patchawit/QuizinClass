@@ -4,17 +4,22 @@ import {
 } from "react-router-dom";
 import { useAuthContext } from '../../context/AuthContext';
 export default function QusetionPanel(props) {
-    const {user} = useAuthContext();
+    const { user } = useAuthContext();
     const { questions, item } = props
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
+    const [didMount, setDidMount] = useState(false)
     let { soqId } = useParams();
+
+    useEffect(() => { setDidMount(true) }, [])
+
     useEffect(() => {
-        onSubmitQuizHandler()
+        if (didMount) {
+            onSubmitQuizHandler()
+        }
     }, [showScore])
     const onSubmitQuizHandler = async () => {
-        
         await fetch("http://localhost:7050/admin/PatchScore", {
             headers: {
                 'Content-Type': 'application/json',
@@ -26,14 +31,14 @@ export default function QusetionPanel(props) {
                 user: user
             })
         })
-            // .then(result => {
-            //     return result.json()
-            // })
-            // .then(res => {
-            //     console.log(res)
-            //     return setQuestionList(res.Question.questions)
-            // })
-        
+        // .then(result => {
+        //     return result.json()
+        // })
+        // .then(res => {
+        //     console.log(res)
+        //     return setQuestionList(res.Question.questions)
+        // })
+
     }
 
     const handleChoiceClick = (isCorrect) => {
@@ -46,7 +51,7 @@ export default function QusetionPanel(props) {
             setCurrentQuestion(nextQuestion);
         } else {
             setShowScore(true);
-            
+
         }
     };
     return <div className='question-panel'>

@@ -1,4 +1,5 @@
 const e = require('express')
+const mongoose = require('mongoose')
 const { findOneAndDelete } = require('../models/Question')
 const Question = require('../models/Question')
 const SetOfQuestion = require('../models/SetOfQuestion')
@@ -250,39 +251,37 @@ exports.deleteSetOfQuestion = async (req, res, next) => {
 exports.patchScore = async (req, res, next) => {
 
     const { soqIdScore, userScore, user } = req.body
-    const submittedUser = await User.findOne(user)
-    const newTableScore = new TableScore({
-        soqid: soqIdScore,
-        score: userScore
-    })
-    newTableScore.save()
-        .then(result => {
-            return console.log(result)
-        })
-        .then(result => {
-            res.status(200).json({
-                messages: 'create New newTableScore Success '
-            })
-        })
-        .catch(error => console.log(error))
-    // User.findOne(user).then(userData => {
-    //     console.log(userData.name)
+
+    // const newTableScore = new TableScore({
+    //     soqid: soqIdScore,
+    //     score: userScore
     // })
 
+    // await newTableScore.save()
+    const newTableScore = { soqid: soqIdScore, score: userScore }
+    let submittedUser = await User.findOne(user)
     await submittedUser.history.push(newTableScore)
-    // submittedUser.history.soqid = soqIdScore
-    // submittedUser.history.score = userScore
-    await submittedUser.save()
-    const userData = User.findOne(user).populate('history')
-    console.log(userData)
-    // res.status(200).json({
-    //     updatedUser: userData
-    // })
+    submittedUser = await submittedUser.populate('history')
+    await submittedUser.save();
+    res.status(200).json({
+        msg: "add success"
+    })
 
 }
 
 exports.getScore = async (req, res, next) => {
     const soqId = req.params.SetOfQuestionId;
-    const allScore = User.find()
-    console.log(allScore)
+    let users
+    await User.find({ "history.soqid": soqId })
+        .then(result => {users = result })
+    // users.history = users.map(user => {
+    //     user.history.filter(his => {
+    //         return his.soqid.equals(mongoose.Types.ObjectId(soqId))
+    //     })
+    // })
+    return res.status(200).json({
+        users: users,
+    })
+
+
 }
