@@ -97,16 +97,21 @@ export default function Edit() {
         <a className='btn btn-light btncre' href="/create-soq" >สร้างชุดคำถาม</a>
       </div>
       {listOfSoq?.map((soq, index) => {
-        return <div className='groupquest' key={index + soq.soqtitle}>
-          <div className='quest'>
+        return <div className='groupquest container' key={index + soq.soqtitle}>
+          <div className='quest row'>
+          <div className='col-10'>
             <p>ชุดที่ 1 : {soq.soqtitle}</p>
+            </div>
+            <div className='col-2'>
             <Link to={`/editque/${soq._id}`}>
               <button type="button" className="btn btn-warning btn-lg text-dark btnedit">
                 แก้ไข
               </button>
             </Link>
+    
 
             <button type="button" className="btn btn-dark btn-lg text-light btndel" onClick={() => deleteSoqHandler(soq._id)}>ลบ</button>
+          </div>
           </div>
           <div className='datecreate'>
             <p>

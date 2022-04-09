@@ -87,12 +87,16 @@ export default function HomeScreen() {
           {
             listOfSoq?.map((soq, index) => {
 
-              return <FadeIn><div className='groupquest' key={index + soq.soqtitle}>
-                <div className='quest'>
+              return <FadeIn><div className='groupquest container' key={index + soq.soqtitle}>
+                <div className='quest row'>
+                  <div className='col-10'>
                   <p>ชื่อชุดคำถาม : {soq.soqtitle}</p>
+                  </div>
+                  <div className='col-2'>
                   <Link to={`/exercise/${soq._id}`}>
                     <button type="button" className="btn btn-warning btn-lg text-dark btnstart">เริ่มทำ</button>
                   </Link>
+                  </div>
                 </div>
                 <div className='datecreate'>
                   <p>
