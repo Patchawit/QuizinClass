@@ -66,7 +66,7 @@ export default function Score() {
                         return <option value={subject._id} key={subject.subjecttitle}>{subject.subjecttitle}</option>
                     })}
 
-                </Form.Select>F
+                </Form.Select>
                 <p className='groupsub2'>
                     ชุดคำถาม
                 </p>
