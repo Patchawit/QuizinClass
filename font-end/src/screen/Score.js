@@ -7,6 +7,7 @@ export default function Score() {
     const { user } = useAuthContext();
     const [allSubject, setAllSubject] = useState([])
     const [listOfSoq, setListOfSoq] = useState()
+    const [Studentlist, setStudentList] = useState()
     useEffect(async () => {
         console.log(user.email)
         await fetch(`http://localhost:7050/admin/category/${user.email}`, {
@@ -51,6 +52,7 @@ export default function Score() {
             .then(res => { return res.json() })
             .then(result => {
                 console.log(result)
+                setStudentList(result)
             })
     }
 
@@ -78,10 +80,23 @@ export default function Score() {
                     })}
 
                 </Form.Select>
-                <h3>ค้นหา</h3>
-                <input className="form-control form-control-md search" type="text" placeholder=""></input>
+                {/* <h3>ค้นหา</h3>
+                <input className="form-control form-control-md search" type="text" placeholder=""></input> */}
+                {Studentlist && Studentlist?.users?.map(student => {
+                    console.log(student)
+                    const studentHistory = student.history
+                    const studentscore = studentHistory.map(score =>{
+                        let Content
+                        if (score.soqid == "62555934368592d376aa4cc5"){
+                            Content = score.score
+                        } 
+                        console.log(score.soqid, score.score)
+                        return <h1>{Content}</h1>
+                    })
+                return <div><h1>{student.name}</h1>{studentscore}</div>}
+                )}
             </div>
-            <div className='center'>
+            {/* <div className='center'>
                 <div className='table'>
                     <Table striped bordered>
                         <thead>
@@ -138,7 +153,7 @@ export default function Score() {
                         </tbody>
                     </Table>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
