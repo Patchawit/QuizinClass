@@ -15,7 +15,8 @@ router.post("/login", (req, res) => {
             console.log('user is: ', currentUser);
             const payload = {
                 name: currentUser.name,
-                email: currentUser.email
+                email: currentUser.email,
+                usertype: currentUser.usertype
             }
             console.log("payload", payload)
             jwt.sign(payload, "bla bla bla",

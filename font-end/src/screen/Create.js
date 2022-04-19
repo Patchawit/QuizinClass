@@ -39,6 +39,7 @@ export default function Create() {
         await fetch(`http://localhost:7050/admin/category/${user.email}`, {
             headers: {
                 'Content-Type': 'application/json',
+                'Authcookie':Authcookie   
             },
             method: "GET",
         })

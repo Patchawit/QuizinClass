@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useAuthContext } from '../context/AuthContext';
 
 export default function Score() {
-    const { user } = useAuthContext();
+    const { user, Authcookie } = useAuthContext();
     const [allSubject, setAllSubject] = useState([])
     const [listOfSoq, setListOfSoq] = useState()
     const [Studentlist, setStudentList] = useState()
@@ -13,6 +13,7 @@ export default function Score() {
         await fetch(`http://localhost:7050/admin/category/${user.email}`, {
             headers: {
                 'Content-Type': 'application/json',
+                'Authcookie':Authcookie   
             },
             method: "GET",
         })

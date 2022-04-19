@@ -15,13 +15,14 @@ export default function Edit() {
   const [allSubject, setAllSubject] = useState([])
   const [isLoading, setLoading] = useState(false)
   const [listOfSoq, setListOfSoq] = useState()
-  const {user} = useAuthContext();
+  const {user, Authcookie} = useAuthContext();
 
   useEffect(async () => {
     await fetch(`http://localhost:7050/admin/category/${user.email}`, {
       headers: {
         'Content-Type': 'application/json',
-      },
+        'Authcookie':Authcookie   
+    },
       method: "GET",
     })
       .then(res => {

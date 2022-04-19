@@ -20,7 +20,7 @@ import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
 import { useAuthContext } from './context/AuthContext';
 function App(props) {
 
-  const { isLogin, logoutHandler, loginBy } = useAuthContext()
+  const { isLogin, logoutHandler, loginBy, user } = useAuthContext()
 
   console.log(isLogin)
 
@@ -28,24 +28,44 @@ function App(props) {
     return <LOGIN />
 
   }
+  let content
+  if (user.usertype === "Teacher") {
+    content = <BrowserRouter>
+    <Navbar logoutHandler={logoutHandler} loginBy={loginBy} /> <Routes>
+      <Route path="/login" element={<LOGIN />} />
+      <Route path="/" element={<HomeScreen />} />
+      <Route path="/createquiz" element={<Create />} />
+      <Route path="/editquiz" element={<Edit />} />
+      <Route path="/scorequiz" element={<Score />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route name="editque" path="/editque/:soqId" element={<Editque />} />
+      <Route path="/create-soq" element={<CreateSetOfQuestion />} />
+      <Route path="/lobby" element={<Lobby />} />
+      <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
+    </Routes>
+  </BrowserRouter>
 
+  }
+  else{
+    content = <BrowserRouter>
+    <Navbar logoutHandler={logoutHandler} loginBy={loginBy} /> <Routes>
+      <Route path="/login" element={<LOGIN />} />
+      <Route path="/" element={<HomeScreen />} />
+      <Route path="/createquiz" element={<Create />} />
+      <Route path="/editquiz" element={<Edit />} />
+      <Route path="/scorequiz" element={<Score />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route name="editque" path="/editque/:soqId" element={<Editque />} />
+      <Route path="/create-soq" element={<CreateSetOfQuestion />} />
+      <Route path="/lobby" element={<Lobby />} />
+      <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
+    </Routes>
+  </BrowserRouter>
+  }
 
   return (
     <div>
-      <BrowserRouter>
-        <Navbar logoutHandler={logoutHandler} loginBy={loginBy} /> <Routes>
-          <Route path="/login" element={<LOGIN />} />
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/createquiz" element={<Create />} />
-          <Route path="/editquiz" element={<Edit />} />
-          <Route path="/scorequiz" element={<Score />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route name="editque" path="/editque/:soqId" element={<Editque />} />
-          <Route path="/create-soq" element={<CreateSetOfQuestion />} />
-          <Route path="/lobby" element={<Lobby />} />
-          <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
-        </Routes>
-      </BrowserRouter>
+      {content}
     </div>
   );
 }
