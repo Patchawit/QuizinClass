@@ -82,19 +82,7 @@ export default function Score() {
                 </Form.Select>
                 {/* <h3>ค้นหา</h3>
                 <input className="form-control form-control-md search" type="text" placeholder=""></input> */}
-                {Studentlist && Studentlist?.users?.map(student => {
-                    console.log(student)
-                    const studentHistory = student.history
-                    const studentscore = studentHistory.map(score =>{
-                        let Content
-                        if (score.soqid == "62555934368592d376aa4cc5"){
-                            Content = score.score
-                        } 
-                        console.log(score.soqid, score.score)
-                        return <h1>{Content}</h1>
-                    })
-                return <div><h1>{student.email}</h1>{studentscore}</div>}
-                )}
+
             </div>
             <div className='center'>
                 <div className='table'>
@@ -105,13 +93,32 @@ export default function Score() {
                                 <th>ชุดที่ 1</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>61000001 กวิน บินได้</td>
-                                <td>20</td>
-                            </tr>
-                        </tbody>
                     </Table>
+                        {Studentlist && Studentlist?.users?.map(student => {
+                            console.log(student)
+                            const studentHistory = student.history
+                            const studentscore = studentHistory.map(score => {
+                                let Content
+                                if (score.soqid == "62555ead9348310546b213cd") {
+                                    Content = score.score
+                                }
+                                console.log(score.soqid, score.score)
+                                return <h1>{Content}</h1>
+                            })
+
+                            return <div className='container'>
+                                    <div className='row'>
+                                    <div className='col-9'>
+                                        <p>{student.name}</p>
+                                    </div>
+                                    <div className='col-3'>
+                                        <p>{studentscore}</p>
+                                    </div>
+                                    </div>
+                                </div>
+                        }
+                        )}
+                    
                 </div>
             </div>
         </div>
