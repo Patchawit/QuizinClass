@@ -19,8 +19,8 @@ exports.getCategory = async (req, res, next) => {
 
 }
 exports.postCategory = async (req, res, next) => {
-    const { messages, email } = req.body
-    const createby = await User.findOne({ 'email': email })
+    const { messages } = req.body
+    const createby = await User.findOne({ 'email': req.user })
     console.log('user', createby)
     const NewSubject = new SubjectCategory({
         subjecttitle: messages,
@@ -285,3 +285,5 @@ exports.getScore = async (req, res, next) => {
 
 
 }
+
+

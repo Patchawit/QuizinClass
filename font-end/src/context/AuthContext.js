@@ -1,15 +1,17 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import cookie from 'js-cookie'
+// import cookie from 'js-cookie'
+import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 const AuthContext = createContext();
+const cookies = new Cookies();
 
 export const AuthContextProvider = (props) => {
     const [isLogin, setIsLogin] = useState(false)
     const [user, setUser] = useState('')
     const [loginBy, setLoginBy] = useState('')
     const [studentid, setStudentid] = useState('')
-    // const [cookie, setCookie] = useState('');
+    const [Authcookie, setAuthCookie] = useState('');
     const googleAuth = ({ profileObj }) => {
         axios.post("http://localhost:7050/auth/login", {
             data: {
@@ -26,8 +28,12 @@ export const AuthContextProvider = (props) => {
             })
             .then(data => {
                 const message = data.message
-                const token = data.token.split("Bearer", 1)
-                cookie.set(token)
+                const token = data.token.substring(6)
+                // cookie.set(token)
+                cookies.set('Authcookie', token, { path: '/' });
+                console.log(token)
+                console.log(cookies.get('Authcookie')); // token
+                setAuthCookie(cookies.get('Authcookie'))
                 setUser(data.user)
                 setIsLogin(true)
                 setLoginBy(data.user.name)
@@ -37,7 +43,7 @@ export const AuthContextProvider = (props) => {
     }
 
     const logoutHandler = () => {
-        cookie.remove('token')
+        cookies.remove('token')
         setIsLogin(false)
     }
 
@@ -50,7 +56,8 @@ export const AuthContextProvider = (props) => {
                 isLogin: isLogin,
                 loginBy: loginBy,
                 studentid: studentid,
-                user: user
+                user: user,
+                Authcookie: Authcookie
             }}>
             {props.children}
         </AuthContext.Provider >

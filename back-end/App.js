@@ -1,5 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const Cookies = require('universal-cookie');
 var cors = require('cors')
 const app = express()
 const mongodburi = "mongodb+srv://administer1150:0858881292Get@quizinclass.1kaqp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -16,8 +17,30 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+
+// app.use((req, res, next) => {
+//   // const cookies = req.header('Authcookie');
+//   console.log(req)
+//   // if (!req.session.user) {
+//   //   return next()
+//   // }
+//   // User.findById(req.session.user._id)
+//   //   .then(user => {
+//   //     req.user = user;
+
+//   //     next()
+//   //   })
+//   //   .catch(err => console.log(err))
+//   console.log("Hummmm")
+//   // console.log(cookies,"Pornhub");
+//   // console.log(cookies)
+//   next()
+// })
+
+
 // app.use('/', (req, res) => res.status(200).json({ title: 'GeeksforGeeks' }))
 app.use('/admin', AdminRouter.router)
+
 
 
 app.use((error, req, res, next) => {
@@ -41,17 +64,17 @@ app.use(session({
 }));
 
 
-app.use((req, res, next) => {
-  if (!req.user) {
-    return next()
-  }
-  User.find(req.user)
-    .then(user => {
-      req.user = user;
-      next()
-    })
-    .catch(err => console.log(err))
-})
+// app.use((req, res, next) => {
+//   if (!req.user) {
+//     return next()
+//   }
+//   User.find(req.user)
+//     .then(user => {
+//       req.user = user;
+//       next()
+//     })
+//     .catch(err => console.log(err))
+// })
 
 
 // initialize passport
@@ -67,3 +90,4 @@ mongoose.connect(mongodburi)
     app.listen(7050, () => console.log("Server start at Port 7050"))
   })
   .catch(Error => console.log(Error))
+

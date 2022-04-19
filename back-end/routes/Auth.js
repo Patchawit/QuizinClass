@@ -25,7 +25,7 @@ router.post("/login", (req, res) => {
                 (err, token) => {
 
                     if (err) res.json({ message: err })
-                    console.log(token)
+                    // console.log(token)
                     // res.status(200).json({
                     //     msg:"ssssss"
                     // })
