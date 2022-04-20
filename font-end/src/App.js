@@ -16,6 +16,7 @@ import Profile from "./screen/Profile";
 import Editque from "./screen/Editque";
 import Lobby from "./screen/Lobby";
 import Exercise from "./screen/Exercise";
+import Ready from "./screen/Ready";
 import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
 import { useAuthContext } from './context/AuthContext';
 function App(props) {
@@ -42,6 +43,7 @@ function App(props) {
       <Route path="/create-soq" element={<CreateSetOfQuestion />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
+      <Route path="/ready"  element={<Ready />} />
     </Routes>
   </BrowserRouter>
 
@@ -59,6 +61,7 @@ function App(props) {
       <Route path="/create-soq" element={<CreateSetOfQuestion />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
+      <Route path="/ready"  element={<Ready />} />
     </Routes>
   </BrowserRouter>
   }
