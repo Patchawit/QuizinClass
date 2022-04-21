@@ -388,3 +388,37 @@ body {
 .numquest{
   margin-left: 3vw;
 }
+
+.qrcode{
+  width: 500px;
+  height: 500px;
+  background-color: black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3vw;
+}
+
+.qrcodestyle p {
+  text-align: center;
+  margin-top: 1vw;
+  font-size: 1vw;
+}
+
+.qrcodestart {
+  margin-top: 10vw;
+
+}
+
+.qrcodestart button {
+  margin-bottom: 3vw;
+}
+
+.starting {
+  margin-left: 10vw;
+}
+.namestart {
+  margin-left: 9vw;
+}
+
+
+
