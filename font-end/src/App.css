@@ -397,6 +397,10 @@ body {
   margin-right: auto;
   margin-top: 3vw;
 }
+.qrcode img{
+  width: 500px;
+  height: 500px;
+}
 
 .qrcodestyle p {
   text-align: center;
