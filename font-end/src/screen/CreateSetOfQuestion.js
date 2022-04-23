@@ -17,7 +17,7 @@ const defaultOptions = {
 };
 
 export default function CreateSetOfQuestion() {
-    const {user} = useAuthContext();
+    const {user, Authcookie} = useAuthContext();
     const [soqTitle, setSoqTitle] = useState('');
     const [soq, setSoq] = useState('');
     const [isEdit, setEdit] = useState(false)
@@ -60,6 +60,7 @@ export default function CreateSetOfQuestion() {
         await fetch(`http://localhost:7050/admin/category/${user.email}`, {
             headers: {
                 'Content-Type': 'application/json',
+                'Authcookie':Authcookie 
             },
             method: "GET",
         })

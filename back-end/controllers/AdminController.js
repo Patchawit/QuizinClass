@@ -70,7 +70,7 @@ exports.getSetOfQuestionbyUser = async (req, res, next) => {
     const catagory = req.params.catagory;
     // const user = req.body.user;
     // console.log(user)
-    console.log(catagory)
+    console.log('catagory', catagory)
     const createby = await User.findOne({ 'email': userEmail })
     try {
         const setOfquestion = await SetOfQuestion.find({ createby: createby })
