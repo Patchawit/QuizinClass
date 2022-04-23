@@ -1,13 +1,27 @@
 import React from 'react'
+import QRCode from 'qrcode'
+import { useEffect, useState } from 'react'
+import {
+  useParams
+} from "react-router-dom";
 
 
 export default function Ready() {
+    const [src, setSrc] = useState('');
+    let { soqId } = useParams();
+    console.log(soqId)
+    const text = `http://localhost:5000/exercise/${soqId}`
+    useEffect(() => {
+      QRCode.toDataURL(text).then((setSrc));
+    }, []);
+
     return (
     <div className='center'>
       <div className='container'>
         <div className='row'>
           <div className='col-6 qrcodestyle'>
             <div className='qrcode'>
+              <img src={src}/>
             </div>
             <p>จำนวนคน : 0</p>
           </div>

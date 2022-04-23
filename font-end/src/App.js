@@ -43,7 +43,7 @@ function App(props) {
       <Route path="/create-soq" element={<CreateSetOfQuestion />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
-      <Route path="/ready"  element={<Ready />} />
+      <Route name="/ready"  path="/ready/:soqId" element={<Ready />} />
     </Routes>
   </BrowserRouter>
 

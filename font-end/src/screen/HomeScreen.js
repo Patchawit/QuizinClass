@@ -94,7 +94,7 @@ export default function HomeScreen() {
                   <p>ชื่อชุดคำถาม : {soq.soqtitle}</p>
                   </div>
                   <div className='col-2'>
-                  <Link to={`/ready`}>
+                  <Link to={`/ready/${soq._id}`}>
                     <button type="button" className="btn btn-warning btn-lg text-dark btnstart">เริ่มทำ</button>
                   </Link>
                   </div>
