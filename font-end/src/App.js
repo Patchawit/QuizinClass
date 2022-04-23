@@ -52,16 +52,16 @@ function App(props) {
     content = <BrowserRouter>
     <Navbar logoutHandler={logoutHandler} loginBy={loginBy} /> <Routes>
       <Route path="/login" element={<LOGIN />} />
-      <Route path="/" element={<HomeScreen />} />
+      {/* <Route path="/" element={<HomeScreen />} />
       <Route path="/createquiz" element={<Create />} />
       <Route path="/editquiz" element={<Edit />} />
-      <Route path="/scorequiz" element={<Score />} />
+      <Route path="/scorequiz" element={<Score />} /> */}
       <Route path="/profile" element={<Profile />} />
-      <Route name="editque" path="/editque/:soqId" element={<Editque />} />
+      {/* <Route name="editque" path="/editque/:soqId" element={<Editque />} />
       <Route path="/create-soq" element={<CreateSetOfQuestion />} />
-      <Route path="/lobby" element={<Lobby />} />
+      <Route path="/lobby" element={<Lobby />} /> */}
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
-      <Route path="/ready"  element={<Ready />} />
+      {/* <Route path="/ready"  element={<Ready />} /> */}
     </Routes>
   </BrowserRouter>
   }
