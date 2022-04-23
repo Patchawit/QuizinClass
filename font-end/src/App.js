@@ -1,4 +1,4 @@
-import Navbar from './component/Navbar';
+import Navbar from './component/Navbars';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import {

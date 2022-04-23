@@ -6,21 +6,22 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import './Navbar.css';
-import AuthContext from "../context/AuthContext";
+import { useAuthContext } from '../context/AuthContext';
 
 
 const clientId = "680137363543-qsg5innvjcd89cc81n7oku0jqljs7iqt.apps.googleusercontent.com";
 
-export default function navbar(props) {
-  
+export default function Navbars(props) {
 
+    const { user } = useAuthContext()
     const onLogoutSuccess = (res) => {
         console.log("[Logout Success]")
         props.logoutHandler()
     }
 
-    return (
-        <div>
+    let content
+    if (user.usertype === "Teacher") {
+        content = <div>
             <Navbar bg="light" expand="lg" className='mainbar'>
                 <Navbar.Brand href="/" className='logo'><h3><strong>Quiz <font color="#FFAD32"> in </font> Class</strong></h3></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -47,5 +48,33 @@ export default function navbar(props) {
                 </Navbar.Collapse>
             </Navbar>
         </div>
-    )
+
+    }
+    else {
+        content = <div>
+            <Navbar bg="light" expand="lg" className='mainbar'>
+                <Navbar.Brand href="/" className='logo'><h3><strong>Quiz <font color="#FFAD32"> in </font> Class</strong></h3></Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        Student
+                    </Nav>
+                </Navbar.Collapse>
+                <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Text className='subbar3'>
+                        เข้าสู่ระบบโดย : <a href="/profile"> <font color="#FFAD32">{props.loginBy}</font></a>
+                    </Navbar.Text>
+                    {/* <Button variant="dark">ออกจากระบบ</Button> */}
+                    <GoogleLogout
+                        clientId={clientId}
+                        buttonText="ออกจากระบบ"
+                        onLogoutSuccess={onLogoutSuccess}
+                    />
+                </Navbar.Collapse>
+            </Navbar>
+        </div>
+
+    }
+    return { content }
+
 }
