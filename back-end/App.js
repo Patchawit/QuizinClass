@@ -102,7 +102,7 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
-app.use(multer({ storage: storage, fileFilter: fileFilter }).single('img'))
+app.use(multer({ storage: storage, fileFilter: fileFilter }).single('image'))
 
 
 
