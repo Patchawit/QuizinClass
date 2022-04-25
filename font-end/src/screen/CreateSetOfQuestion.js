@@ -105,10 +105,12 @@ export default function CreateSetOfQuestion() {
 
     const submitQuestionHandler = async (e) => {
         e.preventDefault()
+        setLoading(true)
         const formData = new FormData();
-        formData.append("image", file)
+        // console.log(file)
+        formData.append("img", file)
         formData.append("soqId", soq._id)
-        formData.append("questionData", {
+        formData.append("questionData", JSON.stringify({
             QuestionTitle: e.target.QuestionTitle.value,
             Choice: [
                 {
@@ -129,41 +131,15 @@ export default function CreateSetOfQuestion() {
                 }
             ],
             ans: e.target.ans.value
-        })
-        setLoading(true)
+        }))
+        // for (var [key, value] of formData.entries()) {
+        //     console.log(key, value);
+        // }
+
         await fetch("http://localhost:7050/admin/Question", {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: "POST",
-            body: formData
-            // {
-            //     formData, JSON.stringify({
-            //         "soqId": soq._id,
-            //         "questionData": {
-            //             QuestionTitle: e.target.QuestionTitle.value,
-            //             Choice: [
-            //                 {
-            //                     "choiceTitle": e.target.ChoiceTitle1.value,
-            //                     "choiceImg": "ตัวเลือก1"
-            //                 },
-            //                 {
-            //                     "choiceTitle": e.target.ChoiceTitle2.value,
-            //                     "choiceImg": "ตัวเลือก1"
-            //                 },
-            //                 {
-            //                     "choiceTitle": e.target.ChoiceTitle3.value,
-            //                     "choiceImg": "ตัวเลือก1"
-            //                 },
-            //                 {
-            //                     "choiceTitle": e.target.ChoiceTitle4.value,
-            //                     "choiceImg": "ตัวเลือก1"
-            //                 }
-            //             ],
-            //             ans: e.target.ans.value
-            //         }
-            //     })
-            // }
+            method: 'POST',
+            body: formData,
+
         })
             .then(result => {
                 // setSoqId(res.SetOfQuestionId)
@@ -360,7 +336,8 @@ export default function CreateSetOfQuestion() {
                                 />
                                 <input // ทำ input ไว้ กด เพื่อ find รูปครับ
                                     type="file" // type ต้องเป็น file
-                                    onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา
+                                    name="image"
+                                    onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา                           
                                 />
                             </div>
 

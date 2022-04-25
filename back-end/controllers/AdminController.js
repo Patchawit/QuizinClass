@@ -159,33 +159,34 @@ exports.patchSetOfQuestion = async (req, res, next) => {
 }
 
 exports.postQuestion = async (req, res, next) => {
-    // const { questionData, soqId } = req.body;
-    const images = req.file
-    console.log(images)
-    console.log(req)
-    // const newQuestion = new Question({
-    //     questionstitle: questionData.QuestionTitle,
-    //     choices: questionData?.Choice.map(choice => {
-    //         return choice;
-    //     }),
-    //     // ans: questionData.ans
-    // })
-    // try {
-    //     newQuestion.choices[questionData.ans - 1].isCorrect = true
-    //     await newQuestion.save();
-    //     let setOfQuestion = await SetOfQuestion.findById(soqId);
-    //     await setOfQuestion.questions.push(newQuestion);
-    //     setOfQuestion = await setOfQuestion.populate('questions')
-    //     await setOfQuestion.save();
-    //     res.status(200).json({
-    //         Question: setOfQuestion
-    //     })
-    // } catch (err) {
-    //     if (!err.statusCode) {
-    //         err.statusCode = 500;
-    //     }
-    //     next(err);
-    // }
+    const { questionData, soqId } = req.body;
+    const questionDataJson = JSON.parse(questionData)
+    // console.log(questionDataJson.QuestionTitle)
+    const img = req.file
+    const newQuestion = new Question({
+        questionstitle: questionDataJson.QuestionTitle,
+        choices: questionDataJson?.Choice.map(choice => {
+            return choice;
+        }),
+        imgUrl: img.path.replace("\\", "/")
+        // ans: questionDataJson.ans
+    })
+    try {
+        newQuestion.choices[questionDataJson.ans - 1].isCorrect = true
+        await newQuestion.save();
+        let setOfQuestion = await SetOfQuestion.findById(soqId);
+        await setOfQuestion.questions.push(newQuestion);
+        setOfQuestion = await setOfQuestion.populate('questions')
+        await setOfQuestion.save();
+        res.status(200).json({
+            Question: setOfQuestion
+        })
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
 
 }
 
@@ -276,7 +277,7 @@ exports.getScore = async (req, res, next) => {
     const soqId = req.params.SetOfQuestionId;
     let users
     await User.find({ "history.soqid": soqId })
-        .then(result => {users = result })
+        .then(result => { users = result })
     // users.history = users.map(user => {
     //     user.history.filter(his => {
     //         return his.soqid.equals(mongoose.Types.ObjectId(soqId))
