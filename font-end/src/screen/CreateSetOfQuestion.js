@@ -360,8 +360,7 @@ export default function CreateSetOfQuestion() {
                                 />
                                 <input // ทำ input ไว้ กด เพื่อ find รูปครับ
                                     type="file" // type ต้องเป็น file
-                                    name="image"
-                                    onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา                           
+                                    onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา
                                 />
                             </div>
 
