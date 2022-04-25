@@ -116,7 +116,7 @@ export default function Edit() {
           </div>
           <div className='datecreate'>
             <p>
-              วันที่สร้าง : 2/2/2022
+              วันที่สร้าง : {soq.date}
             </p>
             <Form>
               <Form.Check
