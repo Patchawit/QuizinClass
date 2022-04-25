@@ -17,7 +17,7 @@ const defaultOptions = {
 };
 
 export default function CreateSetOfQuestion() {
-    const {user, Authcookie} = useAuthContext();
+    const { user, Authcookie } = useAuthContext();
     const [soqTitle, setSoqTitle] = useState('');
     const [soq, setSoq] = useState('');
     const [isEdit, setEdit] = useState(false)
@@ -60,7 +60,7 @@ export default function CreateSetOfQuestion() {
         await fetch(`http://localhost:7050/admin/category/${user.email}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authcookie':Authcookie 
+                'Authcookie': Authcookie
             },
             method: "GET",
         })
@@ -83,9 +83,10 @@ export default function CreateSetOfQuestion() {
                 'Content-Type': 'application/json',
             },
             method: "POST",
-            body: JSON.stringify({ "SetOfQuestionTitle": soqTitle ,
-            "user": user
-        })
+            body: JSON.stringify({
+                "SetOfQuestionTitle": soqTitle,
+                "user": user
+            })
         })
             .then(result => {
                 // setSoqId(res.SetOfQuestionId)
@@ -231,6 +232,20 @@ export default function CreateSetOfQuestion() {
         console.log(e.target.value)
     }
 
+
+    const [file, setFile] = useState({}) // ใช้เพื่อส่งไปที่ API
+    const [imagePreviewUrl, setImagePreviewUrl] = useState(null) //ใช้เพื่อภาพ Preview
+    const handleUploadImage = (e) => {
+        const file = e.target.files[0] // เก็บไว้ setState ลงใน file
+        const reader = new FileReader(); // เรียก Class FileReader เพื่อแปลง file image ที่รับเข้ามา
+        reader.onloadend = () => { // เป็น eventของFileReaderเมื่อโหลดภาพเสร็จ
+            setFile(file) // ทำการ setState
+            setImagePreviewUrl(reader.result) //เหมือนด้านบน
+        }
+        reader.readAsDataURL(file) // เป็นส่วนของการแสดงรูป ไม่ค่อยแน่ใจครับ ผู้รู้ช่วยคอมเม้นบอกด้วยนะครับ
+    }
+
+
     if (isLoading) {
         return <FadeIn><Lottie options={defaultOptions} height={500} width={500} /></FadeIn>
     }
@@ -295,45 +310,85 @@ export default function CreateSetOfQuestion() {
                                     <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
                                 </p>
                                 <button type="button" className="btn btn-warning btn-lg text-dark"
-                                    onClick={() => { onClickEditQuestion(question) }}>edit</button>
+                                    onClick={() => { onClickEditQuestion(question) }}>แก้ไข</button>
                                 <button type="button" className="btn btn-danger btn-lg text-dark"
-                                    onClick={() => { deleteQuestionHandler(question) }}>delete</button>
+                                    onClick={() => { deleteQuestionHandler(question) }}>ลบ</button>
                             </div></div>
                         }
                         return content
                     })}
-                    <Form onSubmit={submitQuestionHandler} className='creques'>
-                        <div className="namequestion">
-                            <p>คำถาม</p>
-                            <input placeholder='กรอกคำถาม' className="form-control form-control-lg nameque" name='QuestionTitle'></input>
+                    <Form onSubmit={submitQuestionHandler} className='creques container'>
+                        <div className="namequestion row">
+
+                            <div className='col-1'>
+                                <p>คำถาม</p>
+                            </div>
+                            <div className='queimg col-11'>
+                                <input placeholder='กรอกคำถาม' className="form-control form-control-lg nameque" name='QuestionTitle'></input>
+                                <img
+                                    src={imagePreviewUrl ? imagePreviewUrl : ""
+                                    }
+                                />
+                                <input // ทำ input ไว้ กด เพื่อ find รูปครับ
+                                    type="file" // type ต้องเป็น file
+                                    onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา
+                                />
+                            </div>
+
                         </div>
-                        <div className="namequestion">
-                            <p>ตัวเลือกที่1</p>
-                            <input placeholder='ตัวเลือก1' className="form-control form-control-lg nameque" name='ChoiceTitle1'></input>
+                        <div className="namequestion row">
+                            <div className='col-1'>
+                                <p>ตัวเลือกที่1</p>
+                            </div>
+                            <div className='col-11'>
+                                <input placeholder='ตัวเลือก1' className="form-control form-control-lg nameque" name='ChoiceTitle1'></input>
+                            </div>
                         </div>
-                        <div className="namequestion">
-                            <p>ตัวเลือกที่2</p>
-                            <input placeholder='ตัวเลือก2' className="form-control form-control-lg nameque" name='ChoiceTitle2'></input>
+                        <div className="namequestion row">
+                            <div className='col-1'>
+                                <p>ตัวเลือกที่2</p>
+                            </div>
+                            <div className='col-11'>
+                                <input placeholder='ตัวเลือก2' className="form-control form-control-lg nameque" name='ChoiceTitle2'></input>
+                            </div>
                         </div>
-                        <div className="namequestion">
-                            <p>ตัวเลือกที่3</p>
-                            <input placeholder='ตัวเลือก3' className="form-control form-control-lg nameque" name='ChoiceTitle3'></input>
+                        <div className="namequestion row">
+                            <div className='col-1'>
+                                <p>ตัวเลือกที่3</p>
+                            </div>
+                            <div className='col-11'>
+                                <input placeholder='ตัวเลือก3' className="form-control form-control-lg nameque" name='ChoiceTitle3'></input>
+                            </div>
                         </div>
-                        <div className="namequestion">
-                            <p>ตัวเลือกที่4</p>
-                            <input placeholder='ตัวเลือก4' className="form-control form-control-lg nameque" name='ChoiceTitle4'></input>
+                        <div className="namequestion row">
+                            <div className='col-1'>
+                                <p>ตัวเลือกที่4</p>
+                            </div>
+                            <div className='col-11'>
+                                <input placeholder='ตัวเลือก4' className="form-control form-control-lg nameque" name='ChoiceTitle4'></input>
+                            </div>
                         </div>
-                        <div className="namequestion">
-                            <p>ข้อถูก</p>
-                            <Form.Select className='formsel' name="ans">
-                                <option>Default select</option>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                            </Form.Select>
+                        <div className="namequestion row">
+                            <div className='col-1'>
+                                <p>ข้อถูก</p>
+                            </div>
+                            <div className='col-11'>
+                                <Form.Select className='formsel' name="ans">
+                                    <option>Default select</option>
+                                    <option value={1}>1</option>
+                                    <option value={2}>2</option>
+                                    <option value={3}>3</option>
+                                    <option value={4}>4</option>
+                                </Form.Select>
+                            </div>
                         </div>
-                        <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
+                        <div className='row'>
+                            <div className='col-11'>
+                            </div>
+                            <div className='col-1'>
+                                <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
+                            </div>
+                        </div>
                     </Form>
 
                 </div >

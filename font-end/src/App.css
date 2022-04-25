@@ -125,7 +125,6 @@ body {
   font-size: 1.2rem;
 }
 .namequestion{
-  display:flex;
   margin-top: 2vh;
   margin-left: 3vw;
 }
@@ -133,9 +132,17 @@ body {
   padding-top: 1vh;
   font-size: 1.2rem;
 }
+
+.queimg img{
+  width: 25vw;
+  height: auto;
+  margin-bottom: 1vh;
+  margin-right: 1vw;
+}
+
+
 .nameque{
-  width: 80%;
-  margin-left: 2vw
+  margin-bottom: 2vh;
 }
 
 .nameque2{
@@ -185,7 +192,6 @@ body {
 }
   
 .formsel{
-  margin-left: 2vw;
   width: 50%;
   height: 100%;
 }
@@ -195,16 +201,10 @@ body {
   margin-top: 5vh;
   margin-left: 15vw;
 }
-.creques input{
-  margin-bottom: 2vh;
-  width: 82%;
-}
+
 .creques button{
-  margin-left: 64vw;
+
   margin-bottom: 5vh;
-}
-.creques p {
-  margin-bottom: 0.5vh;
 }
 
 .questsave{
@@ -373,21 +373,6 @@ body {
   margin-left: 2vw;
 }
 
-.questsave2{
-  display: block;
-}
-.questsave2 p{
-  font-size: 1.2rem;
-  display: flex;
-}
-.questsave2 button {
-  margin-left: 53vw;
-  margin-bottom: 1vh;
-}
-
-.numquest{
-  margin-left: 3vw;
-}
 
 .qrcode{
   width: 500px;
@@ -424,5 +409,9 @@ body {
   margin-left: 9vw;
 }
 
+.newque {
+  margin-left: 80vw;
+  margin-bottom: 3vw;
+}
 
 

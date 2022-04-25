@@ -91,7 +91,7 @@ export default function Score() {
                         <thead>
                             <tr>
                                 <th>รหัสนักศึกษา ชื่อ-สกุล</th>
-                                <th>ชุดที่ 1</th>
+                                <th>คะแนน</th>
                             </tr>
                         </thead>
                     </Table>
