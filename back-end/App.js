@@ -106,10 +106,8 @@ app.use(passport.session());
 app.use("/auth", authRoutes);
 
 
-<<<<<<< HEAD
-=======
 app.use(multer({ storage: storage, fileFilter: fileFilter }).single('image'))
->>>>>>> 47008d249109731ea13467a91a4c9ef70c972c33
+
 
 
 
