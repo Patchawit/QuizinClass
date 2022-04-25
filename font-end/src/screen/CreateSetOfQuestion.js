@@ -25,6 +25,8 @@ export default function CreateSetOfQuestion() {
     const [isEditQuestion, setIsEditQuestion] = useState(false)
     const [isLoading, setLoading] = useState(false)
     const [allSubject, setAllSubject] = useState([])
+    const [file, setFile] = useState({}) // ใช้เพื่อส่งไปที่ API
+    const [imagePreviewUrl, setImagePreviewUrl] = useState(null) //ใช้เพื่อภาพ Preview
     const [questionData, setQuestionData] = useState({})
     // const [editData, setEditData] = useState({})
 
@@ -103,37 +105,65 @@ export default function CreateSetOfQuestion() {
 
     const submitQuestionHandler = async (e) => {
         e.preventDefault()
+        const formData = new FormData();
+        formData.append("image", file)
+        formData.append("soqId", soq._id)
+        formData.append("questionData", {
+            QuestionTitle: e.target.QuestionTitle.value,
+            Choice: [
+                {
+                    "choiceTitle": e.target.ChoiceTitle1.value,
+                    "choiceImg": "ตัวเลือก1"
+                },
+                {
+                    "choiceTitle": e.target.ChoiceTitle2.value,
+                    "choiceImg": "ตัวเลือก1"
+                },
+                {
+                    "choiceTitle": e.target.ChoiceTitle3.value,
+                    "choiceImg": "ตัวเลือก1"
+                },
+                {
+                    "choiceTitle": e.target.ChoiceTitle4.value,
+                    "choiceImg": "ตัวเลือก1"
+                }
+            ],
+            ans: e.target.ans.value
+        })
         setLoading(true)
         await fetch("http://localhost:7050/admin/Question", {
             headers: {
                 'Content-Type': 'application/json',
             },
             method: "POST",
-            body: JSON.stringify({
-                "soqId": soq._id,
-                "questionData": {
-                    QuestionTitle: e.target.QuestionTitle.value,
-                    Choice: [
-                        {
-                            "choiceTitle": e.target.ChoiceTitle1.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle2.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle3.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle4.value,
-                            "choiceImg": "ตัวเลือก1"
-                        }
-                    ],
-                    ans: e.target.ans.value
-                }
-            })
+            body: formData
+            // {
+            //     formData, JSON.stringify({
+            //         "soqId": soq._id,
+            //         "questionData": {
+            //             QuestionTitle: e.target.QuestionTitle.value,
+            //             Choice: [
+            //                 {
+            //                     "choiceTitle": e.target.ChoiceTitle1.value,
+            //                     "choiceImg": "ตัวเลือก1"
+            //                 },
+            //                 {
+            //                     "choiceTitle": e.target.ChoiceTitle2.value,
+            //                     "choiceImg": "ตัวเลือก1"
+            //                 },
+            //                 {
+            //                     "choiceTitle": e.target.ChoiceTitle3.value,
+            //                     "choiceImg": "ตัวเลือก1"
+            //                 },
+            //                 {
+            //                     "choiceTitle": e.target.ChoiceTitle4.value,
+            //                     "choiceImg": "ตัวเลือก1"
+            //                 }
+            //             ],
+            //             ans: e.target.ans.value
+            //         }
+            //     })
+            // }
         })
             .then(result => {
                 // setSoqId(res.SetOfQuestionId)
@@ -233,8 +263,7 @@ export default function CreateSetOfQuestion() {
     }
 
 
-    const [file, setFile] = useState({}) // ใช้เพื่อส่งไปที่ API
-    const [imagePreviewUrl, setImagePreviewUrl] = useState(null) //ใช้เพื่อภาพ Preview
+
     const handleUploadImage = (e) => {
         const file = e.target.files[0] // เก็บไว้ setState ลงใน file
         const reader = new FileReader(); // เรียก Class FileReader เพื่อแปลง file image ที่รับเข้ามา

@@ -159,30 +159,33 @@ exports.patchSetOfQuestion = async (req, res, next) => {
 }
 
 exports.postQuestion = async (req, res, next) => {
-    const { questionData, soqId } = req.body;
-    const newQuestion = new Question({
-        questionstitle: questionData.QuestionTitle,
-        choices: questionData?.Choice.map(choice => {
-            return choice;
-        }),
-        // ans: questionData.ans
-    })
-    try {
-        newQuestion.choices[questionData.ans - 1].isCorrect = true
-        await newQuestion.save();
-        let setOfQuestion = await SetOfQuestion.findById(soqId);
-        await setOfQuestion.questions.push(newQuestion);
-        setOfQuestion = await setOfQuestion.populate('questions')
-        await setOfQuestion.save();
-        res.status(200).json({
-            Question: setOfQuestion
-        })
-    } catch (err) {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err);
-    }
+    // const { questionData, soqId } = req.body;
+    const images = req.file
+    console.log(images)
+    console.log(req)
+    // const newQuestion = new Question({
+    //     questionstitle: questionData.QuestionTitle,
+    //     choices: questionData?.Choice.map(choice => {
+    //         return choice;
+    //     }),
+    //     // ans: questionData.ans
+    // })
+    // try {
+    //     newQuestion.choices[questionData.ans - 1].isCorrect = true
+    //     await newQuestion.save();
+    //     let setOfQuestion = await SetOfQuestion.findById(soqId);
+    //     await setOfQuestion.questions.push(newQuestion);
+    //     setOfQuestion = await setOfQuestion.populate('questions')
+    //     await setOfQuestion.save();
+    //     res.status(200).json({
+    //         Question: setOfQuestion
+    //     })
+    // } catch (err) {
+    //     if (!err.statusCode) {
+    //         err.statusCode = 500;
+    //     }
+    //     next(err);
+    // }
 
 }
 
