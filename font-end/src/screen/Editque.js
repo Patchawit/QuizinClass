@@ -215,29 +215,29 @@ export default function Editque() {
 
                                 } else {
                                         content = <div key={question.title} className='groupcreate'>
-                                <div className='questsave'>
-                                    <p>
-                                        ข้อที่...
-                                        <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
-                                    </p>
-                                    <img src={`http://localhost:7050/` + question.imgUrl} />
+                                                <div className='questsave'>
+                                                        <p>
+                                                                ข้อที่...
+                                                                <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
+                                                        </p>
+                                                        <img src={`http://localhost:7050/` + question.imgUrl} />
 
-                                    {question.choices.map(choice => {
-                                        return <p key={choice.choiceTitle}>
-                                            ตัวเลือกที่...
-                                            <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled />
-                                        </p>
-                                    })}
-                                    <p>
-                                        คำตอบ
-                                        <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
-                                    </p>
-                                    <button type="button" className="btn btn-warning btn-lg text-dark"
-                                        onClick={() => { onClickEditQuestion(question) }}>แก้ไข</button>
-                                    <button type="button" className="btn btn-danger btn-lg text-dark"
-                                        onClick={() => { deleteQuestionHandler(question) }}>ลบ</button>
-                                </div>
-                            </div>
+                                                        {question.choices.map(choice => {
+                                                                return <p key={choice.choiceTitle}>
+                                                                        ตัวเลือกที่...
+                                                                        <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled />
+                                                                </p>
+                                                        })}
+                                                        <p>
+                                                                คำตอบ
+                                                                <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
+                                                        </p>
+                                                        <button type="button" className="btn btn-warning btn-lg text-dark"
+                                                                onClick={() => { onClickEditQuestion(question) }}>แก้ไข</button>
+                                                        <button type="button" className="btn btn-danger btn-lg text-dark"
+                                                                onClick={() => { deleteQuestionHandler(question) }}>ลบ</button>
+                                                </div>
+                                        </div>
                                 }
                                 return content
                         })}
