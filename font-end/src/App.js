@@ -18,6 +18,7 @@ import Lobby from "./screen/Lobby";
 import Exercise from "./screen/Exercise";
 import Ready from "./screen/Ready";
 import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
+import StudentScore from "./screen/StudentScore";
 import { useAuthContext } from './context/AuthContext';
 function App(props) {
 
@@ -44,6 +45,7 @@ function App(props) {
       <Route path="/lobby" element={<Lobby />} />
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
       <Route name="/ready"  path="/ready/:soqId" element={<Ready />} />
+      <Route path="/studentscore" element={<StudentScore />} />
     </Routes>
   </BrowserRouter>
 
@@ -62,6 +64,7 @@ function App(props) {
       <Route path="/lobby" element={<Lobby />} /> */}
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
       {/* <Route path="/ready"  element={<Ready />} /> */}
+      <Route path="/studentscore" element={<StudentScore />} />
     </Routes>
   </BrowserRouter>
   }

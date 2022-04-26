@@ -61,20 +61,28 @@ export default function QusetionPanel(props) {
             </div>
         ) : (
             <>
-                        <div className='question-section'>
-                            <div className='question-count'>
+                <div className="container">
+                    <div className="row">
+                        <div className='question-section col-6'>
+                            <div className='question-count row'>
                                 <span>คำถามข้อที่ {currentQuestion + 1}/{questions?.length}</span>
                             </div>
-                            <div className='question-text'>
+                            <div className='question-text row'>
+                                <div className="col-12">
                                     {questions && questions[currentQuestion]?.questionstitle}
-                                    {questions && <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />}
+                                </div>
+                            </div>
+                            <div className='question-img row'>
+                                {questions && <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />}
                             </div>
                         </div>
-                        <div className='answer-section'>
+                        <div className='answer-section col-6'>
                             {questions && questions[currentQuestion]?.choices.map((choice) => (
                                 <button onClick={() => handleChoiceClick(choice.isCorrect)} >{choice.choiceTitle}</button>
                             ))}
 
+                        </div>
+                    </div>
                 </div>
             </>
         )}
