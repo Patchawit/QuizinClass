@@ -134,7 +134,7 @@ body {
 }
 
 .queimg img{
-  width: 25vw;
+  width: 15vw;
   height: auto;
   margin-bottom: 1vh;
   margin-right: 1vw;
@@ -193,18 +193,31 @@ body {
   
 .formsel{
   width: 50%;
-  height: 100%;
+  margin-bottom: 2vh;
+
+}
+.ediques{
+  margin-left: 3vw;
+}
+.edibutt{
+  margin-right: 1vw;
 }
 
 .creques{
   display: block;
   margin-top: 5vh;
-  margin-left: 15vw;
+  margin-left: 15vw;  
 }
-
 .creques button{
-
   margin-bottom: 5vh;
+}
+.creques2 input{
+  width: 100%;
+  margin-bottom: 2vh;
+}
+.creques2 img{
+  width: 20vw;
+  margin-bottom: 2vh;
 }
 
 .questsave{
@@ -218,6 +231,12 @@ body {
   margin-left: 60vw;
   margin-bottom: 1vh;
 }
+.questsave img {
+  width: 15vw;
+  margin-left: 5.5vw;
+  margin-bottom: 1vw;
+}
+
 .table{
   padding-left: 2vw;
   padding-right: 2vw;
@@ -410,7 +429,7 @@ body {
 }
 
 .newque {
-  margin-left: 80vw;
+  margin-left: 79vw;
   margin-bottom: 3vw;
 }
 

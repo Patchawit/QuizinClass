@@ -272,53 +272,88 @@ export default function CreateSetOfQuestion() {
                         if (question._id === editQuestion) {
 
                             content = <div>
-                                <Form className='creques' onSubmit={updateQuestionHandler}>
+                                <Form className='creques container' onSubmit={updateQuestionHandler}>
+                                    <div className='ediques'>
+                                        <div className='row'>
+                                            <div className='col-1'>
+                                                <p>คำถาม</p>
+                                            </div>
+                                            <div className='col-11 creques2' >
+                                                <input className='form-control form-control-lg' placeholder={question.questionstitle} name='QuestionTitle'></input>
+                                                <img src={`http://localhost:7050/` + question.imgUrl} />
+                                                {/* <input // ทำ input ไว้ กด เพื่อ find รูปครับ
+                                                    type="file" // type ต้องเป็น file
+                                                    name="image"
+                                                    onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา                           
+                                                /> */}
+                                            </div>
+                                        </div>
 
-                                    <input placeholder={question.questionstitle} name='QuestionTitle'></input>
-                                    {question.choices.map((choice, index) => {
-                                        return <p key={choice.QuestionTitle}>
-                                            <input placeholder={'ตัวเลือก' + (index + 1)}
-                                                placeholder={choice.choiceTitle}
-                                                name={'ChoiceTitle' + (index + 1)}></input>
-                                        </p>
-                                    })}
-                                    <div className="namequestion">
-                                        <p>ข้อถูก</p>
-                                        <Form.Select className='formsel' name="ans">
-                                            <option>Default select</option>
-                                            <option value={1}>1</option>
-                                            <option value={2}>2</option>
-                                            <option value={3}>3</option>
-                                            <option value={4}>4</option>
-                                        </Form.Select>
+                                        {question.choices.map((choice, index) => {
+                                            return <p key={choice.QuestionTitle}>
+                                                <div className='row'>
+                                                    <div className='col-1'>ตัวเลือกที่</div>
+
+                                                    <div className='col-11 creques2'>
+                                                        <input className='form-control form-control-lg' placeholder={'ตัวเลือก' + (index + 1)}
+                                                            placeholder={choice.choiceTitle}
+                                                            name={'ChoiceTitle' + (index + 1)}></input>
+                                                    </div>
+                                                </div>
+                                            </p>
+
+                                        })}
                                     </div>
 
-                                    <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
-                                    <button className="btn btn-light btn-lg text-dark" onClick={() => { setEditQuestion(false) }}>cancel</button>
+                                    <div className="namequestion row">
+                                        <div className='col-1'>
+                                            <p>ข้อถูก</p>
+                                        </div>
+                                        <div className='col-11' >
+                                            <Form.Select className='formsel' name="ans">
+                                                <option>Default select</option>
+                                                <option value={1}>1</option>
+                                                <option value={2}>2</option>
+                                                <option value={3}>3</option>
+                                                <option value={4}>4</option>
+                                            </Form.Select>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='col-10'></div>
+                                        <div className='col-2'>
+                                            <button type="submit" className="btn btn-light btn-lg text-dark edibutt">บันทึก</button>
+                                            <button className="btn btn-light btn-lg text-dark" onClick={() => { setEditQuestion(false) }}>ยกเลิก</button>
+                                        </div>
+                                    </div>
                                 </Form>
 
                             </div>
                         } else {
-                            content = <div key={question.title} className='groupcreate'><div className='questsave'>
-                                <p>
-                                    ข้อที่...
-                                    <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
-                                </p>
-                                {question.choices.map(choice => {
-                                    return <p key={choice.choiceTitle}>
-                                        ตัวเลือกที่...
-                                        <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled />
+                            content = <div key={question.title} className='groupcreate'>
+                                <div className='questsave'>
+                                    <p>
+                                        ข้อที่...
+                                        <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
                                     </p>
-                                })}
-                                <p>
-                                    คำตอบ
-                                    <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
-                                </p>
-                                <button type="button" className="btn btn-warning btn-lg text-dark"
-                                    onClick={() => { onClickEditQuestion(question) }}>แก้ไข</button>
-                                <button type="button" className="btn btn-danger btn-lg text-dark"
-                                    onClick={() => { deleteQuestionHandler(question) }}>ลบ</button>
-                            </div></div>
+                                    <img src={`http://localhost:7050/` + question.imgUrl} />
+
+                                    {question.choices.map(choice => {
+                                        return <p key={choice.choiceTitle}>
+                                            ตัวเลือกที่...
+                                            <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled />
+                                        </p>
+                                    })}
+                                    <p>
+                                        คำตอบ
+                                        <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
+                                    </p>
+                                    <button type="button" className="btn btn-warning btn-lg text-dark"
+                                        onClick={() => { onClickEditQuestion(question) }}>แก้ไข</button>
+                                    <button type="button" className="btn btn-danger btn-lg text-dark"
+                                        onClick={() => { deleteQuestionHandler(question) }}>ลบ</button>
+                                </div>
+                            </div>
                         }
                         return content
                     })}
@@ -392,7 +427,7 @@ export default function CreateSetOfQuestion() {
                             <div className='col-11'>
                             </div>
                             <div className='col-1'>
-                                <button type="submit" className="btn btn-light btn-lg text-dark">Save</button>
+                                <button type="submit" className="btn btn-light btn-lg text-dark">บันทึก</button>
                             </div>
                         </div>
                     </Form>

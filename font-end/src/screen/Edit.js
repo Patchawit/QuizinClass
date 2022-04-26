@@ -109,8 +109,6 @@ export default function Edit() {
                 แก้ไข
               </button>
             </Link>
-    
-
             <button type="button" className="btn btn-dark btn-lg text-light btndel" onClick={() => deleteSoqHandler(soq._id)}>ลบ</button>
           </div>
           </div>
