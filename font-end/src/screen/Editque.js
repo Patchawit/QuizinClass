@@ -165,11 +165,11 @@ export default function Editque() {
                                                                 <div className='col-11 creques2' >
                                                                         <input className='form-control form-control-lg' placeholder={question.questionstitle} name='QuestionTitle'></input>
                                                                         <img src={`http://localhost:7050/` + question.imgUrl} />
-                                                                        {/* <input // ทำ input ไว้ กด เพื่อ find รูปครับ
-                                                    type="file" // type ต้องเป็น file
-                                                    name="image"
-                                                    onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา                           
-                                                /> */}
+                                                                        <input // ทำ input ไว้ กด เพื่อ find รูปครับ
+                                                                                type="file" // type ต้องเป็น file
+                                                                                name="image"
+                                                                                onChange={handleUploadImage} // เรียก function ด้านบน เมื่อมีรูปเข้ามา                           
+                                                                        />
                                                                 </div>
                                                         </div>
 
