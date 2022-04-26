@@ -58,12 +58,21 @@
 }
 
 .question-count span {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .question-text {
     margin-bottom: 0.5vh;
     font-size: 1.5rem;
+    width: 30vw;
+    display: block;
+
+
+}
+.question-text img{
+    width: 20vw;
+    height: auto;
+    margin-top: 2vh;
 }
 
 .timer-text {
