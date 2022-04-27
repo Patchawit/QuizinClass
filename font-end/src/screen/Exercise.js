@@ -76,19 +76,25 @@ export default function Exercise() {
                         </div> */}
 
                         <div className='left'>
-                                <div className='headleft'>
-                                        <p>ชุดคำถาม:</p>
-                                        {
-                                                EditQuestion?.soqtitle
-                                                // EditQuestion && EditQuestion?.map((setofQuestion) => {
-                                                //         return<div>{setofQuestion.soqtitle}</div>
-                                                // })
-                                        }
+                                <div className='headleft container'>
+                                        <div className='row'>
+                                                <div className='col-2'>
+                                                        <p>ชุดคำถาม:</p>
+                                                </div>
+                                                <div className='col-10'>
+                                                        {
+                                                                EditQuestion?.soqtitle
+                                                                // EditQuestion && EditQuestion?.map((setofQuestion) => {
+                                                                //         return<div>{setofQuestion.soqtitle}</div>
+                                                                // })
+                                                        }
+                                                </div>
+                                        </div>
                                 </div>
                                 {/* <QuestionPanel item={EditQuestion?.questions[item-1]}  /> */}
-                                                          
-                                <QuestionPanel questions={EditQuestion?.questions} item={item-1}  />
-                                
+
+                                <QuestionPanel questions={EditQuestion?.questions} item={item - 1} />
+
                         </div>
 
                         <div className='right'>

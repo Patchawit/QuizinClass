@@ -91,23 +91,18 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  height: 15vh;
+  min-height: 15vh;
+  height: min-content;
   background-color: white;
   border-radius: 1.6vmin;
 }
 
-.groupquest p {
-  margin-left: 2vw;
-}
-
-.quest{
-  display: flex;
-}
 
 .quest p {
   margin-top: 3vh;
   margin-left: 2vw;
   font-size: 1.5rem;
+  word-wrap:break-word;
 }
 .btnstart{
   margin-top: 4vh;
@@ -117,6 +112,7 @@ body {
 }
 .datecreate p{
   margin-right: 1vw;
+  margin-left: 2vw;
 }
 
 .groupsub2 {
@@ -337,18 +333,15 @@ body {
   width: 60%;
 }
 .headleft{
-  display: flex;
   margin-top: 3vh;
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 2vw;
+  padding: 1.5vw;
   width: 100%;
+  min-height: 20vh;
+  height: min-content;
   background-color: white;
   border-radius: 1.6vmin;
-  font-size: 2rem;
-}
-.headleft p{
-  margin-right: 0.5vw;
+  font-size: 1.5vw;
+  word-wrap:break-word;
 }
 
 .right{
@@ -356,6 +349,7 @@ body {
   padding-bottom: 3vh;
   margin-left:1vw;
   width: 30%;
+  height: 87vh;
   background-color: white;
   border-radius: 1.6vmin;
 }
@@ -387,9 +381,9 @@ body {
   text-align: center;
 }
 .chat{
-  width: 80%;
-  margin-top: 44vh;
-  margin-left: 2vw;
+  width: 90%;
+  margin-top: 69vh;
+  margin-left: 1.5vw;
 }
 
 

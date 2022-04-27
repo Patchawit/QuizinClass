@@ -89,7 +89,7 @@ export default function Edit() {
         </p>
 
         <Form.Select className='formselect' onChange={dropdownChangeHandler}>
-          <option>Default select</option>
+          <option>เลือกวิชา</option>
           {allSubject?.map((subject, key) => {
             return <option value={subject._id} key={subject.subjecttitle}>{subject.subjecttitle}</option>
           })}
@@ -101,7 +101,7 @@ export default function Edit() {
         return <div className='groupquest container' key={index + soq.soqtitle}>
           <div className='quest row'>
           <div className='col-10'>
-            <p>ชุดที่ 1 : {soq.soqtitle}</p>
+            <p>ชื่อชุดคำถาม : {soq.soqtitle}</p>
             </div>
             <div className='col-2'>
             <Link to={`/editque/${soq._id}`}>

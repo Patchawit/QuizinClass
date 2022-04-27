@@ -78,6 +78,7 @@ export default function QusetionPanel(props) {
                         </div>
                         <div className='answer-section col-6'>
                             {questions && questions[currentQuestion]?.choices.map((choice) => (
+                                
                                 <button onClick={() => handleChoiceClick(choice.isCorrect)} >{choice.choiceTitle}</button>
                             ))}
 

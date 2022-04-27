@@ -31,9 +31,9 @@
     background-color: white;
     color: #252d4a;
     width: 100%;
-    /* min-height: 50vh;
-    height: min-content; */
-    height: auto;
+    min-height: 65vh;
+    height: min-content;
+    /* height: auto; */
     border-radius: 0.75vw;
     padding: 1vw;
     /* box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75); */
@@ -64,10 +64,7 @@
 .question-text {
     margin-bottom: 0.5vh;
     font-size: 1.5rem;
-    /* width: 30vw;
-    display: block; */
     word-wrap:break-word;
-
 }
 .question-img{
     width: 20vw;
