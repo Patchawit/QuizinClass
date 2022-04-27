@@ -64,7 +64,7 @@ export default function Score() {
                     หมวดหมู่วิชา
                 </p>
                 <Form.Select className='formselect' onChange={onSubjectChangeHandler}>
-                    <option value="default">default</option>
+                    <option value="default">เลือกวิชา</option>
                     {allSubject?.map((subject) => {
                         return <option value={subject._id} key={subject.subjecttitle}>{subject.subjecttitle}</option>
                     })}
@@ -74,7 +74,7 @@ export default function Score() {
                     ชุดคำถาม
                 </p>
                 <Form.Select className='formselect' onChange={onSoqChangeHandler}>
-                    <option value="default">default</option>
+                    <option value="default">เลือกคำถาม</option>
                     {listOfSoq?.map((soq) => {
                         console.log(soq.soqtitle)
                         return <option value={soq._id} key={soq.soqtitle}>{soq.soqtitle}</option>
