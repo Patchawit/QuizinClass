@@ -46,96 +46,193 @@ export default function Editque() {
                                 return setQuestionList(res?.Question)
                         })
         }
+        // const updateQuestionHandler = async (e) => {
+        //         console.log(e.target.QuestionTitle.value)
+        //         await fetch("http://localhost:7050/admin/Question", {
+        //                 headers: {
+        //                         'Content-Type': 'application/json',
+        //                 },
+        //                 method: "PATCH",
+        //                 body: JSON.stringify({
+        //                         "questionData": {
+        //                                 soqId: soqId,
+        //                                 QuestionId: editQuestion,
+        //                                 QuestionTitle: e.target.QuestionTitle.value,
+        //                                 Choice: [
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle1.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         },
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle2.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         },
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle3.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         },
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle4.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         }
+        //                                 ],
+        //                                 ans: e.target.ans.value
+        //                         }
+        //                 })
+        //         })
+        //                 .then(result => {
+        //                         return result.json()
+        //                 })
+        //                 .then(res => {
+        //                         console.log(res)
+        //                         return setQuestionList(res.Question.questions)
+        //                 })
+
+        //         setEditQuestion(false)
+
+        // }
         const updateQuestionHandler = async (e) => {
+                e.preventDefault()
                 console.log(e.target.QuestionTitle.value)
-                await fetch("http://localhost:7050/admin/Question", {
-                        headers: {
-                                'Content-Type': 'application/json',
+                const formData = new FormData();
+                formData.append("img", file)
+                formData.append("questionData",JSON.stringify({
+                    soqId: soqId,
+                    QuestionId: editQuestion,
+                    QuestionTitle: e.target.QuestionTitle.value,
+                    Choice: [
+                        {
+                            "choiceTitle": e.target.ChoiceTitle1.value,
+                            "choiceImg": "ตัวเลือก1"
                         },
-                        method: "PATCH",
-                        body: JSON.stringify({
-                                "questionData": {
-                                        soqId: soqId,
-                                        QuestionId: editQuestion,
-                                        QuestionTitle: e.target.QuestionTitle.value,
-                                        Choice: [
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle1.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                },
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle2.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                },
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle3.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                },
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle4.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                }
-                                        ],
-                                        ans: e.target.ans.value
-                                }
-                        })
+                        {
+                            "choiceTitle": e.target.ChoiceTitle2.value,
+                            "choiceImg": "ตัวเลือก1"
+                        },
+                        {
+                            "choiceTitle": e.target.ChoiceTitle3.value,
+                            "choiceImg": "ตัวเลือก1"
+                        },
+                        {
+                            "choiceTitle": e.target.ChoiceTitle4.value,
+                            "choiceImg": "ตัวเลือก1"
+                        }
+                    ],
+                    ans: e.target.ans.value
+                    
+                }))
+                await fetch("http://localhost:7050/admin/Question", {
+                  
+                    method: "PATCH",
+                    body: formData,
                 })
-                        .then(result => {
-                                return result.json()
-                        })
-                        .then(res => {
-                                console.log(res)
-                                return setQuestionList(res.Question.questions)
-                        })
-
+                    .then(result => {
+                        return result.json()
+                    })
+                    .then(res => {
+                        console.log(res)
+                        return setQuestionList(res.Question.questions)
+                    })
                 setEditQuestion(false)
+        
+            }
 
-        }
+        // const submitQuestionHandler = async (e) => {
+        //         e.preventDefault()
+        //         await fetch("http://localhost:7050/admin/Question", {
+        //                 headers: {
+        //                         'Content-Type': 'application/json',
+        //                 },
+        //                 method: "POST",
+        //                 body: JSON.stringify({
+        //                         "soqId": soqId,
+        //                         "questionData": {
+        //                                 QuestionTitle: e.target.QuestionTitle.value,
+        //                                 Choice: [
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle1.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         },
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle2.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         },
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle3.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         },
+        //                                         {
+        //                                                 "choiceTitle": e.target.ChoiceTitle4.value,
+        //                                                 "choiceImg": "ตัวเลือก1"
+        //                                         }
+        //                                 ],
+        //                                 ans: e.target.ans.value
+        //                         }
+        //                 })
+        //         })
+        //                 .then(result => {
+        //                         // setSoqId(res.SetOfQuestionId)
+        //                         return result.json()
+        //                 })
+        //                 .then(res => {
+        //                         // console.log(res)
+        //                         // console.log(res.Question.questions)
+        //                         return setQuestionList(res?.Question)
+        //                 })
+        //         setIsAddQuestion(false)
+        // }
 
         const submitQuestionHandler = async (e) => {
                 e.preventDefault()
-                await fetch("http://localhost:7050/admin/Question", {
-                        headers: {
-                                'Content-Type': 'application/json',
+                const formData = new FormData();
+                // console.log(file)
+                formData.append("img", file)
+                formData.append("soqId", soqId)
+                formData.append("questionData", JSON.stringify({
+                    QuestionTitle: e.target.QuestionTitle.value,
+                    Choice: [
+                        {
+                            "choiceTitle": e.target.ChoiceTitle1.value,
+                            "choiceImg": "ตัวเลือก1"
                         },
-                        method: "POST",
-                        body: JSON.stringify({
-                                "soqId": soqId,
-                                "questionData": {
-                                        QuestionTitle: e.target.QuestionTitle.value,
-                                        Choice: [
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle1.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                },
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle2.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                },
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle3.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                },
-                                                {
-                                                        "choiceTitle": e.target.ChoiceTitle4.value,
-                                                        "choiceImg": "ตัวเลือก1"
-                                                }
-                                        ],
-                                        ans: e.target.ans.value
-                                }
-                        })
+                        {
+                            "choiceTitle": e.target.ChoiceTitle2.value,
+                            "choiceImg": "ตัวเลือก1"
+                        },
+                        {
+                            "choiceTitle": e.target.ChoiceTitle3.value,
+                            "choiceImg": "ตัวเลือก1"
+                        },
+                        {
+                            "choiceTitle": e.target.ChoiceTitle4.value,
+                            "choiceImg": "ตัวเลือก1"
+                        }
+                    ],
+                    ans: e.target.ans.value
+                }))
+                // for (var [key, value] of formData.entries()) {
+                //     console.log(key, value);
+                // }
+        
+                await fetch("http://localhost:7050/admin/Question", {
+                    method: 'POST',
+                    body: formData,
+        
                 })
-                        .then(result => {
-                                // setSoqId(res.SetOfQuestionId)
-                                return result.json()
-                        })
-                        .then(res => {
-                                // console.log(res)
-                                // console.log(res.Question.questions)
-                                return setQuestionList(res?.Question)
-                        })
+                    .then(result => {
+                        // setSoqId(res.SetOfQuestionId)
+                        return result.json()
+                    })
+                    .then(res => {
+                        // console.log(res)
+                        // console.log(res.Question.questions)
+                        return setQuestionList(res.Question.questions)
+                    })
+                    setFile("") // ทำการ setState
+                    setImagePreviewUrl("") //เหมือนด้านบน
                 setIsAddQuestion(false)
-        }
+        
+            }
 
         const [file, setFile] = useState({}) // ใช้เพื่อส่งไปที่ API
         const [imagePreviewUrl, setImagePreviewUrl] = useState(null) //ใช้เพื่อภาพ Preview
@@ -220,7 +317,8 @@ export default function Editque() {
                                                                 ข้อที่...
                                                                 <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
                                                         </p>
-                                                        <img src={`http://localhost:7050/` + question.imgUrl} />
+                                                        {/* <img src={`http://localhost:7050/` + question.imgUrl} /> */}
+                                                        {question.imgUrl === "images/1x1.png"?<div></div>: <img src={`http://localhost:7050/` + question.imgUrl} />}
 
                                                         {question.choices.map(choice => {
                                                                 return <p key={choice.choiceTitle}>

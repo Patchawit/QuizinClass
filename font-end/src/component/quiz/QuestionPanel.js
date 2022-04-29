@@ -73,7 +73,8 @@ export default function QusetionPanel(props) {
                                 </div>
                             </div>
                             <div className='question-img row'>
-                                {questions && <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />}
+                            {questions && (questions[currentQuestion]?.imgUrl === "images/1x1.png"?<div></div>: <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />)}
+                            {/* {questions && <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />} */}
                             </div>
                         </div>
                         <div className='answer-section col-6'>

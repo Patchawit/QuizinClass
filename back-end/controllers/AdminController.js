@@ -163,14 +163,28 @@ exports.postQuestion = async (req, res, next) => {
     const questionDataJson = JSON.parse(questionData)
     // console.log(questionDataJson.QuestionTitle)
     const img = req.file
-    const newQuestion = new Question({
-        questionstitle: questionDataJson.QuestionTitle,
-        choices: questionDataJson?.Choice.map(choice => {
-            return choice;
-        }),
-        imgUrl: img.path.replace("\\", "/")
-        // ans: questionDataJson.ans
-    })
+    let newQuestion
+    if (!img ){
+        newQuestion = new Question({
+            questionstitle: questionDataJson.QuestionTitle,
+            choices: questionDataJson?.Choice.map(choice => {
+                return choice;
+            }),
+            
+            // imgUrl: img.path.replace("\\", "/")
+            // ans: questionDataJson.ans
+        })
+    }
+    else{
+        newQuestion = new Question({
+            questionstitle: questionDataJson.QuestionTitle,
+            choices: questionDataJson?.Choice.map(choice => {
+                return choice;
+            }),
+            imgUrl: img.path.replace("\\", "/")
+            // ans: questionDataJson.ans
+        })
+    }
     try {
         newQuestion.choices[questionDataJson.ans - 1].isCorrect = true
         await newQuestion.save();
@@ -192,20 +206,29 @@ exports.postQuestion = async (req, res, next) => {
 
 exports.patchQuestion = async (req, res, next) => {
     const { questionData } = req.body;
+    console.log(questionData)
+    console.log(req.file)
+    const questionDataJson = JSON.parse(questionData)
     try {
-        let editQuestion = await Question.findById(questionData.QuestionId);
-        editQuestion.questionstitle = questionData.QuestionTitle;
-        editQuestion.choices[0].choiceTitle = questionData.Choice[0].choiceTitle;
-        editQuestion.choices[1].choiceTitle = questionData.Choice[1].choiceTitle;
-        editQuestion.choices[2].choiceTitle = questionData.Choice[2].choiceTitle;
-        editQuestion.choices[3].choiceTitle = questionData.Choice[3].choiceTitle;
-        editQuestion.ans = questionData.ans;
+        let editQuestion = await Question.findById(questionDataJson.QuestionId);
+        if (!req.file){
+            editQuestion.imgUrl = "images/1x1.png"
+        }
+        else{
+            editQuestion.imgUrl = req.file.path.replace("\\", "/")
+        }
+        editQuestion.questionstitle = questionDataJson.QuestionTitle;
+        editQuestion.choices[0].choiceTitle = questionDataJson.Choice[0].choiceTitle;
+        editQuestion.choices[1].choiceTitle = questionDataJson.Choice[1].choiceTitle;
+        editQuestion.choices[2].choiceTitle = questionDataJson.Choice[2].choiceTitle;
+        editQuestion.choices[3].choiceTitle = questionDataJson.Choice[3].choiceTitle;
+        editQuestion.ans = questionDataJson.ans;
         editQuestion.choices.map(choice => {
             choice.isCorrect = false
         })
-        editQuestion.choices[questionData.ans - 1].isCorrect = true
+        editQuestion.choices[questionDataJson.ans - 1].isCorrect = true
         await editQuestion.save()
-        const setofQuestion = await SetOfQuestion.findById(questionData.soqId).populate('questions')
+        const setofQuestion = await SetOfQuestion.findById(questionDataJson.soqId).populate('questions')
         console.log(setofQuestion)
         res.status(200).json({
             Question: setofQuestion

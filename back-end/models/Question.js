@@ -23,6 +23,7 @@ const questionsSchema = new Schema({
     },
     imgUrl: {
         type: String,
+        default: "images/1x1.png",
         required: false
     },
     choices: [choicesSchema],

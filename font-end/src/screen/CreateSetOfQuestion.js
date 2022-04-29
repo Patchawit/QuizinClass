@@ -150,6 +150,8 @@ export default function CreateSetOfQuestion() {
                 // console.log(res.Question.questions)
                 return setQuestionList(res.Question.questions)
             })
+            setFile("") // ทำการ setState
+            setImagePreviewUrl("") //เหมือนด้านบน
         setLoading(false)
 
     }
@@ -187,37 +189,37 @@ export default function CreateSetOfQuestion() {
         e.preventDefault()
         console.log(e.target.QuestionTitle.value)
         setLoading(true)
-        await fetch("http://localhost:7050/admin/Question", {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: "PATCH",
-            body: JSON.stringify({
-                "questionData": {
-                    soqId: soq._id,
-                    QuestionId: editQuestion,
-                    QuestionTitle: e.target.QuestionTitle.value,
-                    Choice: [
-                        {
-                            "choiceTitle": e.target.ChoiceTitle1.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle2.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle3.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle4.value,
-                            "choiceImg": "ตัวเลือก1"
-                        }
-                    ],
-                    ans: e.target.ans.value
+        const formData = new FormData();
+        formData.append("img", file)
+        formData.append("questionData",JSON.stringify({
+            soqId: soq._id,
+            QuestionId: editQuestion,
+            QuestionTitle: e.target.QuestionTitle.value,
+            Choice: [
+                {
+                    "choiceTitle": e.target.ChoiceTitle1.value,
+                    "choiceImg": "ตัวเลือก1"
+                },
+                {
+                    "choiceTitle": e.target.ChoiceTitle2.value,
+                    "choiceImg": "ตัวเลือก1"
+                },
+                {
+                    "choiceTitle": e.target.ChoiceTitle3.value,
+                    "choiceImg": "ตัวเลือก1"
+                },
+                {
+                    "choiceTitle": e.target.ChoiceTitle4.value,
+                    "choiceImg": "ตัวเลือก1"
                 }
-            })
+            ],
+            ans: e.target.ans.value
+            
+        }))
+        await fetch("http://localhost:7050/admin/Question", {
+          
+            method: "PATCH",
+            body: formData,
         })
             .then(result => {
                 return result.json()
@@ -336,7 +338,9 @@ export default function CreateSetOfQuestion() {
                                         ข้อที่...
                                         <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
                                     </p>
-                                    <img src={`http://localhost:7050/` + question.imgUrl} />
+                                    {/* <img src={`http://localhost:7050/` + question.imgUrl} /> */}
+                                    {question.imgUrl === "images/1x1.png"?<div></div>: <img src={`http://localhost:7050/` + question.imgUrl} />}
+                                    {/* <div>{`http://localhost:7050/` + question.imgUrl}</div> */}
 
                                     {question.choices.map(choice => {
                                         return <p key={choice.choiceTitle}>
@@ -346,7 +350,11 @@ export default function CreateSetOfQuestion() {
                                     })}
                                     <p>
                                         คำตอบ
-                                        <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
+                                        {question.choices.map((choice,index) =>{
+                                            if(choice.isCorrect == true){
+                                                return <Form.Control id="disabledTextInput" className='inputquest' placeholder={index+1} disabled />
+                                            }
+                                        })}
                                     </p>
                                     <button type="button" className="btn btn-warning btn-lg text-dark"
                                         onClick={() => { onClickEditQuestion(question) }}>แก้ไข</button>
