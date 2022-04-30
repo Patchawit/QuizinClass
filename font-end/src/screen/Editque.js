@@ -92,7 +92,6 @@ export default function Editque() {
 
         // }
         const updateQuestionHandler = async (e) => {
-                e.preventDefault()
                 console.log(e.target.QuestionTitle.value)
                 const formData = new FormData();
                 formData.append("img", file)

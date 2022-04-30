@@ -343,6 +343,9 @@ body {
   font-size: 1.5vw;
   word-wrap:break-word;
 }
+.headleft p{
+  padding-left: 2vw;
+}
 
 .right{
   margin-top: 3vh;

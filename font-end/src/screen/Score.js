@@ -13,7 +13,7 @@ export default function Score() {
         await fetch(`http://localhost:7050/admin/category/${user.email}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authcookie':Authcookie   
+                'Authcookie': Authcookie
             },
             method: "GET",
         })
@@ -92,34 +92,45 @@ export default function Score() {
                             <tr>
                                 <th>รหัสนักศึกษา ชื่อ-สกุล</th>
                                 <th>คะแนน</th>
+                                <th>เวลา</th>
                             </tr>
                         </thead>
                     </Table>
-                        {Studentlist && Studentlist?.users?.map(student => {
-                            console.log(student)
-                            const studentHistory = student.history
-                            const studentscore = studentHistory.map(score => {
-                                let Content
-                                if (score.soqid == "62555ead9348310546b213cd") {
-                                    Content = score.score
-                                }
-                                console.log(score.soqid, score.score)
-                                return <h1>{Content}</h1>
-                            })
+                    {Studentlist && Studentlist?.users?.map(student => {
+                        console.log(student)
+                        const studentHistory = student.history
+                        const studentscore = studentHistory.map(score => {
+                            let Content
+                            if (score.soqid == "62555ead9348310546b213cd") {
+                                Content = score.score
+                            }
+                            console.log(score.soqid, score.score)
+                            return <h1>{Content}</h1>
+                        })
 
-                            return <div className='container'>
+                        return <div className='container'>
+                            <div className='row'>
+                                <div className='col-8'>
                                     <div className='row'>
-                                    <div className='col-9'>
-                                        <p>{student.name}</p>
-                                    </div>
-                                    <div className='col-3'>
-                                        <p>{studentscore}</p>
-                                    </div>
+                                        <div className='col-2'>
+                                            <p>{student.email.substring(0, 8)}</p>
+                                        </div>
+                                        <div className='col-10'>
+                                            <p>{student.name}</p>
+                                        </div>
                                     </div>
                                 </div>
-                        }
-                        )}
-                    
+                                <div className='col-3'>
+                                    <p>{studentscore}</p>
+                                </div>
+                                <div className='col-1'>
+                                    <p>{studentscore}</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    )}
+
                 </div>
             </div>
         </div>
