@@ -278,52 +278,22 @@ body {
 }
 
 .lobby h1{
-  font-size: 1.5rem;
+  font-size: 1.3vw;
   padding-left: 2vw;
 }
 .ready{
-  display: flex;
-  justify-content: center;
+  height: 67vh;
 }
 
 .room {
-  width: 7vw;
-  height: 11vh;
-  background:rgb(18, 20, 23);
-  margin-left: 1.5vw;
-  margin-right: 1.5vw;
-  margin-bottom: 1.5vh;
-  margin-top: 1vh;
-  text-align: center;
-  font-size: 1.2rem;
-  border-top-left-radius: 0.5vw;
-  border-top-right-radius: 0.5vw;
-  border-bottom-left-radius: 0.5vw;
-  border-bottom-right-radius: 0.5vw;
+  padding-left: 3vw;
+  padding-top: 1vh;
+  font-size: 1.2vw;
 }
-.room a{
-  text-decoration: none;
-  color: black;
-  padding-top: 0.1vw;
-  padding-left: 1.65vw;
-  padding-right: 1.65vw;
-  border-top-left-radius: 0.5vw;
-  border-top-right-radius: 0.5vw;
-  background-color:rgb(103, 177, 186);
+.room p {
+  padding-bottom: 1.5vh;
 }
-.idroom{
-  border: 0.1vw solid white;
-  padding: 0.05vw;
-  margin-top: 1vh;
-  border-radius: 0.3vw;
-  margin-left: 0.8vw;
-  margin-right: 0.8vw;
-}
-.idroom p{
-  color: white;
-  font-size: 0.8rem;
-  margin-bottom: 0vh;
-}
+
 
 .breakout{
   display: flex;

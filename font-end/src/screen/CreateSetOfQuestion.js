@@ -228,6 +228,8 @@ export default function CreateSetOfQuestion() {
                 console.log(res)
                 return setQuestionList(res.Question.questions)
             })
+            setFile("") // ทำการ setState
+            setImagePreviewUrl("") //เหมือนด้านบน
         setLoading(false)
         setEditQuestion(false)
 
