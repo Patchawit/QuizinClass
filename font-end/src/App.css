@@ -282,7 +282,8 @@ body {
   padding-left: 2vw;
 }
 .ready{
-  height: 67vh;
+  min-height: 67vh;
+  height: min-content;
 }
 
 .room {

@@ -9,9 +9,108 @@ export default function Lobby() {
       <div className='center'>
         <div className='ready container'>
           <div className='room row'>
-            <p>จำนวนคน : 0</p>
+            <p>จำนวนคน : 30</p>
           </div>
           <div className='room row'>
+            <div className='col-2'>
+              <p>61070099</p>
+            </div>
+            <div className='col-2'>
+              <p>61070111</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
+            <div className='col-2'>
+              <p>61070000</p>
+            </div>
             <div className='col-2'>
               <p>61070000</p>
             </div>
