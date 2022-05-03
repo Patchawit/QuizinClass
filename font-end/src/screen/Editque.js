@@ -8,6 +8,7 @@ import {
 export default function Editque() {
         const [editQuestion, setEditQuestion] = useState()
         const [questionList, setQuestionList] = useState()
+        const [isLoading, setLoading] = useState(false)
         const [isAddQuestion, setIsAddQuestion] = useState(false)
         let { soqId } = useParams();
 
@@ -183,6 +184,7 @@ export default function Editque() {
 
         const submitQuestionHandler = async (e) => {
                 e.preventDefault()
+                setLoading(true)
                 const formData = new FormData();
                 // console.log(file)
                 formData.append("img", file)
@@ -225,11 +227,13 @@ export default function Editque() {
                     .then(res => {
                         // console.log(res)
                         // console.log(res.Question.questions)
+                        console.log(res.Question.questions)
                         return setQuestionList(res.Question.questions)
                     })
                     setFile("") // ทำการ setState
                     setImagePreviewUrl("") //เหมือนด้านบน
                 setIsAddQuestion(false)
+                setLoading(false)
         
             }
 
@@ -243,6 +247,9 @@ export default function Editque() {
                         setImagePreviewUrl(reader.result) //เหมือนด้านบน
                 }
                 reader.readAsDataURL(file) // เป็นส่วนของการแสดงรูป ไม่ค่อยแน่ใจครับ ผู้รู้ช่วยคอมเม้นบอกด้วยนะครับ
+        }
+        if(isLoading){
+                return <div>Loading ...</div>
         }
 
         return (

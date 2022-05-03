@@ -10,7 +10,7 @@ export default function Ready() {
     const [src, setSrc] = useState('');
     let { soqId } = useParams();
     console.log(soqId)
-    const text = `http://localhost:5000/exercise/${soqId}`
+    const text = `http://localhost:5000/Lobby/${soqId}`
     useEffect(() => {
       QRCode.toDataURL(text).then((setSrc));
     }, []);

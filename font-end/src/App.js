@@ -42,9 +42,9 @@ function App(props) {
       <Route path="/profile" element={<Profile />} />
       <Route name="editque" path="/editque/:soqId" element={<Editque />} />
       <Route path="/create-soq" element={<CreateSetOfQuestion />} />
-      <Route path="/lobby" element={<Lobby />} />
+      <Route name="Lobby" path="/lobby/:soqId" element={<Lobby />} />
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
-      <Route name="/ready"  path="/ready/:soqId" element={<Ready />} />
+      <Route name="ready"  path="/ready/:soqId" element={<Ready />} />
       <Route path="/studentscore" element={<StudentScore />} />
     </Routes>
   </BrowserRouter>

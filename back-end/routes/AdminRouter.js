@@ -19,6 +19,7 @@ router.delete('/Question', adminController.deleteQuestion)
 router.post('/PatchScore', adminController.patchScore)
 router.get('/Score/:SetOfQuestionId', adminController.getScore)
 
+router.post('/CreateLobby/:SetOfQuestionId', adminController.CreateLobby)
 
 exports.router = router
 

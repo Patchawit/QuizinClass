@@ -4,6 +4,7 @@ const { findOneAndDelete } = require('../models/Question')
 const Question = require('../models/Question')
 const SetOfQuestion = require('../models/SetOfQuestion')
 const SubjectCategory = require('../models/SubjectCategory')
+const Lobby = require('../models/Lobby')
 const User = require('../models/User')
 const TableScore = require('../models/TableScore')
 
@@ -310,6 +311,25 @@ exports.getScore = async (req, res, next) => {
         users: users,
     })
 
+
+}
+
+
+exports.CreateLobby = async (req, res, next) => {
+    const soqId = req.params.SetOfQuestionId;
+    console.log(soqId)
+    try {
+       newLobby = new Lobby({
+           soqId: soqId
+        })
+        newLobby.save()
+        }
+    catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
 
 }
 
