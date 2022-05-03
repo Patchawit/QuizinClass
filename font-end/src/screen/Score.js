@@ -8,6 +8,7 @@ export default function Score() {
     const [allSubject, setAllSubject] = useState([])
     const [listOfSoq, setListOfSoq] = useState()
     const [Studentlist, setStudentList] = useState()
+    const [soqId, setSoqId] = useState()
     useEffect(async () => {
         console.log(user.email)
         await fetch(`http://localhost:7050/admin/category/${user.email}`, {
@@ -44,6 +45,7 @@ export default function Score() {
     }
 
     const onSoqChangeHandler = async (e) => {
+        setSoqId(e.target.value)
         await fetch(`http://localhost:7050/admin/Score/${e.target.value}`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +103,7 @@ export default function Score() {
                         const studentHistory = student.history
                         const studentscore = studentHistory.map(score => {
                             let Content
-                            if (score.soqid == "62555ead9348310546b213cd") {
+                            if (score.soqid == soqId) {
                                 Content = score.score
                             }
                             console.log(score.soqid, score.score)

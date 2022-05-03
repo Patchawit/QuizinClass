@@ -9,6 +9,8 @@ export default function Editque() {
         const [editQuestion, setEditQuestion] = useState()
         const [questionList, setQuestionList] = useState()
         const [isLoading, setLoading] = useState(false)
+        const [file, setFile] = useState({}) // ใช้เพื่อส่งไปที่ API
+        const [imagePreviewUrl, setImagePreviewUrl] = useState(null) //ใช้เพื่อภาพ Preview
         const [isAddQuestion, setIsAddQuestion] = useState(false)
         let { soqId } = useParams();
 
@@ -27,6 +29,7 @@ export default function Editque() {
         const onClickEditQuestion = (question) => {
                 setEditQuestion(question._id);
         }
+
         const deleteQuestionHandler = async (question) => {
                 await fetch("http://localhost:7050/admin/Question", {
                         headers: {
@@ -96,149 +99,93 @@ export default function Editque() {
                 console.log(e.target.QuestionTitle.value)
                 const formData = new FormData();
                 formData.append("img", file)
-                formData.append("questionData",JSON.stringify({
-                    soqId: soqId,
-                    QuestionId: editQuestion,
-                    QuestionTitle: e.target.QuestionTitle.value,
-                    Choice: [
-                        {
-                            "choiceTitle": e.target.ChoiceTitle1.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle2.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle3.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle4.value,
-                            "choiceImg": "ตัวเลือก1"
-                        }
-                    ],
-                    ans: e.target.ans.value
-                    
+                formData.append("questionData", JSON.stringify({
+                        soqId: soqId,
+                        QuestionId: editQuestion,
+                        QuestionTitle: e.target.QuestionTitle.value,
+                        Choice: [
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle1.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle2.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle3.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle4.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                }
+                        ],
+                        ans: e.target.ans.value
+
                 }))
                 await fetch("http://localhost:7050/admin/Question", {
-                  
-                    method: "PATCH",
-                    body: formData,
-                })
-                    .then(result => {
-                        return result.json()
-                    })
-                    .then(res => {
-                        console.log(res)
-                        return setQuestionList(res.Question.questions)
-                    })
-                setEditQuestion(false)
-        
-            }
 
-        // const submitQuestionHandler = async (e) => {
-        //         e.preventDefault()
-        //         await fetch("http://localhost:7050/admin/Question", {
-        //                 headers: {
-        //                         'Content-Type': 'application/json',
-        //                 },
-        //                 method: "POST",
-        //                 body: JSON.stringify({
-        //                         "soqId": soqId,
-        //                         "questionData": {
-        //                                 QuestionTitle: e.target.QuestionTitle.value,
-        //                                 Choice: [
-        //                                         {
-        //                                                 "choiceTitle": e.target.ChoiceTitle1.value,
-        //                                                 "choiceImg": "ตัวเลือก1"
-        //                                         },
-        //                                         {
-        //                                                 "choiceTitle": e.target.ChoiceTitle2.value,
-        //                                                 "choiceImg": "ตัวเลือก1"
-        //                                         },
-        //                                         {
-        //                                                 "choiceTitle": e.target.ChoiceTitle3.value,
-        //                                                 "choiceImg": "ตัวเลือก1"
-        //                                         },
-        //                                         {
-        //                                                 "choiceTitle": e.target.ChoiceTitle4.value,
-        //                                                 "choiceImg": "ตัวเลือก1"
-        //                                         }
-        //                                 ],
-        //                                 ans: e.target.ans.value
-        //                         }
-        //                 })
-        //         })
-        //                 .then(result => {
-        //                         // setSoqId(res.SetOfQuestionId)
-        //                         return result.json()
-        //                 })
-        //                 .then(res => {
-        //                         // console.log(res)
-        //                         // console.log(res.Question.questions)
-        //                         return setQuestionList(res?.Question)
-        //                 })
-        //         setIsAddQuestion(false)
-        // }
+                        method: "PATCH",
+                        body: formData,
+                })
+                        .then(result => {
+                                return result.json()
+                        })
+                        .then(res => {
+                                console.log(res)
+                                return setQuestionList(res.Question.questions)
+                        })
+                setEditQuestion(false)
+        }
 
         const submitQuestionHandler = async (e) => {
-                e.preventDefault()
-                setLoading(true)
+                // e.preventDefault();
                 const formData = new FormData();
-                // console.log(file)
-                formData.append("img", file)
-                formData.append("soqId", soqId)
+                formData.append("img", file);
+                formData.append("soqId", soqId);
                 formData.append("questionData", JSON.stringify({
-                    QuestionTitle: e.target.QuestionTitle.value,
-                    Choice: [
-                        {
-                            "choiceTitle": e.target.ChoiceTitle1.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle2.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle3.value,
-                            "choiceImg": "ตัวเลือก1"
-                        },
-                        {
-                            "choiceTitle": e.target.ChoiceTitle4.value,
-                            "choiceImg": "ตัวเลือก1"
-                        }
-                    ],
-                    ans: e.target.ans.value
+                        QuestionTitle: e.target.QuestionTitle.value,
+                        Choice: [
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle1.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle2.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle3.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                },
+                                {
+                                        "choiceTitle": e.target.ChoiceTitle4.value,
+                                        "choiceImg": "ตัวเลือก1"
+                                }
+                        ],
+                        ans: e.target.ans.value
                 }))
-                // for (var [key, value] of formData.entries()) {
-                //     console.log(key, value);
-                // }
-        
-                await fetch("http://localhost:7050/admin/Question", {
-                    method: 'POST',
-                    body: formData,
-        
-                })
-                    .then(result => {
-                        // setSoqId(res.SetOfQuestionId)
-                        return result.json()
-                    })
-                    .then(res => {
-                        // console.log(res)
-                        // console.log(res.Question.questions)
-                        console.log(res.Question.questions)
-                        return setQuestionList(res.Question.questions)
-                    })
-                    setFile("") // ทำการ setState
-                    setImagePreviewUrl("") //เหมือนด้านบน
-                setIsAddQuestion(false)
-                setLoading(false)
-        
-            }
 
-        const [file, setFile] = useState({}) // ใช้เพื่อส่งไปที่ API
-        const [imagePreviewUrl, setImagePreviewUrl] = useState(null) //ใช้เพื่อภาพ Preview
+                await fetch("http://localhost:7050/admin/Question", {
+                        method: 'POST',
+                        body: formData,
+                })
+                        .then(result => {
+                                return result.json()
+                        })
+                        .then(res => {
+                                console.log(res.Question.questions)
+                                return setQuestionList(res.Question.questions)
+                        })
+                        
+                setFile("") //ทำการ setState
+                setImagePreviewUrl("") //เหมือนด้านบน
+                setIsAddQuestion(false)
+               
+        }
+
+
         const handleUploadImage = (e) => {
                 const file = e.target.files[0] // เก็บไว้ setState ลงใน file
                 const reader = new FileReader(); // เรียก Class FileReader เพื่อแปลง file image ที่รับเข้ามา
@@ -248,18 +195,16 @@ export default function Editque() {
                 }
                 reader.readAsDataURL(file) // เป็นส่วนของการแสดงรูป ไม่ค่อยแน่ใจครับ ผู้รู้ช่วยคอมเม้นบอกด้วยนะครับ
         }
-        if(isLoading){
+        if (isLoading) {
                 return <div>Loading ...</div>
         }
 
         return (
-
                 <div>
                         {questionList && questionList?.questions?.map((question, index) => {
                                 let content;
                                 if (question._id === editQuestion) {
                                         content = <Form className='creques container' onSubmit={updateQuestionHandler} key={index}>
-
                                                 <div className='ediques'>
                                                         <div className='row'>
                                                                 <div className='col-1'>
@@ -314,8 +259,6 @@ export default function Editque() {
                                                         </div>
                                                 </div>
                                         </Form>
-
-
                                 } else {
                                         content = <div key={question.title} className='groupcreate'>
                                                 <div className='questsave'>
@@ -324,7 +267,7 @@ export default function Editque() {
                                                                 <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
                                                         </p>
                                                         {/* <img src={`http://localhost:7050/` + question.imgUrl} /> */}
-                                                        {question.imgUrl === "images/1x1.png"?<div></div>: <img src={`http://localhost:7050/` + question.imgUrl} />}
+                                                        {question.imgUrl === "images/1x1.png" ? <div></div> : <img src={`http://localhost:7050/` + question.imgUrl} />}
 
                                                         {question.choices.map(choice => {
                                                                 return <p key={choice.choiceTitle}>
