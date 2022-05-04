@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import BootstrapSwitchButton from 'react-bootstrap/Switch';
 import Nav from 'react-bootstrap/Nav';
+import * as loadingData from "../loadingData.json";
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
 import {
   BrowserRouter,
   Routes,
@@ -9,6 +12,15 @@ import {
   Link
 } from "react-router-dom";
 import { useAuthContext } from '../context/AuthContext';
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loadingData.default,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice"
+  }
+};
 
 
 export default function Edit() {
@@ -34,7 +46,7 @@ export default function Edit() {
   }, [])
 
   const dropdownChangeHandler = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     setLoading(true)
     await fetch(`http://localhost:7050/admin/SetOfQuestion/${user.email}/${e.target.value}`, {
       headers: {
@@ -70,9 +82,12 @@ export default function Edit() {
         }
       })
     })
-      .then(res => { return res.json() })
+      .then(res => { 
+        return res.json() 
+      })
       .then(result => {
-        return console.log(result)
+        // return console.log(result)
+        return setListOfSoq(result?.listOfSoq)
       })
     setLoading(false)
   }
@@ -82,7 +97,7 @@ export default function Edit() {
   }
 
   return (
-    <div>
+    <FadeIn>
       <div className='group'>
         <p className='groupsub'>
           หมวดหมู่วิชา
@@ -97,8 +112,13 @@ export default function Edit() {
 
         <a className='btn btn-light btncre' href="/create-soq" >สร้างชุดคำถาม</a>
       </div>
-      {listOfSoq?.map((soq, index) => {
-        return <div className='groupquest container' key={index + soq.soqtitle}>
+
+      {isLoading ? <FadeIn><Lottie options={defaultOptions} height={500} width={500} /></FadeIn>
+        : <div>
+
+      {
+      listOfSoq?.map((soq, index) => {
+        return <FadeIn><div className='groupquest container' key={index + soq.soqtitle}>
           <div className='quest row'>
           <div className='col-10'>
             <p>ชื่อชุดคำถาม : {soq.soqtitle}</p>
@@ -125,9 +145,13 @@ export default function Edit() {
             </Form>
           </div>
         </div>
-
-      })}
+        </FadeIn>
+        
+      })
+      }
 
     </div>
+    }
+    </FadeIn>
   )
 }
