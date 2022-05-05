@@ -50,7 +50,6 @@ export default function HomeScreen() {
       headers: {
         'Content-Type': 'application/json',
       },
-
       method: "GET",
     })
       .then(res => { return res.json() })

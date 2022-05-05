@@ -178,11 +178,11 @@ export default function Editque() {
                                 console.log(res.Question.questions)
                                 return setQuestionList(res.Question.questions)
                         })
-                        
+
                 setFile("") //ทำการ setState
                 setImagePreviewUrl("") //เหมือนด้านบน
                 setIsAddQuestion(false)
-               
+
         }
 
 
@@ -277,7 +277,12 @@ export default function Editque() {
                                                         })}
                                                         <p>
                                                                 คำตอบ
-                                                                <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.ans} disabled />
+                                                                {question.choices.map((choice, index) => {
+                                                                        if (choice.isCorrect == true) {
+                                                                                return <Form.Control id="disabledTextInput" className='inputquest' placeholder={index + 1} disabled />
+                                                                        }
+                                                                })}
+                                                               
                                                         </p>
                                                         <button type="button" className="btn btn-warning btn-lg text-dark"
                                                                 onClick={() => { onClickEditQuestion(question) }}>แก้ไข</button>
