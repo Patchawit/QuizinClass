@@ -126,7 +126,7 @@ export default function Score() {
                                     <p>{studentscore}</p>
                                 </div>
                                 <div className='col-1'>
-                                    <p>{studentscore}</p>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>

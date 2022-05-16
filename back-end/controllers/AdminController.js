@@ -300,6 +300,9 @@ exports.patchScore = async (req, res, next) => {
 exports.getScore = async (req, res, next) => {
     const soqId = req.params.SetOfQuestionId;
     let users
+    // const timeElapsed = Date.now();
+    // let timeNow = new Date(timeElapsed);
+    // timeNow = timeNow.toLocaleTimeString();
     await User.find({ "history.soqid": soqId })
         .then(result => { users = result })
     // users.history = users.map(user => {
