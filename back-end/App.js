@@ -22,7 +22,7 @@ const { Server } = require("socket.io");
 app.use(cors())
 const io = new Server(server,{
   cors:{
-    origin:"http://localhost:3000",
+    origin:"http://localhost:5000",
     methods:["POST","GET"],
   },
 });
