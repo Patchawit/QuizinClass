@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Navbar from './component/Navbars';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
@@ -20,11 +22,15 @@ import Ready from "./screen/Ready";
 import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
 import StudentScore from "./screen/StudentScore";
 import { useAuthContext } from './context/AuthContext';
+import io from "socket.io-client";
+
+
+
+
 function App(props) {
-
   const { isLogin, logoutHandler, loginBy, user } = useAuthContext()
-
   console.log(isLogin)
+  
 
   if (!isLogin) {
     return <LOGIN />

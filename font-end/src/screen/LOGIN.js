@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import Navbarlogin from '../component/Navbarlogin'
 import '../App.css'

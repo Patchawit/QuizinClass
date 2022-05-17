@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import CloseButton from 'react-bootstrap/CloseButton'
 import { useAuthContext } from '../context/AuthContext';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react'

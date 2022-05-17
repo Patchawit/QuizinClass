@@ -15,8 +15,39 @@ const MongoDBStore = require('connect-mongodb-session')(session)
 const User = require('./models/User');
 const multer = require('multer');
 
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
 
 app.use(cors())
+const io = new Server(server,{
+  cors:{
+    origin:"http://localhost:3000",
+    methods:["POST","GET"],
+  },
+});
+
+// app.get('/',(req,res)=>{
+//   res.send('..')
+// })
+
+server.listen(3001, () => {
+  console.log(`Example app listening on port 3001`)
+})
+
+io.on("connection",(socket)=>{
+  console.log(`User Connected: ${socket.id}`);
+  socket.on("join_room",()=>{
+    socket.emit("add_user",{stdId:socket.id});
+  })
+  
+  // socket.on("message",(data)=>{
+  //   console.log(data)
+  // })
+  
+})
+
+
 // app.use(express.json())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());

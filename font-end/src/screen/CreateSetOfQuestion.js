@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Dropdown } from 'bootstrap';
 import React, { useState, useEffect } from 'react';
 import BootstrapSwitchButton from 'react-bootstrap/Switch';
