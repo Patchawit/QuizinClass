@@ -8,6 +8,8 @@ import Lottie from "react-lottie";
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 
+import * as database from "firebase/database";
+import {db} from "../firebase"
 
 const defaultOptions = {
   loop: true,
@@ -25,6 +27,13 @@ export default function HomeScreen() {
   const {user, Authcookie} = useAuthContext();
 
   useEffect(async () => {
+
+    // const starCountRef = database.ref(db, 'messages')
+    // database.onValue(starCountRef, (snapshot) => {
+    //   const data = snapshot.val();
+    //   console.log("->>>>>>.", data);
+    // });
+
     console.log(user.email)
     await fetch(`http://localhost:7050/admin/category/${user.email}`, {
       headers: {
@@ -39,8 +48,6 @@ export default function HomeScreen() {
         console.log(result)
         return setAllSubject(result.allSubject)
       })
-
-
   }, [])
 
 

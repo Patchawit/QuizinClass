@@ -23,11 +23,11 @@ import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
 import StudentScore from "./screen/StudentScore";
 import { useAuthContext } from './context/AuthContext';
 import io from "socket.io-client";
-
-
-
+// import Firebase from 'firebase';
+// import * as firebase from 'firebase/app';
 
 function App(props) {
+
   const { isLogin, logoutHandler, loginBy, user } = useAuthContext()
   console.log(isLogin)
   
@@ -76,10 +76,12 @@ function App(props) {
   }
 
   return (
+
     <div>
       {content}
     </div>
   );
 }
+
 
 export default App;
