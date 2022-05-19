@@ -8,6 +8,9 @@ const Lobby = require('../models/Lobby')
 const User = require('../models/User')
 const TableScore = require('../models/TableScore')
 
+const database = require("firebase/database");
+const { db } = require("../middleware/firebase");
+
 //สร้างวิชา
 exports.getCategory = async (req, res, next) => {
     const userEmail = req.params.Email;
@@ -165,18 +168,18 @@ exports.postQuestion = async (req, res, next) => {
     // console.log(questionDataJson.QuestionTitle)
     const img = req.file
     let newQuestion
-    if (!img ){
+    if (!img) {
         newQuestion = new Question({
             questionstitle: questionDataJson.QuestionTitle,
             choices: questionDataJson?.Choice.map(choice => {
                 return choice;
             }),
-            
+
             // imgUrl: img.path.replace("\\", "/")
             // ans: questionDataJson.ans
         })
     }
-    else{
+    else {
         newQuestion = new Question({
             questionstitle: questionDataJson.QuestionTitle,
             choices: questionDataJson?.Choice.map(choice => {
@@ -212,10 +215,10 @@ exports.patchQuestion = async (req, res, next) => {
     const questionDataJson = JSON.parse(questionData)
     try {
         let editQuestion = await Question.findById(questionDataJson.QuestionId);
-        if (!req.file){
+        if (!req.file) {
             editQuestion.imgUrl = "images/1x1.png"
         }
-        else{
+        else {
             editQuestion.imgUrl = req.file.path.replace("\\", "/")
         }
         editQuestion.questionstitle = questionDataJson.QuestionTitle;
@@ -322,17 +325,117 @@ exports.CreateLobby = async (req, res, next) => {
     const soqId = req.params.SetOfQuestionId;
     console.log(soqId)
     try {
-       newLobby = new Lobby({
-           soqId: soqId
+        newLobby = new Lobby({
+            soqId: soqId
         })
         newLobby.save()
-        }
+    }
     catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
         }
         next(err);
     }
+
+}
+
+exports.CreateRoom = async (req, res, next) => {
+    const soqId = req.params.SetOfQuestionId;
+    // console.log(database.ref(db(), 'lobby'))
+
+    database.get(database.ref(db(), 'lobby/' + soqId)).then((snapshot) => {
+        const data = snapshot.val();
+
+        const allUser = data.users;
+
+        const room = {}
+        let obj = {
+            users: [],
+            chat: [{
+                by: "system",
+                text: "เริ่มทำข้อสอบเมื่อ..."
+            }],
+            questionsNumber: 1
+        }
+
+        for (let i = 0; i < allUser.length; i++) {
+            const userId = allUser[i];
+            // console.log(userId);
+
+            if (obj.users.length < 2) {
+                obj.users.push(userId)
+                // console.log(array);
+
+                if (obj.users.length == 2) {
+                    room[obj.users[0]+"_"+obj.users[1]] = obj
+                    obj = {
+                        users: [],
+                        chat: [{
+                            by: "system",
+                            text: "เริ่มทำข้อสอบเมื่อ..."
+                        }],
+                        questionsNumber: 1
+                    }
+                }
+            }
+        }
+
+        if (obj.users.length > 0) {
+            room[obj.users[0]] = obj
+        }
+
+        database.update(database.ref(db(), 'lobby/' + soqId), {
+            state: "start",
+            room: room,
+        });
+
+        // if (snapshot.exists()) {
+        //     const data = snapshot.val();
+        //     const roomAll = data
+        //     let check = false
+
+        //     for (let i = 0; i < roomAll.length; i++) {
+        //         const roomAllStudent = roomAll[i];
+
+        //         if (roomAllStudent.length < 2 && !roomAllStudent.includes(name)) {
+        //             roomAll[i].push(name)
+        //             // database.update(room, roomAll);
+        //             database.update(database.ref(db, 'lobby/' + soqId), {
+        //                 room: roomAll
+        //             });
+        //             check = true
+        //             break
+        //         }
+        //     }
+        //     if (!check) {
+        //         roomAll.push([name])
+        //         database.update(database.ref(db, 'lobby/' + soqId), {
+        //             room: roomAll
+        //         });
+        //     }
+
+        // } else {
+        //     database.update(database.ref(db, 'lobby/' + soqId), {
+        //         room: [[name]]
+        //     });
+        // }
+    })
+
+
+
+    // try {
+    //    newRoom = new Room({
+    //        soqId: soqId
+    //     })
+    //     newRoom.save()
+    //     }
+    // catch (err) {
+    //     if (!err.statusCode) {
+    //         err.statusCode = 500;
+    //     }
+    //     next(err);
+    // }
+
 
 }
 

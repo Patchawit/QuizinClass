@@ -20,6 +20,7 @@ router.post('/PatchScore', adminController.patchScore)
 router.get('/Score/:SetOfQuestionId', adminController.getScore)
 
 router.post('/CreateLobby/:SetOfQuestionId', adminController.CreateLobby)
+router.post('/CreateRoom/:SetOfQuestionId', adminController.CreateRoom)
 
 exports.router = router
 

@@ -23,8 +23,6 @@ import CreateSetOfQuestion from './screen/CreateSetOfQuestion';
 import StudentScore from "./screen/StudentScore";
 import { useAuthContext } from './context/AuthContext';
 import io from "socket.io-client";
-// import Firebase from 'firebase';
-// import * as firebase from 'firebase/app';
 
 function App(props) {
 
@@ -71,6 +69,7 @@ function App(props) {
       <Route name="exercise" path="/exercise/:soqId" element={<Exercise />} />
       {/* <Route path="/ready"  element={<Ready />} /> */}
       <Route path="/studentscore" element={<StudentScore />} />
+      <Route name="Lobby" path="/lobby/:soqId" element={<Lobby />} />
     </Routes>
   </BrowserRouter>
   }

@@ -5,7 +5,7 @@ import {
 import { useAuthContext } from '../../context/AuthContext';
 export default function QusetionPanel(props) {
     const { user } = useAuthContext();
-    const { questions, item } = props
+    const { questions, item, handleUpdateQuestion } = props
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
@@ -49,6 +49,7 @@ export default function QusetionPanel(props) {
         const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questions?.length) {
             setCurrentQuestion(nextQuestion);
+            // handleUpdateQuestion(nextQuestion)
         } else {
             setShowScore(true);
 
