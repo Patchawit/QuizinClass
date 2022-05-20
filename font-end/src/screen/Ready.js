@@ -8,11 +8,15 @@ import {
 
 import * as database from "firebase/database";
 import { db } from "../firebase"
+import Modal from "../component/ui/Modal";
+import { useAuthContext } from '../context/AuthContext';
+
 
 export default function Ready() {
   const [src, setSrc] = useState('');
   const [studentCount, setStudentCount] = useState(0);
-
+  const {IsShowModal, onClickHiddenModal, onClickShowModal} = useAuthContext()
+  const [datauser, setDatauser] = useState();
   let { soqId } = useParams();
   console.log(soqId)
   const text = `http://localhost:5000/Lobby/${soqId}`
@@ -25,6 +29,7 @@ export default function Ready() {
       // console.log("->",data?.users.length);
       setStudentCount(data?.users.length)
       console.log(data?.users)
+      setDatauser(data?.users)
   });
   }, []);
 
@@ -40,7 +45,17 @@ export default function Ready() {
       .then(res => console.log(res.json()))
   }
 
+  
+
   return (
+    <div>
+      {IsShowModal && <Modal onCloseModal={onClickHiddenModal} >
+        <ui>
+        {datauser.map(user => {
+          return <li>{user}</li>
+        })}
+        </ui>
+      </Modal>}
     <div className='center'>
       <div className='container'>
         <div className='row'>
@@ -55,11 +70,12 @@ export default function Ready() {
               <button type="button" className="btn btn-warning btn-lg text-white" onClick={() => handleStart()}>เริ่มทำแบบทดสอบ</button>
             </div>
             <div className='namestart'>
-              <button type="button" className="btn btn-warning btn-lg text-white">รายชื่อผู้ทำแบบทดสอบ</button>
+              <button type="button" className="btn btn-warning btn-lg text-white" onClick={onClickShowModal}>รายชื่อผู้ทำแบบทดสอบ</button>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

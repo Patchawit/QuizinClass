@@ -110,6 +110,15 @@ export default function Score() {
                             console.log(score.soqid, score.score)
                             return <h1>{Content}</h1>
                         })
+                        const studentdate = studentHistory.map(date => {
+                            let Content 
+                            if (date.soqid == soqId) {
+                                Content = date.time
+                                
+                            }
+                            return <h1>{Content}</h1>
+                        })
+
 
                         return <div className='container'>
                             <div className='row'>
@@ -123,11 +132,13 @@ export default function Score() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col-3'>
+                                <div className='col-2'>
                                     <p>{studentscore}</p>
                                 </div>
                                 <div className='col-1'>
-                                    <p></p>
+                                    <p>
+                                       {studentdate} 
+                                    </p>
                                 </div>
                             </div>
                         </div>

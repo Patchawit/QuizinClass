@@ -34,6 +34,7 @@ const userSchema = mongoose.Schema({
         score: {
             type: Number
         },
+        time: { type: String },
     }]
 
 });

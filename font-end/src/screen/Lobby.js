@@ -16,6 +16,7 @@ export default function Lobby() {
   const { user } = useAuthContext()
   const starCountRef = database.ref(db, 'lobby/'+soqId)
   const [ users, setUsers ] = useState([]);
+  const [soq, setSoq] = useState();
   
   function addUser(name){
       database.get(starCountRef).then((snapshot) => {
@@ -41,7 +42,22 @@ export default function Lobby() {
       });
   }
 
-  useEffect(() => {
+  useEffect(async() => {
+    
+    await fetch(`http://localhost:7050/admin/Editque/${soqId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authcookie':Authcookie   
+    },
+      method: "GET",
+    })
+      .then(res => {
+        return res.json()
+      }).then(result => {
+        console.log(result)
+        return setSoq(result.setOfQuestion)
+      })
+
     addUser(user?.email.slice(0, 8))
     
     database.onValue(starCountRef, (snapshot) => {
@@ -59,7 +75,7 @@ export default function Lobby() {
   return (
     <div className='lobby'>
       <h1 className="center">
-        ชื่อชุดคำถาม {soqId}
+        ชื่อชุดคำถาม {soq.soqtitle}
       </h1>
       <div className='center'>
         <div className='ready container'>

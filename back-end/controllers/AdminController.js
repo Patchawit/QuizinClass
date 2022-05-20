@@ -289,7 +289,8 @@ exports.patchScore = async (req, res, next) => {
     // })
 
     // await newTableScore.save()
-    const newTableScore = { soqid: soqIdScore, score: userScore }
+    const date = new Date();
+    const newTableScore = { soqid: soqIdScore, score: userScore, time: date.toLocaleTimeString()  }
     let submittedUser = await User.findOne(user)
     await submittedUser.history.push(newTableScore)
     submittedUser = await submittedUser.populate('history')

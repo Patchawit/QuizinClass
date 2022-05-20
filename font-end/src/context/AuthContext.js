@@ -12,6 +12,7 @@ export const AuthContextProvider = (props) => {
     const [loginBy, setLoginBy] = useState('')
     const [studentid, setStudentid] = useState('')
     const [Authcookie, setAuthCookie] = useState('');
+    const [IsShowModal, setIsShowModal] = useState(false)
     const googleAuth = ({ profileObj }) => {
         axios.post("http://localhost:7050/auth/login", {
             data: {
@@ -46,6 +47,12 @@ export const AuthContextProvider = (props) => {
         cookies.remove('token')
         setIsLogin(false)
     }
+    const onClickShowModal = () => {
+        setIsShowModal(true)
+    }
+    const onClickHiddenModal = () => {
+        setIsShowModal(false)
+    }
 
 
     return (
@@ -57,7 +64,10 @@ export const AuthContextProvider = (props) => {
                 loginBy: loginBy,
                 studentid: studentid,
                 user: user,
-                Authcookie: Authcookie
+                Authcookie: Authcookie,
+                IsShowModal: IsShowModal,
+                onClickHiddenModal: onClickHiddenModal,
+                onClickShowModal: onClickShowModal
             }}>
             {props.children}
         </AuthContext.Provider >

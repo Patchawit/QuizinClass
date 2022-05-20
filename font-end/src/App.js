@@ -24,6 +24,7 @@ import StudentScore from "./screen/StudentScore";
 import { useAuthContext } from './context/AuthContext';
 import io from "socket.io-client";
 
+
 function App(props) {
 
   const { isLogin, logoutHandler, loginBy, user } = useAuthContext()
@@ -70,6 +71,7 @@ function App(props) {
       {/* <Route path="/ready"  element={<Ready />} /> */}
       <Route path="/studentscore" element={<StudentScore />} />
       <Route name="Lobby" path="/lobby/:soqId" element={<Lobby />} />
+      <Route path="/studentscore" element={<StudentScore />} />
     </Routes>
   </BrowserRouter>
   }
