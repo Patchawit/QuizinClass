@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react'
 import { useAuthContext } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const { loginBy, studentid } = useAuthContext()
@@ -19,7 +20,9 @@ export default function Profile() {
             </p>
           </div>
         </div>
-        <button type="button" className="btn btn-warning btn-lg text-white mt-5 btnmyscore">ตรวจสอบคะแนน</button>
+        <Link to={`/studentscore`}>
+        <button type="button" className="btn btn-warning btn-lg text-white mt-5 btnmyscore" >ตรวจสอบคะแนน</button>
+        </Link>
       </div>
     </div>
 

@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import { useAuthContext } from '../../context/AuthContext';
 export default function QusetionPanel(props) {
+
     const { user } = useAuthContext();
     const { questions, item, handleUpdateQuestion } = props
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -43,6 +44,8 @@ export default function QusetionPanel(props) {
         // })
 
     }
+
+ 
 
     const handleChoiceClick = (isCorrect, ans) => {
         if (isCorrect) {
@@ -86,9 +89,9 @@ export default function QusetionPanel(props) {
                             </div>
                         </div>
                         <div className='answer-section col-6'>
-                            {questions && questions[currentQuestion]?.choices.map((index, choice) => {
-                                console.log(choice.choiceTitle)
-                                return <button onClick={() => handleChoiceClick(choice.isCorrect, index)} >{choice.choiceTitle}</button>
+                            {questions && questions[currentQuestion]?.choices?.map((choice) => {
+                            
+                                return <button onClick={() => handleChoiceClick(choice?.isCorrect, choice)} >{choice?.choiceTitle}</button>
 
                             }
                             )}
