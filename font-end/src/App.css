@@ -356,7 +356,7 @@ body {
 }
 .chat{
   position: fixed;
-  bottom: 4.5vh;
+  bottom: 4vh;
   right: 5.5vw;
   width: 28vw;
   border:0.2vw solid rgb(255, 145, 0);
@@ -365,6 +365,8 @@ body {
 
 .chatname{
   margin-left: 0.5vw;
+  height: 35vw;
+  overflow-y: scroll;
 }
 
 .qrcode{
