@@ -22,5 +22,7 @@ router.get('/Score/:SetOfQuestionId', adminController.getScore)
 router.post('/CreateLobby/:SetOfQuestionId', adminController.CreateLobby)
 router.post('/CreateRoom/:SetOfQuestionId', adminController.CreateRoom)
 
+router.get('/GetEverDoSoq/:Email', adminController.GetEverDoSoq)
+
 exports.router = router
 

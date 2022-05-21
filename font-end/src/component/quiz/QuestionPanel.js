@@ -10,6 +10,7 @@ export default function QusetionPanel(props) {
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
     const [didMount, setDidMount] = useState(false)
+    const [studentAns, setStudentAns] = useState([]);
     let { soqId } = useParams();
 
     useEffect(() => { setDidMount(true) }, [])
@@ -20,6 +21,7 @@ export default function QusetionPanel(props) {
         }
     }, [showScore])
     const onSubmitQuizHandler = async () => {
+        // console.log(studentAns)
         await fetch("http://localhost:7050/admin/PatchScore", {
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +30,8 @@ export default function QusetionPanel(props) {
             body: JSON.stringify({
                 soqIdScore: soqId,
                 userScore: score,
-                user: user
+                user: user,
+                studentAns: studentAns
             })
         })
         // .then(result => {
@@ -41,11 +44,15 @@ export default function QusetionPanel(props) {
 
     }
 
-    const handleChoiceClick = (isCorrect) => {
+    const handleChoiceClick = (isCorrect, ans) => {
         if (isCorrect) {
             setScore(score + 1);
         }
-
+        let item = currentQuestion
+        let studentAnsTemp = { item, ans }
+        setStudentAns((prevstate) => {
+            return [...prevstate, studentAnsTemp]
+        })
         const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questions?.length) {
             setCurrentQuestion(nextQuestion);
@@ -74,15 +81,17 @@ export default function QusetionPanel(props) {
                                 </div>
                             </div>
                             <div className='question-img row'>
-                            {questions && (questions[currentQuestion]?.imgUrl === "images/1x1.png"?<div></div>: <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />)}
-                            {/* {questions && <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />} */}
+                                {questions && (questions[currentQuestion]?.imgUrl === "images/1x1.png" ? <div></div> : <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />)}
+                                {/* {questions && <img src={`http://localhost:7050/` + questions[currentQuestion]?.imgUrl} />} */}
                             </div>
                         </div>
                         <div className='answer-section col-6'>
-                            {questions && questions[currentQuestion]?.choices.map((choice) => (
-                                
-                                <button onClick={() => handleChoiceClick(choice.isCorrect)} >{choice.choiceTitle}</button>
-                            ))}
+                            {questions && questions[currentQuestion]?.choices.map((index, choice) => {
+                                console.log(choice.choiceTitle)
+                                return <button onClick={() => handleChoiceClick(choice.isCorrect, index)} >{choice.choiceTitle}</button>
+
+                            }
+                            )}
 
                         </div>
                     </div>

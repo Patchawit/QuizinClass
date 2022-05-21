@@ -34,6 +34,18 @@ const userSchema = mongoose.Schema({
         score: {
             type: Number
         },
+        studentAns: [
+            {
+                items: { type: String },
+                ans: {
+                    choiceTitle: { type: String },
+                    choiceImg: { type: String },
+                    isCorrect: { type: Boolean }
+                }
+
+            }
+        ],
+
         time: { type: String },
     }]
 

@@ -281,7 +281,7 @@ exports.deleteSetOfQuestion = async (req, res, next) => {
 
 exports.patchScore = async (req, res, next) => {
 
-    const { soqIdScore, userScore, user } = req.body
+    const { soqIdScore, userScore, user, studentAns } = req.body
 
     // const newTableScore = new TableScore({
     //     soqid: soqIdScore,
@@ -289,8 +289,14 @@ exports.patchScore = async (req, res, next) => {
     // })
 
     // await newTableScore.save()
+    console.log(studentAns)
     const date = new Date();
-    const newTableScore = { soqid: soqIdScore, score: userScore, time: date.toLocaleTimeString()  }
+    const newTableScore = {
+        soqid: soqIdScore,
+        score: userScore,
+        studentAns: studentAns,
+        time: date.toLocaleTimeString()
+    }
     let submittedUser = await User.findOne(user)
     await submittedUser.history.push(newTableScore)
     submittedUser = await submittedUser.populate('history')
@@ -368,7 +374,7 @@ exports.CreateRoom = async (req, res, next) => {
                 // console.log(array);
 
                 if (obj.users.length == 2) {
-                    room[obj.users[0]+"_"+obj.users[1]] = obj
+                    room[obj.users[0] + "_" + obj.users[1]] = obj
                     obj = {
                         users: [],
                         chat: [{
@@ -436,6 +442,27 @@ exports.CreateRoom = async (req, res, next) => {
     //     }
     //     next(err);
     // }
+
+
+}
+
+
+exports.GetEverDoSoq = async (req, res, next) => {
+    const email = req.params.Email;
+    const listOfSoq = [];
+ 
+    let owner = await User.findOne({ "email": email })
+    await owner.history.map(data => {
+        listOfSoq.push(data.soqid)
+    })
+    let data = await SetOfQuestion.find(
+        { '_id': { $in: listOfSoq } }
+    );
+
+    console.log(data)
+    return res.status(200).json({
+        listOfSoq: data
+    })
 
 
 }
