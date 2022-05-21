@@ -2,7 +2,7 @@ const express = require('express')
 const isTeacher = require('../middleware/is-teacher')
 const router = express.Router()
 const adminController = require('../controllers/AdminController')
-router.get('/Category/:Email',isTeacher, adminController.getCategory)
+router.get('/Category/:Email', isTeacher, adminController.getCategory)
 router.post('/Category', isTeacher, adminController.postCategory)
 router.delete('/Category', adminController.deleteCategory)
 router.get('/SetOfQuestion', adminController.getSetOfQuestions)
@@ -18,6 +18,9 @@ router.delete('/Question', adminController.deleteQuestion)
 
 router.post('/PatchScore', adminController.patchScore)
 router.get('/Score/:SetOfQuestionId', adminController.getScore)
+router.get('/ScoreByEmail/:Email', adminController.getScoreByEmail)
+
+
 
 router.post('/CreateLobby/:SetOfQuestionId', adminController.CreateLobby)
 router.post('/CreateRoom/:SetOfQuestionId', adminController.CreateRoom)

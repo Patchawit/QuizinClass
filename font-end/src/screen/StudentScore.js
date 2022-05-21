@@ -63,7 +63,7 @@ export default function StudentScore() {
         setSoq(result.setOfQuestion)
       })
 
-    await fetch(`http://localhost:7050/admin/Score/${e.target.value}`, {
+    await fetch(`http://localhost:7050/admin/ScoreByEmail/${user.email}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -71,6 +71,7 @@ export default function StudentScore() {
     })
       .then(res => { return res.json() })
       .then(result => {
+        // console.log('studentlist', result)
         setStudentList(result)
       })
   }
@@ -118,14 +119,17 @@ export default function StudentScore() {
               </div></div>
             })}
             <div>
-              {Studentlist && Studentlist?.users?.map((student) => {
+              {Studentlist && Studentlist?.user?.map((student) => {
                 let content;
+
                 const studentAnswer = student?.history?.filter(data => {
                   return data.soqid === soqId;
                 })
+                console.log(studentAnswer)
                 content = studentAnswer?.map((ans, index) => {
                   return ans.studentAns
                 })
+                console.log(content[0])
 
                 content = content[0]?.map(data => {
                   return { Title: data?.ans?.choiceTitle, Correct: data?.ans?.isCorrect }
@@ -133,11 +137,12 @@ export default function StudentScore() {
 
 
                 counter++
-                
+
                 if (content) {
                   if (content[counter]?.Correct === true) {
                     return <h2 style={{ color: "green" }}>คำตอบ : {content[counter]?.Title} ถูก</h2>
-                  } else {
+                  }
+                  else if (content[counter]?.Correct === false) {
                     return <h2 style={{ color: "red" }}>คำตอบ : {content[counter]?.Title} ผิด</h2>
                   }
                 }

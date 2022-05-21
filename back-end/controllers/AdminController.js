@@ -320,12 +320,36 @@ exports.getScore = async (req, res, next) => {
     //         return his.soqid.equals(mongoose.Types.ObjectId(soqId))
     //     })
     // })
+    console.log(users)
     return res.status(200).json({
         users: users,
     })
 
 
 }
+
+exports.getScoreByEmail = async (req, res, next) => {
+    const email = req.params.Email;
+    let user
+    // const timeElapsed = Date.now();
+    // let timeNow = new Date(timeElapsed);
+    // timeNow = timeNow.toLocaleTimeString();
+    await User.find({ "email": email })
+        .then(result => { user = result })
+    // users.history = users.map(user => {
+    //     user.history.filter(his => {
+    //         return his.soqid.equals(mongoose.Types.ObjectId(soqId))
+    //     })
+    // })
+    console.log(user)
+    return res.status(200).json({
+        user: user,
+    })
+
+
+}
+
+
 
 
 exports.CreateLobby = async (req, res, next) => {
@@ -450,8 +474,9 @@ exports.CreateRoom = async (req, res, next) => {
 exports.GetEverDoSoq = async (req, res, next) => {
     const email = req.params.Email;
     const listOfSoq = [];
- 
+    console.log('email', email)
     let owner = await User.findOne({ "email": email })
+    console.log('owner', owner)
     await owner.history.map(data => {
         listOfSoq.push(data.soqid)
     })
@@ -459,7 +484,7 @@ exports.GetEverDoSoq = async (req, res, next) => {
         { '_id': { $in: listOfSoq } }
     );
 
-    console.log(data)
+    // console.log(data)
     return res.status(200).json({
         listOfSoq: data
     })
