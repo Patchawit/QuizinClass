@@ -29,26 +29,7 @@ export default function StudentScore() {
   const [soq, setSoq] = useState()
   useEffect(async () => {
     console.log(user.email)
-    await fetch(`http://localhost:7050/admin/category/${user.email}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authcookie': Authcookie
-      },
-      method: "GET",
-    })
-      .then(res => {
-        return res.json()
-      }).then(result => {
-        console.log(result)
-        return setAllSubject(result.allSubject)
-      })
-  }, [])
-
-  const onSubjectChangeHandler = async (e) => {
-    e.preventDefault();
-    console.log(user)
-    if (e.target.value !== "default") {
-      await fetch(`http://localhost:7050/admin/GetEverDoSoq/${user.email}`, {
+    await fetch(`http://localhost:7050/admin/GetEverDoSoq/${user.email}`, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -61,8 +42,9 @@ export default function StudentScore() {
           setListOfSoq(result.listOfSoq)
           return console.log(result.listOfSoq)
         })
-    }
-  }
+  }, [])
+
+ 
 
 
   // const onSubjectChangeHandler = async (e) => {
@@ -119,16 +101,6 @@ export default function StudentScore() {
     <div>
       <div className="scorehead">
         <p className='groupsub2'>
-          หมวดหมู่วิชา
-        </p>
-        <Form.Select className='formselect' onChange={onSubjectChangeHandler}>
-          <option value="default">เลือกวิชา</option>
-          {allSubject?.map((subject) => {
-            return <option value={subject._id} key={subject.subjecttitle}>{subject.subjecttitle}</option>
-          })}
-
-        </Form.Select>
-        <p className='groupsub2'>
           ชุดคำถาม
         </p>
         <Form.Select className='formselect' onChange={onSoqChangeHandler}>
@@ -174,6 +146,7 @@ export default function StudentScore() {
                 })
                 counter++
                 // return (content[counter])
+                console.log(studentAnswer)
                 if (content[counter].Correct === true) {
                   return <h1 style={{ color: "green" }}>User ans : {content[counter].Title} ถูก</h1>
                 } else {
