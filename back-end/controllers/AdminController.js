@@ -360,7 +360,7 @@ exports.CreateRoom = async (req, res, next) => {
             users: [],
             chat: [{
                 by: "system",
-                text: "เริ่มทำข้อสอบเมื่อ..."
+                text: "เริ่มทำข้อสอบได้"
             }],
             questionsNumber: 1
         }
@@ -379,7 +379,7 @@ exports.CreateRoom = async (req, res, next) => {
                         users: [],
                         chat: [{
                             by: "system",
-                            text: "เริ่มทำข้อสอบเมื่อ..."
+                            text: "เริ่มทำข้อสอบได้"
                         }],
                         questionsNumber: 1
                     }

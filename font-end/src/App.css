@@ -270,11 +270,11 @@ body {
 
 .inputques{
   width: 80%;
-  margin-left: 1vw;
+  margin-left: 2vw;
 }
 .inputquest{
   width: 80%;
-  margin-left: 3vw;
+  margin-left: 2.5vw;
 }
 
 .lobby h1{
@@ -355,11 +355,17 @@ body {
   text-align: center;
 }
 .chat{
-  width: 90%;
-  margin-top: 69vh;
-  margin-left: 1.5vw;
+  position: fixed;
+  bottom: 4.5vh;
+  right: 5.5vw;
+  width: 28vw;
+  border:0.2vw solid rgb(255, 145, 0);
+
 }
 
+.chatname{
+  margin-left: 0.5vw;
+}
 
 .qrcode{
   width: 500px;
@@ -399,6 +405,11 @@ body {
 .newque {
   margin-left: 79vw;
   margin-bottom: 3vw;
+}
+
+.answeruser img{
+  width: 20vw;
+  margin-bottom: 1vw;
 }
 
 

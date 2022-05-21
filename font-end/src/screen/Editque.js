@@ -264,7 +264,7 @@ export default function Editque() {
                                         content = <div key={question.title} className='groupcreate'>
                                                 <div className='questsave'>
                                                         <p>
-                                                                ข้อที่...
+                                                                คำถาม
                                                                 <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
                                                         </p>
                                                         {/* <img src={`http://localhost:7050/` + question.imgUrl} /> */}
@@ -272,7 +272,7 @@ export default function Editque() {
 
                                                         {question.choices.map(choice => {
                                                                 return <p key={choice.choiceTitle}>
-                                                                        ตัวเลือกที่...
+                                                                        ตัวเลือก
                                                                         <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled />
                                                                 </p>
                                                         })}

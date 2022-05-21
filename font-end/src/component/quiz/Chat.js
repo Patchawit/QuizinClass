@@ -21,18 +21,17 @@ export default function Chat({ usersName, chats, currentUser, handleSubmitChat }
             <h3>{usersName[0]}</h3>
             <h3>{usersName?.[1]}</h3>
         </div>
+        <div className='chatname'>
         {
             chats.map(chat => {
                 return <>
                     <h5>
-                        {chat.text}
+                    {chat.by} : {chat.text}
                     </h5>
-                    <h5>
-                        by {chat.by}
-                    </h5>
-                </>
+                </>                
             })
         }
+        </div>
 
         <input className="form-control form-control-lg chat" type="text" placeholder=""
             onChange={e => handleChange(e)}

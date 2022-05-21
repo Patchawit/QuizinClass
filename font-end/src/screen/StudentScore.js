@@ -117,10 +117,12 @@ export default function StudentScore() {
       </div>
       <div>
         {soq && soq.questions.map(question => {
-          return <div>
-            <h2>Title : {question.questionstitle}</h2>
+          return <div className='answeruser groupcreate'>
+            <h3>คำถาม : {question.questionstitle}</h3>
+            {question.imgUrl === "images/1x1.png" ? <div></div> : <img src={`http://localhost:7050/` + question.imgUrl} />}
             {question.choices.map(choice => {
-              return <div>
+              return <div className='container'><div className='row'><div className='col-1'><p>ตัวเลือก:</p></div>
+               <div className='col-2'>
                 {choice.isCorrect == true ?
                   <h3 style={{ color: "green" }}>
                     {choice.choiceTitle}
@@ -130,8 +132,9 @@ export default function StudentScore() {
                   </h3>
 
                 }
-
-              </div>
+                </div>
+                
+              </div></div>
             })}
             <div>
               {Studentlist && Studentlist?.users?.map((student) => {
@@ -148,9 +151,9 @@ export default function StudentScore() {
                 // return (content[counter])
                 console.log(studentAnswer)
                 if (content[counter].Correct === true) {
-                  return <h1 style={{ color: "green" }}>User ans : {content[counter].Title} ถูก</h1>
+                  return <h2 style={{ color: "green" }}>คำตอบ : {content[counter].Title} ถูก</h2>
                 } else {
-                  return <h1 style={{ color: "red" }}>User ans : {content[counter].Title} ผิด</h1>
+                  return <h2 style={{ color: "red" }}>คำตอบ : {content[counter].Title} ผิด</h2>
                 }
 
 
