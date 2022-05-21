@@ -19,7 +19,7 @@ const TableScore = mongoose.Schema({
     score: {
         type: Number
     },
-    time: { type: String, default: Date.now().toLocaleString() },
+    // time: { type: String, default: Date.now().toLocaleString() },
             
 })
 

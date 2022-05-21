@@ -75,7 +75,7 @@ export default function Lobby() {
   return (
     <div className='lobby'>
       <h1 className="center">
-        ชื่อชุดคำถาม {soq.soqtitle}
+        ชื่อชุดคำถาม {soq?.soqtitle}
       </h1>
       <div className='center'>
         <div className='ready container'>
