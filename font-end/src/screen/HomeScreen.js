@@ -111,13 +111,6 @@ export default function HomeScreen() {
                     {/* {console.log(typeof soq.date)} */}
                     วันที่สร้าง : {soq.date}
                   </p>
-                  <Form>
-                    <Form.Check
-                      type="switch"
-                      id="custom-switch"
-                      label=" แสดงคะแนน"
-                    />
-                  </Form>
                 </div>
               </div>
               </FadeIn>

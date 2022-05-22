@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 import {
+    useNavigate,
     useParams
 } from "react-router-dom";
 import { useAuthContext } from '../../context/AuthContext';
 export default function QusetionPanel(props) {
 
     const { user } = useAuthContext();
+    const navigate = useNavigate();
     const { questions, item, handleUpdateQuestion } = props
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
@@ -18,7 +20,11 @@ export default function QusetionPanel(props) {
 
     useEffect(() => {
         if (didMount) {
-            onSubmitQuizHandler()
+            onSubmitQuizHandler()     
+        }
+        if (showScore){
+        alert("การทำแบบทดสอบเสร็จสิ้น กรุณากดตกลง");
+        navigate("/profile/");
         }
     }, [showScore])
     const onSubmitQuizHandler = async () => {
@@ -62,6 +68,7 @@ export default function QusetionPanel(props) {
             // handleUpdateQuestion(nextQuestion)
         } else {
             setShowScore(true);
+    
 
         }
     };
