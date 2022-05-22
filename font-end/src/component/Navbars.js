@@ -56,8 +56,8 @@ export default function Navbars(props) {
             <Navbar.Brand href="/" className='logo'><h3><strong>Quiz <font color="#FFAD32"> in </font> Class</strong></h3></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                     Student 
+                <Nav className="navstu">
+                <h2><strong>Student</strong></h2>
                 </Nav>
             </Navbar.Collapse>
             <Navbar.Collapse className="justify-content-end">
