@@ -296,7 +296,7 @@ export default function CreateSetOfQuestion() {
                                         {question.choices.map((choice, index) => {
                                             return <p key={choice.QuestionTitle}>
                                                 <div className='row'>
-                                                    <div className='col-1'>ตัวเลือกที่</div>
+                                                    <div className='col-1'>ตัวเลือก</div>
 
                                                     <div className='col-11 creques2'>
                                                         <input className='form-control form-control-lg' placeholder={'ตัวเลือก' + (index + 1)}
@@ -337,7 +337,7 @@ export default function CreateSetOfQuestion() {
                             content = <div key={question.title} className='groupcreate'>
                                 <div className='questsave'>
                                     <p>
-                                        ข้อที่...
+                                        คำถาม
                                         <Form.Control id="disabledTextInput" className='inputquest' placeholder={question.questionstitle} disabled />
                                     </p>
                                     {/* <img src={`http://localhost:7050/` + question.imgUrl} /> */}
@@ -346,7 +346,7 @@ export default function CreateSetOfQuestion() {
 
                                     {question.choices.map(choice => {
                                         return <p key={choice.choiceTitle}>
-                                            ตัวเลือกที่...
+                                            ตัวเลือก
                                             <Form.Control id="disabledTextInput" className='inputques' placeholder={choice.choiceTitle} disabled />
                                         </p>
                                     })}

@@ -225,7 +225,7 @@ export default function Editque() {
                                                         {question.choices.map((choice, index) => {
                                                                 return <p key={choice.QuestionTitle}>
                                                                         <div className='row'>
-                                                                                <div className='col-1'>ตัวเลือกที่</div>
+                                                                                <div className='col-1'>ตัวเลือก</div>
 
                                                                                 <div className='col-11 creques2'>
                                                                                         <input className='form-control form-control-lg' placeholder={'ตัวเลือก' + (index + 1)}
