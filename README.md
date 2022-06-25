@@ -12,6 +12,6 @@
 <img src="image/pic3.jpg" alt="drawing" width="500"/>
 
 ## Group Members :family:
- |<img src="https://avatars.githubusercontent.com/u/42956425?v=4" width="120px" height="120px">|<img src="https://avatars0.githubusercontent.com/u/41448294?s=460&v=4" width="120px" height="120px">|
+ |<img src="https://avatars.githubusercontent.com/u/42956425?v=4" width="120px" height="120px">|<img src="https://avatars.githubusercontent.com/u/42910396?s=400&u=ca0033271865b254706a10a66609ec85bf186398&v=4" width="120px" height="120px">|
  |:---:|:---:|
 |[Narawich](https://github.com/Narawich)|[Patchawit](https://github.com/Patchawit)|
